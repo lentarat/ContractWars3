@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class WeaponChange : MonoBehaviour
 {
+    [SerializeField] private BulletsManager _bulletsManager;
+
     [SerializeField] private Image _inventoryImage;
 
     [SerializeField] private Button _currentWeaponButton;
@@ -14,7 +16,7 @@ public class WeaponChange : MonoBehaviour
     [SerializeField] private Button _meleeButton;
     [SerializeField] private Button _grenadeButton;
 
-    public System.Action OnCurrentWeaponChange;
+    //public System.Action OnCurrentWeaponChange;
 
     private Image _currentWeaponImage;
     private Image _mainWeaponImage;
@@ -47,7 +49,8 @@ public class WeaponChange : MonoBehaviour
     {
         _currentWeaponImage.color = chosenWeaponImage.color;
         _currentInventoryHolder.CurrentWeaponInSlot = inventoryWeaponHolder.CurrentWeaponInSlot;
-        OnCurrentWeaponChange?.Invoke();   
+        //OnCurrentWeaponChange?.Invoke();   
+        _bulletsManager.SetCurrentWeapon(inventoryWeaponHolder.CurrentWeaponInSlot);
     }
 
     private void SetInventoryActive(bool state)

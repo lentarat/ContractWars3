@@ -6,6 +6,7 @@ using Helpers.Events;
 public class BulletsManager : MonoBehaviour
 {
     [SerializeField] public Weapon CurrentWeapon;
+
     public void AddABullet()
     {
 
@@ -22,6 +23,11 @@ public class BulletsManager : MonoBehaviour
     public void SubtractBullets(int amount)
     {
 
+    }
+    public void SetCurrentWeapon(Weapon chosenWeaponFromInventory)
+    {
+        CurrentWeapon = chosenWeaponFromInventory;
+        NotifyBulletAmountChange();
     }
     private void NotifyBulletAmountChange()
     {
