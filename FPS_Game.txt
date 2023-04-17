@@ -1,0 +1,88 @@
+FPS 
+
+Задача:
+Если говорить про FPS: сделать один режим игры на выбор : каждый сам за себя или командный бой. В котором будет минимум 2 вида оружия, которые можно переключать прямо в игре. Обязательно одно метательное оружие - граната. Играть будем против ботов. В самом начале обязательно нужно выбирать вид юнитов, и карту (можно, чтобы это был один и тот же юнит, но с другими материалами/текстурами, тоже самоеи с картой, вид может быть один, но цвет материала разный). Цель научиться делать выбор в рантайме, а потом это применять уже в игре.
+
+Аналоги(Референсы)
+
+https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/
+
+
+
+
+
+/*
+- Свойства
+-- Метот 
+-* События 
+-*- реализация
+*/
+
+Movement 
+MovementSystem
+{
+	-Idle
+	-Run
+	-Walk
+	-Croutch 
+	-Jump
+}
+
+WeaponType
+{
+	Melee
+	Grenade
+	Gun
+	{
+		Pistol
+		AutoRifle(AK,M4A1)
+		Rifle(AWP)
+	}
+}
+
+Weapon 
+-Damage
+-Weight(make you slover if weapon have ben chossen)
+-RealodTime 
+-ArmorDamage
+
+WeaponSystem 
+{
+	-Reload
+	-Bullet
+	-Shot
+}
+
+
+Player
+Hp
+Money(Point)
+Armor
+
+DealSystem
+{
+	TakeDamage
+}
+
+
+Units
+{
+	Bandit,
+	SWAT
+}
+
+Map
+-SpawnZone
+-PlantZone
+
+Bomb
+BombSystem
+
+
+UI
+PlayerUI
+MenuUI
+TAB_UI
+InGameMenuUI
+
+AI
