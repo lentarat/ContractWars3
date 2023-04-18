@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class ShootButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] private BulletsManager _bulletsManager;
+    [SerializeField] private WeaponManager _bulletsManager;
 
     private IEnumerator _shootCoroutine;
     private float _timeWhenStoppedShooting;

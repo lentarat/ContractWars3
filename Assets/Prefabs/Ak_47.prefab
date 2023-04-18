@@ -50,4 +50,5 @@ MonoBehaviour:
   _reloadTime: 3.5
   _periodBetweenShots: 0.2
   _weight: 4.3
-  _bullets: 25
+  _bulletsInMagazine: 25
+  _bulletsLeft: 80

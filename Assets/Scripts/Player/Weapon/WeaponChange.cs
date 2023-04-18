@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class WeaponChange : MonoBehaviour
 {
-    [SerializeField] private BulletsManager _bulletsManager;
+    [SerializeField] private WeaponManager _bulletsManager;
 
     [SerializeField] private Image _inventoryImage;
 
