@@ -27,7 +27,8 @@ public class RoundTimeShower : MonoBehaviour
         if (_lastSecond != _seconds)
         {
             _lastSecond = _seconds;
-            _countdownText.text = string.Concat(_minutes.ToString(), ":", _seconds.ToString());
+            _countdownText.text = string.Format("{0:0}:{1:00}", _minutes, _seconds);
+            //_countdownText.text = string.Concat(_minutes.ToString(), ":", _seconds.ToString());
         }
     }
 }
