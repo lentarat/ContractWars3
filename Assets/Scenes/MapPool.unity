@@ -2931,7 +2931,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077033965}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 894af8067f922c141a09ef4339e2d1e1, type: 3}
   m_Name: 
@@ -2940,7 +2940,7 @@ MonoBehaviour:
   _verticalInput: 0
   _controller: {fileID: 1077033967}
   _speed: 3
-  _gravity: -9.81
+  _gravity: -19
   _velocity: {x: 0, y: 0, z: 0}
   _groundCheck: {fileID: 1647864572}
   _groundDistance: 0.2
@@ -2948,10 +2948,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 832
   _isGrounded: 0
-  _jumpHeight: 2
+  _jumpHeight: 1.5
   _animator: {fileID: 1077033968}
-  _isMovementPresent: 0
-  _isRuningPresent: 0
 --- !u!143 &1077033967
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2963,13 +2961,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2.1
-  m_Radius: 0.5
+  m_Height: 2.2
+  m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!95 &1077033968 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: c246f0b16ad77634583e11f257c73f92, type: 3}
@@ -2980,6 +2978,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c246f0b16ad77634583e11f257c73f92, type: 3}
   m_PrefabInstance: {fileID: 1912311324}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1077033970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077033965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9da9008b4cfca84692241513f4850b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controller: {fileID: 1077033967}
+  _horizontalInput: 0
+  _verticalInput: 0
+  _speed: 15
+  _gravity: -9.81
+  _velocity: {x: 0, y: 0, z: 0}
+  _groundCheck: {fileID: 1647864572}
+  _groundDistance: 0
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 832
+  _isGrounded: 0
+  _jumpHeight: 2
+  _animator: {fileID: 1077033968}
+  _isJumpPressed: 0
 --- !u!1 &1106765979
 GameObject:
   m_ObjectHideFlags: 0
@@ -17327,7 +17352,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25438
+  m_Name: pb_Mesh23612
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18522,7 +18547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c246f0b16ad77634583e11f257c73f92, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.004
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c246f0b16ad77634583e11f257c73f92, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18767,6 +18792,10 @@ PrefabInstance:
     - target: {fileID: 7776229726456038893, guid: c246f0b16ad77634583e11f257c73f92, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8485484235053141797, guid: c246f0b16ad77634583e11f257c73f92, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8817898888258712963, guid: c246f0b16ad77634583e11f257c73f92, type: 3}
       propertyPath: m_Layer
@@ -19501,7 +19530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _handle: {fileID: 624489671}
   _rectTransform: {fileID: 2109043879}
-  _canvas: {fileID: 0}
+  _canvas: {fileID: 1582718686}
   _maximumRadius: 0
 --- !u!114 &2109043881
 MonoBehaviour:

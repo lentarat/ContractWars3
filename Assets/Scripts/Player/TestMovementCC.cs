@@ -27,9 +27,11 @@ public class TestMovementCC : MonoBehaviour
 
     private int _isWalkingHash;
     private int _isRunningHash;
+    private int _isJumpingHash;
 
-    [SerializeField] private bool _isMovementPresent;
-    [SerializeField] private bool _isRuningPresent;
+    private bool _isMovementPressent;
+    private bool _isRunPressent;
+    private bool _isJumpPressent;
 
     private void Awake()
     {
@@ -38,6 +40,7 @@ public class TestMovementCC : MonoBehaviour
 
         _isWalkingHash = Animator.StringToHash("IsWalking");
         _isRunningHash = Animator.StringToHash("IsRunning");
+        _isJumpingHash = Animator.StringToHash("IsJumping");
     }
 
     // Start is called before the first frame update
@@ -49,18 +52,18 @@ public class TestMovementCC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundMask);
+        
 
-
+        GravityHandler();
+        JumpHandler();
         MovementHandler();
         RunHandler();
-        JumpHandler();
         AnimationHandler();
     }
 
     private void FixedUpdate()
     {
-        GravityHandler();
+        
         
     }
 
@@ -68,23 +71,36 @@ public class TestMovementCC : MonoBehaviour
     {
         bool isWalking = _animator.GetBool(_isWalkingHash);
         bool isRunning = _animator.GetBool(_isRunningHash);
+        bool isJumping = _animator.GetBool(_isJumpingHash);
+       
 
-        if (_isMovementPresent && !isWalking)
+        if (_isMovementPressent && !isWalking)
         {
             _animator.SetBool(_isWalkingHash, true);
         }
-        else if (!_isMovementPresent && isWalking)
+        else if (!_isMovementPressent && isWalking)
         {
             _animator.SetBool(_isWalkingHash, false);
         }
-        if (_isRuningPresent && !isRunning && _isMovementPresent )
+
+        if (_isRunPressent && !isRunning && _isMovementPressent )
         {
             _animator.SetBool(_isRunningHash, true);
         }
-        else if (!_isRuningPresent && isRunning )
+        else if (!_isRunPressent && isRunning || !_isMovementPressent)
         {
             _animator.SetBool(_isRunningHash, false);
         }
+
+        if (_isJumpPressent && !isJumping)
+        {
+            _animator.SetBool(_isJumpingHash, true);
+        }
+        else if (_isJumpPressent && isJumping)
+        {
+            _animator.SetBool(_isJumpingHash, false);
+        }
+
     }
 
     private void MovementHandler()
@@ -95,22 +111,22 @@ public class TestMovementCC : MonoBehaviour
         Vector3 move = transform.right * _horizontalInput + transform.forward * _verticalInput;
 
         _controller.Move(move * _speed * Time.deltaTime);
-        _isMovementPresent = _horizontalInput != 0 || _verticalInput != 0;
+        _isMovementPressent = _horizontalInput != 0 || _verticalInput != 0;
     }
 
     private void RunHandler()
     {   
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            //_isMovementPresent = false;
-            _isRuningPresent = true;
+            //_isMovementPressent = false;
+            _isRunPressent = true;
             _speed += 5f;
 
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            //_isMovementPresent = true;
-            _isRuningPresent = false;
+            //_isMovementPressent = true;
+            _isRunPressent = false;
             _speed -= 5f;
         }
     }
@@ -119,19 +135,29 @@ public class TestMovementCC : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
         {
+            _isJumpPressent = true;
             _velocity.y = Mathf.Sqrt(_jumpHeight * -2f * _gravity);
+
         }
+        else
+        {
+            _isJumpPressent = false;
+        }
+
+
     }
     private void GravityHandler()
     {
+        
+        _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundDistance, _groundMask);
 
         if (_isGrounded && _velocity.y < 0)
         {
             _velocity.y = -2f;
         }
+        _velocity.y += _gravity * Time.deltaTime ;
 
-        _velocity.y += _gravity * Time.fixedDeltaTime ;
 
-        _controller.Move(_velocity * Time.fixedDeltaTime);
+        _controller.Move(_velocity * Time.deltaTime);
     }    
 }
