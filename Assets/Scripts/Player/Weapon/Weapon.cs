@@ -15,10 +15,13 @@ public class Weapon : MonoBehaviour
     public float PeriodBetweenShots { get => _periodBetweenShots; set => _periodBetweenShots = value; }
     [SerializeField] private float _weight;
     public float Weight { get => _weight; set => _weight = value; }
-    //test
-    [SerializeField] private int _bullets;
-    public int Bullets { get => _bullets; set => _bullets = value; }
-    //test
+    [SerializeField] private int _bulletsInMagazine;
+    public int BulletsInMagazine { get => _bulletsInMagazine;set => _bulletsInMagazine = value; }
+    [SerializeField] private int _maximumBulletsInMagazine;
+    public int MaximumBulletsInMagazine { get => _maximumBulletsInMagazine; set => _maximumBulletsInMagazine = value; }
+    [SerializeField] private int _bulletsLeft;
+    public int BulletsLeft { get => _bulletsLeft; set => _bulletsLeft = value; }
+
 
     enum WeaponType
     {

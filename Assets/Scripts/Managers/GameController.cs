@@ -7,5 +7,5 @@ public class GameController : MonoBehaviour
     // switch between players when death mode
     [SerializeField] private List<Player> _playerList;
 
-    private BulletsManager _bulletsManager;
+    private WeaponManager _bulletsManager;
 }
