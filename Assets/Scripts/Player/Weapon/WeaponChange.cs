@@ -10,52 +10,54 @@ public class WeaponChange : MonoBehaviour
     [SerializeField] private Image _inventoryImage;
 
     [SerializeField] private Button _currentWeaponButton;
-
     [SerializeField] private Button _mainButton;
     [SerializeField] private Button _secondaryButton;
-    [SerializeField] private Button _meleeButton;
-    [SerializeField] private Button _grenadeButton;
 
-    //public System.Action OnCurrentWeaponChange;
+    [SerializeField] private WeaponHolder _currentWeaponHolder;
+    public WeaponHolder CurrentWeaponHolder { get => _currentWeaponHolder; }
+    [SerializeField] private WeaponHolder _mainWeaponHolder;
+    public WeaponHolder MainWeaponHolder { get => _mainWeaponHolder; }
+    [SerializeField] private WeaponHolder _secondaryWeaponHolder;
+    public WeaponHolder SecondaryWeaponHolder { get => _secondaryWeaponHolder; }
+    [SerializeField] private WeaponHolder _previousWeaponHolder;
+    public WeaponHolder PreviousWeaponHolder { get => _previousWeaponHolder; }
 
-    private Image _currentWeaponImage;
-    private Image _mainWeaponImage;
-    private Image _secondaryWeaponImage;
-    private Image _meleeWeaponImage;
-    private Image _grenadeWeaponImage;
-    private InventoryWeaponHolder _currentInventoryHolder;
-    private InventoryWeaponHolder _mainInventoryHolder;
-    private InventoryWeaponHolder _secondaryInventoryHolder;
-    private InventoryWeaponHolder _meleeInventoryHolder;
-    private InventoryWeaponHolder _grenadeInventoryHolder;
-
-    private void Awake()
+    private void Start()
     {
-        _currentWeaponImage = _currentWeaponButton.GetComponent<Image>();
-        _mainWeaponImage = _mainButton.GetComponent<Image>();
-        _secondaryWeaponImage = _secondaryButton.GetComponent<Image>();
+        _mainButton.onClick.AddListener(()=>SetCurrentWeaponFromInventory(_mainWeaponHolder));
+        _secondaryButton.onClick.AddListener(()=>SetCurrentWeaponFromInventory(_secondaryWeaponHolder));
 
-        _currentInventoryHolder = _currentWeaponImage.GetComponent<InventoryWeaponHolder>();
-        _mainInventoryHolder = _mainButton.GetComponent<InventoryWeaponHolder>();
-        _secondaryInventoryHolder = _secondaryButton.GetComponent<InventoryWeaponHolder>();
+        _currentWeaponHolder.ImageInSlot.color = _mainWeaponHolder.ImageInSlot.color; // _currentWeaponHolder or CurrentWeaponHolder?
+        _currentWeaponHolder.WeaponInSlot = _mainWeaponHolder.WeaponInSlot;
+    }
+    public void SetCurrentWeaponFromInventory(WeaponHolder chosenWeaponHolder)
+    {
+        if (chosenWeaponHolder.WeaponInSlot == _currentWeaponHolder.WeaponInSlot)
+        {
+            SetInventoryActive(false);
+            return;
+        }
 
-        _mainButton.onClick.AddListener(()=>SetCurrentWeaponFromInventory(_mainWeaponImage, _mainInventoryHolder));
-        _secondaryButton.onClick.AddListener(()=>SetCurrentWeaponFromInventory(_secondaryWeaponImage, _secondaryInventoryHolder));
+        Weapon tempWeapon = chosenWeaponHolder.WeaponInSlot;
+        Vector4 tempColor = chosenWeaponHolder.ImageInSlot.color;
 
-        SetCurrentWeaponFromInventory(_mainWeaponImage, _mainInventoryHolder);
+        _previousWeaponHolder.ImageInSlot.color = _currentWeaponHolder.ImageInSlot.color;
+        _previousWeaponHolder.WeaponInSlot = _currentWeaponHolder.WeaponInSlot;
+
+        _currentWeaponHolder.ImageInSlot.color = tempColor;
+        _currentWeaponHolder.WeaponInSlot = tempWeapon; 
+
+        _bulletsManager.SetCurrentWeapon(_currentWeaponHolder.WeaponInSlot);
+        SetInventoryActive(false);
     }
 
-    private void SetCurrentWeaponFromInventory(Image chosenWeaponImage, InventoryWeaponHolder inventoryWeaponHolder)
-    {
-        _currentWeaponImage.color = chosenWeaponImage.color;
-        _currentInventoryHolder.CurrentWeaponInSlot = inventoryWeaponHolder.CurrentWeaponInSlot;
-        //OnCurrentWeaponChange?.Invoke();   
-        _bulletsManager.SetCurrentWeapon(inventoryWeaponHolder.CurrentWeaponInSlot);
-    }
-
-    private void SetInventoryActive(bool state)
+    public void SetInventoryActive(bool state)
     {
         _inventoryImage.gameObject.SetActive(state);
     }
 
+    public bool GetInventoryState()
+    {
+        return _inventoryImage.gameObject.activeSelf;
+    }
 }
