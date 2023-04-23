@@ -4,36 +4,50 @@ using UnityEngine;
 
 public class PlayerRunState : PlayerBaseState
 {
-
+   
     public PlayerRunState(PlayerCCStateMachine currentContext, PlayerStateFactory playerStateFactory)
     : base(currentContext, playerStateFactory) { }
 
     public override void EnterState() 
     {
-        _ctx.Animator.SetBool(_ctx.IsWalkingHash, true);
-        _ctx.Animator.SetBool(_ctx.IsRunningHash, true);
-        _ctx.Speed += 5;
+        //_ctx.Speed += 100;
+        /*_ctx.CCAnimator.SetBool("IsWalking", true);
+        _ctx.CCAnimator.SetBool("IsRunning", true);*/
+       /* _ctx.CCAnimator.SetBool(_ctx.IsWalkingHash, true);
+        _ctx.CCAnimator.SetBool(_ctx.IsRunningHash, true);*/
+        _ctx.CCAnimator.SetFloat(_ctx.HorizontalPatameterName, _ctx.HorizontalInput);
+        _ctx.CCAnimator.SetFloat(_ctx.VerticalPatameterName, _ctx.VericalInput);
+
     }
 
     public override void UpdateState() 
     {
+        _ctx.move = _ctx.transform.right * _ctx.HorizontalInput + _ctx.transform.forward * _ctx.VericalInput;
+
+        //_ctx.Controller.Move(_ctx.move * (_ctx.Speed * 2) * Time.deltaTime);  //??? 
         CheckSwitchStates();
     }
 
-    public override void ExitState() { _ctx.Speed -= 5; }
+    public override void ExitState() 
+    {
+
+        //_ctx.Speed -= 100;
+
+    }
 
     public override void InitializeSubState() { }
 
     public override void CheckSwitchStates() 
     {
-        if (_ctx.IsMovementPressent && _ctx.IsRunPressent)
+        if (!_ctx.IsMovementPressed)
         {
-            SetSubState(_factory.Run());
+            SwitchState(_factory.Idle());
         }
-        else if (_ctx.IsMovementPressent )
+        else if (_ctx.IsMovementPressed && !_ctx.IsRunPressed)
         {
-            SetSubState(_factory.Walk());
+            SwitchState(_factory.Walk());
         }
-        
+       
+
     }
 }

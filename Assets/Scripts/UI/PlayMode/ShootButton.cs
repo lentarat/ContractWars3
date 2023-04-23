@@ -14,9 +14,13 @@ public class ShootButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         _shootCoroutine = Shoot();
     }
+
+
+
     public void OnPointerDown(PointerEventData pointerEventData)
     {
         StartCoroutine(_shootCoroutine);
+
     }
 
     public void OnPointerUp(PointerEventData pointerEventData)
@@ -36,4 +40,7 @@ public class ShootButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             yield return null;
         }
     }
+
+
+
 }
