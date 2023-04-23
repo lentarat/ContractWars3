@@ -122,7 +122,7 @@ public class PlayerCCStateMachine : MonoBehaviour
         OnInputHandler();
         //GravityHandler();
         _currentState.UpdateStates();
-        _controller.Move(move * _speed * Time.deltaTime);
+        //_controller.Move(move * _speed * Time.deltaTime);
 
 
         //Debug.Log(_currentState);
@@ -139,8 +139,16 @@ public class PlayerCCStateMachine : MonoBehaviour
 
         _horizontalInput = _joystick.Direction.x;
         _verticalInput = _joystick.Direction.y;
-
+        Debug.Log(_joystick.Direction);
+        
         _isMovementPressed = _horizontalInput != 0 || _verticalInput != 0;
+        if(!_isMovementPressed ) 
+        {
+            CCAnimator.SetFloat(_horizontalPatameterName, _horizontalInput);
+            CCAnimator.SetFloat(_verticalPatameterName, _verticalInput);
+            
+
+        }
 
         //Run
         if (Input.GetKeyDown(KeyCode.LeftShift))

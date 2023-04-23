@@ -46,6 +46,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDr
         Debug.Log("test");
         _handle.transform.position = Vector3.zero;
         Direction = Vector2.zero;
+        Debug.Log(Direction);
         UpdateHandlePosition(Vector3.zero + transform.position);
     }
 
@@ -54,5 +55,6 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDr
         //Direction = _handle.transform.position.normalized;
 
         _handle.transform.position = clampedHandlePosition;
+        Debug.Log(Direction);
     }
 }

@@ -2818,7 +2818,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077033965}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 894af8067f922c141a09ef4339e2d1e1, type: 3}
   m_Name: 
@@ -2865,6 +2865,43 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c246f0b16ad77634583e11f257c73f92, type: 3}
   m_PrefabInstance: {fileID: 1912311324}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1077033970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077033965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9da9008b4cfca84692241513f4850b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _joystick: {fileID: 2109043884}
+  _jumpingButton: {fileID: 1507259095}
+  _controller: {fileID: 1077033967}
+  _horizontalInput: 0
+  _verticalInput: 0
+  _speed: 15
+  _gravity: -9.81
+  _velocity: {x: 0, y: 0, z: 0}
+  _groundCheck: {fileID: 1647864572}
+  _groundDistance: 0.4
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 832
+  _isGrounded: 0
+  _jumpHeight: 3
+  _animator: {fileID: 1077033968}
+  _isWalkingHash: 0
+  _isRunningHash: 0
+  _isJumpingHash: 0
+  _isJumpingHashTrigger: 0
+  _isMovementPressed: 0
+  _isJoystickPressed: 0
+  _isRunPressed: 0
+  _isJumpPressed: 0
+  move: {x: 0, y: 0, z: 0}
 --- !u!1 &1106765979
 GameObject:
   m_ObjectHideFlags: 0
@@ -3035,7 +3072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1109425010
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3742,7 +3779,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411828760}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2772bcbc7a1883f4b91c951d0a316426, type: 3}
   m_Name: 
@@ -17124,10 +17161,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1507259091}
   - component: {fileID: 1507259094}
+  - component: {fileID: 1507259095}
   - component: {fileID: 1507259093}
-  - component: {fileID: 1507259092}
   m_Layer: 5
-  m_Name: CrouchUpButton
+  m_Name: JumpButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17140,63 +17177,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507259090}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1636685004}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8, y: 0.6}
   m_AnchorMax: {x: 0.8, y: 0.6}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1507259092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507259090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1507259093}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1507259093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17235,6 +17228,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507259090}
   m_CullTransparentMesh: 1
+--- !u!114 &1507259095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507259090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f31a589e28a549c46bad4067017dfb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpPressed: 0
 --- !u!43 &1529246796
 Mesh:
   m_ObjectHideFlags: 0
@@ -19648,14 +19654,14 @@ GameObject:
   - component: {fileID: 2109043883}
   - component: {fileID: 2109043882}
   - component: {fileID: 2109043881}
-  - component: {fileID: 2109043880}
+  - component: {fileID: 2109043884}
   m_Layer: 5
   m_Name: JoystickButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2109043879
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19677,22 +19683,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 110, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2109043880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109043878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9534ffd62d7269043b78eba41db3640b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _handle: {fileID: 624489671}
-  _rectTransform: {fileID: 2109043879}
-  _canvas: {fileID: 0}
-  _maximumRadius: 0
 --- !u!114 &2109043881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19775,6 +19765,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109043878}
   m_CullTransparentMesh: 1
+--- !u!114 &2109043884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109043878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9534ffd62d7269043b78eba41db3640b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handle: {fileID: 624489671}
+  _rectTransform: {fileID: 2109043879}
+  _canvas: {fileID: 1582718686}
+  _maximumRadius: 0
 --- !u!1 &2132823348
 GameObject:
   m_ObjectHideFlags: 0

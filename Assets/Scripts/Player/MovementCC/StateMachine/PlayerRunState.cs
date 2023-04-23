@@ -22,7 +22,7 @@ public class PlayerRunState : PlayerBaseState
 
     public override void UpdateState() 
     {
-        _ctx.move = _ctx.transform.right * _ctx.HorizontalInput + _ctx.transform.forward * _ctx.VericalInput;
+        //_ctx.move = _ctx.transform.right * _ctx.HorizontalInput + _ctx.transform.forward * _ctx.VericalInput;
 
         //_ctx.Controller.Move(_ctx.move * (_ctx.Speed * 2) * Time.deltaTime);  //??? 
         CheckSwitchStates();
