@@ -7,11 +7,6 @@ public class WeaponManager : MonoBehaviour
 {
     [SerializeField] public Weapon CurrentWeapon;
 
-    private void Awake()
-    {
-        
-    }
-
     public void Reload()
     {
         if (CurrentWeapon.BulletsInMagazine == CurrentWeapon.MaximumBulletsInMagazine || CurrentWeapon.BulletsLeft == 0) return;

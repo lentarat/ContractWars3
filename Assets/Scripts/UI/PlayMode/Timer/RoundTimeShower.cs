@@ -19,6 +19,11 @@ public class RoundTimeShower : MonoBehaviour
 
     private void Update()
     {
+        if (_countdownTime < 0f)
+        {
+
+            return;
+        }
         _countdownTime -= Time.deltaTime;
 
         _minutes = (int)(_countdownTime / 60f);
