@@ -30,11 +30,21 @@ public abstract class PlayerBaseState
     public void UpdateStates()
     {
         UpdateState();
-        if(_currentSubState != null ) 
+
+        if (_currentSubState != null ) 
         {
             _currentSubState.UpdateStates();
         }
     }
+
+   /* public void ExitStates()
+    {
+        ExitState();
+        if(_currentSubState != null ) 
+        {
+            _currentSubState.ExitStates();
+        }
+    }*/
 
 
 
@@ -44,7 +54,7 @@ public abstract class PlayerBaseState
 
         newState.EnterState();
 
-        if(_isRootState ) 
+        if (_isRootState ) 
         {
         _ctx.CurrentState = newState;
         }
@@ -52,6 +62,7 @@ public abstract class PlayerBaseState
         {
             _currentSubState.SetSubState(newState);
         }
+        
     }
 
     protected void SetSuperState(PlayerBaseState newSuperState)

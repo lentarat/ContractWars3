@@ -10,7 +10,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDr
     [SerializeField] private float _maximumRadius;
     public Vector2 Direction { get; private set; }
 
-    private Vector2 _startPoint;
+    private Vector2 _startPoint = Vector2.zero;
+ 
 
     private void Awake()
     {
@@ -25,8 +26,11 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDr
     public void OnDrag(PointerEventData eventData)
     {
         float distance = Vector3.Distance(_startPoint, eventData.position);
+        //Direction = Vector2.(_startPoint, eventData.position);
         distance = Mathf.Clamp(distance, 0, _maximumRadius);
         Vector3 direction = (new Vector3(eventData.position.x, eventData.position.y, 0) - transform.position).normalized;
+        Direction = direction;
+        Debug.Log(Direction);
         //Debug.Log($"[{GetType().Name}][OnDrag] Distance: {distance}");
         if (distance > _maximumRadius)
         {
@@ -40,12 +44,17 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDr
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("test");
-        Direction = Vector3.zero;
+        _handle.transform.position = Vector3.zero;
+        Direction = Vector2.zero;
+        Debug.Log(Direction);
         UpdateHandlePosition(Vector3.zero + transform.position);
     }
 
     private void UpdateHandlePosition(Vector3 clampedHandlePosition)
     {
+        //Direction = _handle.transform.position.normalized;
+
         _handle.transform.position = clampedHandlePosition;
+        Debug.Log(Direction);
     }
 }

@@ -9,17 +9,19 @@ public class PlayerJumpState : PlayerBaseState
     : base(currentContext, playerStateFactory) 
     {
         _isRootState= true;
-        InitializeSubState();
     }
     public override void EnterState() 
     {
+        InitializeSubState();
+         _ctx.CCAnimator.SetBool(_ctx.IsJumpingHash, true);
+        //_ctx.CCAnimator.SetTrigger(_ctx.IsJumpingHashTrigger);
+        Debug.Log("Jumping");
         HandleJump();
     }
 
     public override void UpdateState() 
     {
         CheckSwitchStates();
-        GravityHandler();
 
     }
 
@@ -27,6 +29,7 @@ public class PlayerJumpState : PlayerBaseState
     {
         if(_ctx.IsJumpPressed) 
         { 
+            
             _ctx.RequireNewJumpPress = true; 
         }
         
@@ -35,15 +38,15 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void InitializeSubState() 
     {
-        if (!_ctx.IsMovementPressent && !_ctx.IsRunPressent)
+        if (!_ctx.IsMovementPressed && !_ctx.IsRunPressed)
         {
             SetSubState(_factory.Idle());
         }
-        else if (_ctx.IsMovementPressent && !_ctx.IsRunPressent)
+        else if (_ctx.IsMovementPressed && !_ctx.IsRunPressed)
         {
             SetSubState(_factory.Walk());
         }
-        else
+        else if (_ctx.IsMovementPressed && _ctx.IsRunPressed)
         {
             SetSubState(_factory.Run());
         }
@@ -63,19 +66,6 @@ public class PlayerJumpState : PlayerBaseState
         
     }
 
-    private void GravityHandler()
-    {
-
-        _ctx.IsGrounded = Physics.CheckSphere(_ctx.GroundCheck.position, _ctx.GroundDistance, _ctx.GroundMask);
-
-        if (_ctx.IsGrounded && _ctx._velocity.y < 0)
-        {
-            _ctx._velocity.y = -2f;
-        }
-        _ctx._velocity.y += _ctx.Gravity * Time.deltaTime;
-
-
-        _ctx.Controller.Move(_ctx._velocity * Time.deltaTime);
-    }
+   
 
 }
