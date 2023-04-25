@@ -139,7 +139,7 @@ public class PlayerCCStateMachine : MonoBehaviour
 
         _horizontalInput = _joystick.Direction.x;
         _verticalInput = _joystick.Direction.y;
-        Debug.Log(_joystick.Direction);
+        //Debug.Log(_joystick.Direction);
         
         _isMovementPressed = _horizontalInput != 0 || _verticalInput != 0;
         if(!_isMovementPressed ) 
