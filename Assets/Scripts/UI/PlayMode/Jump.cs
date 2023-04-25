@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 
 public class Jump : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] private bool _jumpPressed;
-    public bool JumpPressed { get { return _jumpPressed; } private set { _jumpPressed = value; } }
+   /* [SerializeField] private bool _jumpPressed;
+    public bool JumpPressed { get { return _jumpPressed; } private set { _jumpPressed = value; } }*/
     public System.Action OnJumpButtonPressed;
     public System.Action OnJumpButtonReleased;
     public void OnPointerDown(PointerEventData eventData)

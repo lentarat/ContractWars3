@@ -13,6 +13,9 @@ public class PlayerCCStateMachine : MonoBehaviour
     [SerializeField] private Jump _jumpingButton;
     public Jump JumpingButton { get { return _jumpingButton; } set { _jumpingButton = value; } }
 
+    [SerializeField] private Crouch _crouchButton;
+    public Crouch CrouchButton { get { return _crouchButton; } set { _crouchButton = value; } }
+
     [SerializeField] private CharacterController _controller;
     public CharacterController Controller { get { return _controller; } set { _controller = value; } }
 
@@ -56,6 +59,9 @@ public class PlayerCCStateMachine : MonoBehaviour
     [SerializeField] public int _isJumpingHash;
     public int IsJumpingHash { get { return _isJumpingHash; } set { _isJumpingHash= value; } }
 
+    [SerializeField] public int _isCrouchingHash;
+    public int IsCrouchingHash { get { return _isCrouchingHash; } set { _isCrouchingHash = value; } }
+
     [SerializeField] public int _isJumpingHashTrigger;
     public int IsJumpingHashTrigger { get { return _isJumpingHashTrigger; } set { _isJumpingHashTrigger = value; } }
 
@@ -72,6 +78,9 @@ public class PlayerCCStateMachine : MonoBehaviour
 
     [SerializeField] private bool _isJumpPressed = false;
     public bool IsJumpPressed { get { return _isJumpPressed; } set { _isJumpPressed = value; } }
+
+    [SerializeField] private bool _isCrouchPressed = false;
+    public bool IsCrouchPressed { get { return _isCrouchPressed; } set { _isCrouchPressed = value; } }
 
 
     private bool _requireNewJumpPress = true;
@@ -91,6 +100,11 @@ public class PlayerCCStateMachine : MonoBehaviour
     public string VerticalPatameterName { get { return _verticalPatameterName; } set { _verticalPatameterName = value; } }
     public string HorizontalPatameterName { get { return _horizontalPatameterName; } set { _horizontalPatameterName = value; } }
 
+    [SerializeField] private Camera _mainCamera;
+    public Camera CameraMainCamera { get { return _mainCamera;} set { _mainCamera = value; } }
+    public Transform _LerpCameraFrom;
+    public Transform _LerpCameraTo;
+
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
@@ -99,10 +113,16 @@ public class PlayerCCStateMachine : MonoBehaviour
         IsWalkingHash = Animator.StringToHash("IsWalking");
         IsRunningHash = Animator.StringToHash("IsRunning");
         IsJumpingHash = Animator.StringToHash("IsJumping");
+        IsCrouchingHash = Animator.StringToHash("IsCrouching");
         IsJumpingHashTrigger = Animator.StringToHash("IsJump");
 
         _jumpingButton.OnJumpButtonPressed += OnJumpClick;
         _jumpingButton.OnJumpButtonReleased += OnJumpReleased;
+
+        _crouchButton.OnCrouchButtonPressed += OnCrouchClick;
+       //_crouchButton.OnCrouchButtonReleased += OnCrouchReleased;
+
+
 
         _states = new PlayerStateFactory(this);
         _currentState = _states.Grounded();
@@ -122,35 +142,31 @@ public class PlayerCCStateMachine : MonoBehaviour
         OnInputHandler();
         //GravityHandler();
         _currentState.UpdateStates();
-        //_controller.Move(move * _speed * Time.deltaTime);
+        //_controller.Move(move* _speed * Time.deltaTime);
 
-
-        //Debug.Log(_currentState);
-        //_currentState.ExitStates();
     }
 
     private void OnInputHandler()
     {
 
-        //Walk
+        /////////////////////////Walk
 
-        /* _horizontalInput = Input.GetAxis(HorizontalPatameterName);
-         _verticalInput = Input.GetAxis(VerticalPatameterName);*/
+        /*_horizontalInput = Input.GetAxis(HorizontalPatameterName);
+        _verticalInput = Input.GetAxis(VerticalPatameterName);*/
 
         _horizontalInput = _joystick.Direction.x;
         _verticalInput = _joystick.Direction.y;
-        Debug.Log(_joystick.Direction);
-        
+
+        //Debug.Log(_joystick.Direction);
+
         _isMovementPressed = _horizontalInput != 0 || _verticalInput != 0;
-        if(!_isMovementPressed ) 
+        if (!_isMovementPressed)
         {
             CCAnimator.SetFloat(_horizontalPatameterName, _horizontalInput);
             CCAnimator.SetFloat(_verticalPatameterName, _verticalInput);
-            
-
         }
 
-        //Run
+        ///////////////////////Run
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             //_isMovementPressent = false;
@@ -163,14 +179,14 @@ public class PlayerCCStateMachine : MonoBehaviour
             _isRunPressed = false;
         }
 
-        // jump
-        /*if (_jumpingButton.JumpPressed )
+        //////////////////////// jump
+        /*if (Input.GetKeyUp(KeyCode.Space))
         {
 
             _isJumpPressed = true;
             _requireNewJumpPress = false;
         }
-        else 
+        else
         {
             _isJumpPressed = false;
             _requireNewJumpPress = true;
@@ -185,10 +201,23 @@ public class PlayerCCStateMachine : MonoBehaviour
             _isJumpPressed = false;
             _requireNewJumpPress = true;
         }*/
-        //Crouch 
-        
-    }
 
+        //////////////////////Crouch 
+
+        /*  if (Input.GetKeyUp(KeyCode.C))
+          {
+
+              if (_isCrouchPressed)
+              {
+                  _isCrouchPressed = false;
+              }
+              else
+              {
+                  _isCrouchPressed = true;
+              }
+          }*/
+
+    }
     private void OnJumpClick()
     {
         _isJumpPressed = true;
@@ -198,7 +227,24 @@ public class PlayerCCStateMachine : MonoBehaviour
     private void OnJumpReleased()
     {
         _isJumpPressed = false;
-        _requireNewJumpPress = true;
+        //_requireNewJumpPress = true;
     }
+
+    private void OnCrouchClick()
+    {
+        if (_isCrouchPressed)
+        {
+            _isCrouchPressed = false;
+        }
+        else 
+        {
+            _isCrouchPressed = true;
+        }
+    }
+
+  /*  private void OnCrouchReleased()
+    {
+        // _isCrouchPressed = false;
+    }*/
 
 }

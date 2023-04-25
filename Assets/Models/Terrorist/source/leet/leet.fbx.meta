@@ -280,14 +280,6 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: mixamorig:LeftHandIndex2
-      humanName: Left Index Intermediate
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     - boneName: mixamorig:LeftHandIndex3
       humanName: Left Index Distal
       limit:
@@ -400,26 +392,19 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
+    - boneName: mixamorig:LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     skeleton:
     - name: leet(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: t_leet
-      parentName: leet(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: t_leet_glass
-      parentName: leet(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: unamed
-      parentName: leet(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
       parentName: leet(Clone)
@@ -519,7 +504,7 @@ ModelImporter:
     - name: mixamorig:LeftHandIndex2
       parentName: mixamorig:LeftHandIndex1
       position: {x: -0.0008312128, y: 0.03367398, z: 2.7593158e-10}
-      rotation: {x: 0.0376054, y: -0.00004026292, z: 0.005684561, w: 0.99927646}
+      rotation: {x: 0.037605405, y: -0.000040262923, z: 0.0056845616, w: 0.9992765}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: mixamorig:LeftHandIndex3
       parentName: mixamorig:LeftHandIndex2
@@ -554,7 +539,7 @@ ModelImporter:
     - name: mixamorig:LeftHandThumb1
       parentName: mixamorig:LeftHand
       position: {x: 0.024907896, y: 0.061023567, z: 0.009668073}
-      rotation: {x: -0.027544243, y: 0.01790956, z: -0.2858211, w: 0.95771956}
+      rotation: {x: -0.027544245, y: 0.017909562, z: -0.28582114, w: 0.9577196}
       scale: {x: 1.0000002, y: 1.0000006, z: 1.0000004}
     - name: mixamorig:LeftHandThumb2
       parentName: mixamorig:LeftHandThumb1
@@ -571,15 +556,30 @@ ModelImporter:
       position: {x: -0.003276747, y: 0.04764535, z: -8.150402e-10}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:Neck
+      parentName: mixamorig:Spine2
+      position: {x: -0, y: 0.16686769, z: 0.000000013421076}
+      rotation: {x: 0.05181396, y: -0, z: -0, w: 0.9986568}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:Head
+      parentName: mixamorig:Neck
+      position: {x: -0, y: 0.1390496, z: 0.06356736}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:HeadTop_End
+      parentName: mixamorig:Head
+      position: {x: -0, y: 0.21982315, z: 0.1004935}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:RightShoulder
       parentName: mixamorig:Spine2
       position: {x: 0.08051141, y: 0.1277926, z: -0.0035186696}
-      rotation: {x: -0.56310964, y: -0.41903818, z: 0.58527887, w: -0.40591028}
+      rotation: {x: -0.5631097, y: -0.41903818, z: 0.5852789, w: -0.40591028}
       scale: {x: 1, y: 1.0000001, z: 1}
     - name: mixamorig:RightArm
       parentName: mixamorig:RightShoulder
       position: {x: 1.4942535e-10, y: 0.1790663, z: 0.0000000011891262}
-      rotation: {x: 0.13912848, y: -0.10329959, z: 0.008459448, w: -0.98483545}
+      rotation: {x: 0.13912848, y: -0.103299595, z: 0.008459448, w: -0.9848355}
       scale: {x: 1.0000001, y: 1.0000002, z: 1.0000002}
     - name: mixamorig:RightForeArm
       parentName: mixamorig:RightArm
@@ -651,19 +651,19 @@ ModelImporter:
       position: {x: 0.0033417197, y: 0.046751928, z: 6.1325217e-10}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: mixamorig:Neck
-      parentName: mixamorig:Spine2
-      position: {x: -0, y: 0.16686769, z: 0.000000013421076}
-      rotation: {x: 0.05181396, y: -0, z: -0, w: 0.9986568}
+    - name: t_leet
+      parentName: leet(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: mixamorig:Head
-      parentName: mixamorig:Neck
-      position: {x: -0, y: 0.1390496, z: 0.06356736}
-      rotation: {x: -0, y: -0, z: -0, w: 1}
+    - name: t_leet_glass
+      parentName: leet(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: mixamorig:HeadTop_End
-      parentName: mixamorig:Head
-      position: {x: -0, y: 0.21982315, z: 0.1004935}
+    - name: unamed
+      parentName: leet(Clone)
+      position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     armTwist: 0.378

@@ -12,8 +12,8 @@ public class PlayerIdleState : PlayerBaseState
     {
         /*_ctx.CCAnimator.SetBool(_ctx.IsWalkingHash, false);
         _ctx.CCAnimator.SetBool(_ctx.IsRunningHash, false);*/
-        _ctx.CCAnimator.SetFloat(_ctx.HorizontalPatameterName, _ctx.HorizontalInput);
-        _ctx.CCAnimator.SetFloat(_ctx.VerticalPatameterName, _ctx.VericalInput);
+        Ctx.CCAnimator.SetFloat(Ctx.HorizontalPatameterName, Ctx.HorizontalInput);
+        Ctx.CCAnimator.SetFloat(Ctx.VerticalPatameterName, Ctx.VericalInput);
 
     }
     
@@ -28,14 +28,15 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void CheckSwitchStates() 
     {
-        if (_ctx.IsMovementPressed && _ctx.IsRunPressed)
+        if (Ctx.IsMovementPressed && Ctx.IsRunPressed)
         {
-            SwitchState(_factory.Run());
+            SwitchState(Factory.Run());
         }
-        else if(_ctx.IsMovementPressed )
+        else if(Ctx.IsMovementPressed )
         {
-            SwitchState(_factory.Walk());
+            SwitchState(Factory.Walk());
         }
+
 
     }
 }

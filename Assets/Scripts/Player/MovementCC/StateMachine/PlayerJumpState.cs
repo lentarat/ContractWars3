@@ -8,61 +8,73 @@ public class PlayerJumpState : PlayerBaseState
     public PlayerJumpState(PlayerCCStateMachine currentContext, PlayerStateFactory playerStateFactory)
     : base(currentContext, playerStateFactory) 
     {
-        _isRootState= true;
+        InitializeSubState();
+        IsRootState= true;
     }
     public override void EnterState() 
     {
-        InitializeSubState();
-         _ctx.CCAnimator.SetBool(_ctx.IsJumpingHash, true);
+        Ctx.CCAnimator.SetBool(Ctx.IsJumpingHash, true);
+
         //_ctx.CCAnimator.SetTrigger(_ctx.IsJumpingHashTrigger);
         Debug.Log("Jumping");
-        HandleJump();
+        
     }
 
     public override void UpdateState() 
     {
+       // Ctx.Controller.Move(Ctx.move * Ctx.Speed * Time.deltaTime);
         CheckSwitchStates();
-
+        HandleJump();
     }
 
     public override void ExitState() 
     {
-        if(_ctx.IsJumpPressed) 
+        if(Ctx.IsJumpPressed) 
         { 
+        Ctx.RequireNewJumpPress = true; 
             
-            _ctx.RequireNewJumpPress = true; 
         }
-        
-        
+        Ctx.CCAnimator.SetBool(Ctx.IsJumpingHash, false);
+        Ctx.IsJoystickPressed= false;
+
     }
 
     public override void InitializeSubState() 
     {
-        if (!_ctx.IsMovementPressed && !_ctx.IsRunPressed)
+        if (!Ctx.IsMovementPressed && !Ctx.IsRunPressed)
         {
-            SetSubState(_factory.Idle());
+            SetSubState(Factory.Idle());
         }
-        else if (_ctx.IsMovementPressed && !_ctx.IsRunPressed)
+        else if (Ctx.IsMovementPressed && !Ctx.IsRunPressed)
         {
-            SetSubState(_factory.Walk());
+            SetSubState(Factory.Walk());
         }
-        else if (_ctx.IsMovementPressed && _ctx.IsRunPressed)
+        else if (Ctx.IsMovementPressed && Ctx.IsRunPressed)
         {
-            SetSubState(_factory.Run());
+            SetSubState(Factory.Run());
         }
+
     }
 
     public override void CheckSwitchStates()
     {
-        if(_ctx.IsGrounded) 
+        if(Ctx.IsGrounded) 
         {
-            SwitchState(_factory.Grounded());
+            SwitchState(Factory.Grounded());
+        }
+      /*  else if (!Ctx.Controller.isGrounded)
+        {
+            SwitchState(Factory.Fall());
+        }*/
+        else if (Ctx.IsCrouchPressed )
+        {
+            SwitchState(Factory.Crouch());
         }
     }
 
     void HandleJump()
     {
-        _ctx._velocity.y = Mathf.Sqrt(_ctx.JumpHeight * -2f * _ctx.Gravity);
+        Ctx._velocity.y = Mathf.Sqrt(Ctx.JumpHeight * -2f * Ctx.Gravity);
         
     }
 

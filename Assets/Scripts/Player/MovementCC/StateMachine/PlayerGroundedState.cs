@@ -8,18 +8,21 @@ public class PlayerGroundedState : PlayerBaseState
     public PlayerGroundedState(PlayerCCStateMachine currentContext, PlayerStateFactory playerStateFactory)
     : base(currentContext, playerStateFactory) 
     {
-        _isRootState= true;
+        InitializeSubState();
+        IsRootState= true;
     }
 
     public override void EnterState() 
     {
-        InitializeSubState();
-        _ctx.CCAnimator.SetBool(_ctx.IsJumpingHash, false);
+        //_ctx.CCAnimator.SetBool(_ctx.IsCrouchingHash, false);
+        Ctx.CCAnimator.SetBool(Ctx.IsJumpingHash, false);
+
 
     }
 
     public override void UpdateState() 
     {
+       
         GravityHandler();
         CheckSwitchStates();
     }
@@ -28,25 +31,34 @@ public class PlayerGroundedState : PlayerBaseState
 
     public override void InitializeSubState() 
     {
-        if (!_ctx.IsMovementPressed && !_ctx.IsRunPressed)
+        if (!Ctx.IsMovementPressed && !Ctx.IsRunPressed)
         {
-            SetSubState(_factory.Idle());
+            SetSubState(Factory.Idle());
         }
-        else if (_ctx.IsMovementPressed && !_ctx.IsRunPressed)
+        else if (Ctx.IsMovementPressed && !Ctx.IsRunPressed)
         {
-            SetSubState(_factory.Walk());
+            SetSubState(Factory.Walk());
         }
-        else if (_ctx.IsMovementPressed && _ctx.IsRunPressed)
+        else if (Ctx.IsMovementPressed && Ctx.IsRunPressed)
         {
-            SetSubState(_factory.Run());
+            SetSubState(Factory.Run());
         }
+
     }
 
     public override void CheckSwitchStates() 
     {
-        if(_ctx.IsJumpPressed && !_ctx.RequireNewJumpPress) 
+        if(Ctx.IsJumpPressed && !Ctx.RequireNewJumpPress) 
         {
-            SwitchState(_factory.Jump());
+            SwitchState(Factory.Jump());
+        }
+       /* else if (!Ctx.Controller.isGrounded)
+        {
+            SwitchState(Factory.Fall());
+        }*/
+        else if (Ctx.IsCrouchPressed)
+        {
+            SwitchState(Factory.Crouch());
         }
 
 
@@ -56,15 +68,15 @@ public class PlayerGroundedState : PlayerBaseState
     private void GravityHandler()
     {
 
-        _ctx.IsGrounded = Physics.CheckSphere(_ctx.GroundCheck.position, _ctx.GroundDistance, _ctx.GroundMask);
+        Ctx.IsGrounded = Physics.CheckSphere(Ctx.GroundCheck.position, Ctx.GroundDistance, Ctx.GroundMask);
 
-        if (_ctx.IsGrounded && _ctx._velocity.y < 0)
+        if (Ctx.IsGrounded && Ctx._velocity.y < 0)
         {
-            _ctx._velocity.y = -2f;
+            Ctx._velocity.y = -2f;
         }
         
-            _ctx._velocity.y += _ctx.Gravity * Time.deltaTime;
-            _ctx.Controller.Move(_ctx._velocity * Time.deltaTime);
+            Ctx._velocity.y += Ctx.Gravity * Time.deltaTime;
+            Ctx.Controller.Move(Ctx._velocity * Time.deltaTime);
     }
 
 }

@@ -15,17 +15,17 @@ public class PlayerWalkState : PlayerBaseState
         /*_ctx.CCAnimator.SetBool(_ctx.IsWalkingHash, true);
 
         _ctx.CCAnimator.SetBool(_ctx.IsRunningHash, false);*/
+        Ctx.CCAnimator.SetFloat(Ctx.HorizontalPatameterName, Ctx.HorizontalInput);
+        Ctx.CCAnimator.SetFloat(Ctx.VerticalPatameterName, Ctx.VericalInput);
+        
 
-        _ctx.CCAnimator.SetFloat(_ctx.HorizontalPatameterName, _ctx.HorizontalInput);
-        _ctx.CCAnimator.SetFloat(_ctx.VerticalPatameterName, _ctx.VericalInput);
-     
+
     }
 
     public override void UpdateState() 
     {
-
-        //_ctx.move = _ctx.transform.right * _ctx.HorizontalInput + _ctx.transform.forward * _ctx.VericalInput;
-        
+        /* Ctx.move = Ctx.transform.right * Ctx.HorizontalInput + Ctx.transform.forward * Ctx.VericalInput;
+         Ctx.Controller.Move(Ctx.move * Ctx.Speed * Time.deltaTime);*/
         CheckSwitchStates();
         
     }
@@ -37,14 +37,13 @@ public class PlayerWalkState : PlayerBaseState
 
     public override void CheckSwitchStates() 
     {
-        if (!_ctx.IsMovementPressed  )
+        if (!Ctx.IsMovementPressed  )
         {
-            SwitchState(_factory.Idle());
+            SwitchState(Factory.Idle());
         }
-        else if (_ctx.IsMovementPressed && _ctx.IsRunPressed)
+        else if (Ctx.IsMovementPressed && Ctx.IsRunPressed)
         {   
-            SwitchState(_factory.Run());
+            SwitchState(Factory.Run());
         }
-       
     }
 }

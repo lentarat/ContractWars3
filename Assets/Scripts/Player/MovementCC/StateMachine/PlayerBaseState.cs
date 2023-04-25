@@ -2,14 +2,18 @@
 
 using Unity.VisualScripting;
 
-public abstract class PlayerBaseState 
+public abstract class PlayerBaseState
 {
-    protected bool _isRootState = false;
-    protected PlayerCCStateMachine _ctx;
-    protected PlayerStateFactory _factory;
+    private bool _isRootState = false;
+    private PlayerCCStateMachine _ctx;
+    private PlayerStateFactory _factory;
 
-    protected PlayerBaseState _currentSuperState;
-    protected PlayerBaseState _currentSubState;
+    private PlayerBaseState _currentSuperState;
+    private PlayerBaseState _currentSubState;
+
+    protected bool IsRootState { set { _isRootState = value; } }
+    protected PlayerCCStateMachine Ctx { get { return _ctx; } }
+    protected PlayerStateFactory Factory { get { return _factory; } }
 
     public PlayerBaseState(PlayerCCStateMachine currentContext, PlayerStateFactory playerStateFactory)
     {
@@ -58,9 +62,9 @@ public abstract class PlayerBaseState
         {
         _ctx.CurrentState = newState;
         }
-        else if (_currentSubState != null ) 
+        else if (_currentSuperState != null ) 
         {
-            _currentSubState.SetSubState(newState);
+            _currentSuperState.SetSubState(newState);
         }
         
     }

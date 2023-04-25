@@ -1,22 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Diagnostics.CodeAnalysis;
 
 public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] private Image _handle;
+    [SerializeField] private Image _button;
     [SerializeField] private RectTransform _rectTransform;
     [SerializeField] private Canvas _canvas;
-    [SerializeField] private float _maximumRadius;
-    public Vector2 Direction { get; private set; }
+    [SerializeField] private float _maximumRadius = 100;
+    public Vector3 Direction { get; private set; }
 
-    private Vector2 _startPoint = Vector2.zero;
+    private Vector3 _startPoint = Vector3.zero;
  
 
     private void Awake()
     {
-        _startPoint = transform.position;
-        _maximumRadius = gameObject.GetComponent<RectTransform>().sizeDelta.y * _canvas.scaleFactor;
+        _startPoint = _handle.transform.position;
     }
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -25,36 +26,27 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {
-        float distance = Vector3.Distance(_startPoint, eventData.position);
-        //Direction = Vector2.(_startPoint, eventData.position);
-        distance = Mathf.Clamp(distance, 0, _maximumRadius);
-        Vector3 direction = (new Vector3(eventData.position.x, eventData.position.y, 0) - transform.position).normalized;
-        Direction = direction;
-        Debug.Log(Direction);
-        //Debug.Log($"[{GetType().Name}][OnDrag] Distance: {distance}");
-        if (distance > _maximumRadius)
+        Vector2 pos;
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_button.rectTransform, eventData.position, eventData.pressEventCamera, out pos))
         {
-            UpdateHandlePosition(eventData.position);
+            pos.x = (pos.x / _button.rectTransform.sizeDelta.x);
+            pos.y = (pos.y / _button.rectTransform.sizeDelta.y);
+
+            Direction = new Vector3(pos.x * 2, pos.y * 2, 0f);
+            Direction = (Direction.magnitude > 1f) ? Direction.normalized : Direction;
+
+            _handle.rectTransform.anchoredPosition = new Vector3(Direction.x * _maximumRadius, Direction.y * _maximumRadius);
         }
-        else
-        {
-            UpdateHandlePosition(direction * distance + transform.position); 
-        }
+
+        Debug.Log($"X : {Direction.x}, Y :  {Direction.y}");
+     
     }
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("test");
-        _handle.transform.position = Vector3.zero;
-        Direction = Vector2.zero;
-        Debug.Log(Direction);
-        UpdateHandlePosition(Vector3.zero + transform.position);
+        _handle.transform.position = _startPoint;
+        Direction = Vector3.zero;
+        //UpdateHandlePosition(Vector3.zero + transform.position);
     }
 
-    private void UpdateHandlePosition(Vector3 clampedHandlePosition)
-    {
-        //Direction = _handle.transform.position.normalized;
-
-        _handle.transform.position = clampedHandlePosition;
-        Debug.Log(Direction);
-    }
 }

@@ -5,12 +5,22 @@ using UnityEngine;
 public class PlayerCrouchState : PlayerBaseState
 {
     public PlayerCrouchState(PlayerCCStateMachine currentContext, PlayerStateFactory playerStateFactory)
-    : base(currentContext, playerStateFactory) { }
+    : base(currentContext, playerStateFactory) 
+    {
+        InitializeSubState();
+        IsRootState = true;
+    }
 
     public override void EnterState()
     {
-        //_ctx.CCAnimator.SetBool(_ctx.IsCrouchHash, true);
+        Ctx.CCAnimator.SetBool(Ctx.IsCrouchingHash, true);
+        /*Ctx.CCAnimator.SetFloat(Ctx.HorizontalPatameterName, Ctx.HorizontalInput);
+        Ctx.CCAnimator.SetFloat(Ctx.VerticalPatameterName, Ctx.VericalInput);*/
+        Ctx.Controller.height = Ctx.Controller.height / 1.4f;
+        Ctx.Controller.center = Ctx.Controller.center / 2;
+        Ctx.CameraMainCamera.transform.position = Ctx._LerpCameraTo.transform.position;
 
+        Debug.Log("Crouching");
 
 
     }
@@ -21,26 +31,47 @@ public class PlayerCrouchState : PlayerBaseState
         CheckSwitchStates();
     }
 
-    public override void ExitState() { }
+    public override void ExitState() 
+    {
+        Ctx.CCAnimator.SetBool(Ctx.IsCrouchingHash, false);
+        Ctx.IsCrouchPressed = false;
+        Ctx.Controller.height = Ctx.Controller.height * 1.4f;
+        Ctx.Controller.center = Ctx.Controller.center * 2;
+        Ctx.CameraMainCamera.transform.position = Ctx._LerpCameraFrom.transform.position;
+    }
 
-    public override void InitializeSubState() { }
+    public override void InitializeSubState() 
+    {
+        if (!Ctx.IsMovementPressed && !Ctx.IsRunPressed)
+        {
+            SetSubState(Factory.Idle());
+        }
+        else if (Ctx.IsMovementPressed && !Ctx.IsRunPressed)
+        {
+            SetSubState(Factory.Walk());
+        }
+
+
+    }
 
     public override void CheckSwitchStates()
     {
-        /*if (_ctx.IsMovementPressed && _ctx.IsRunPressed)
-        {
-            SwitchState(_factory.Run());
+        if (Ctx.IsGrounded && !Ctx.IsCrouchPressed)
+        {   
+            SwitchState(Factory.Grounded());
         }
-        else if (_ctx.IsMovementPressed)
+        /*else if (!Ctx.Controller.isGrounded)
         {
-            SwitchState(_factory.Walk());
+            SwitchState(Factory.Fall());
         }*/
-
+        else if (Ctx.IsJumpPressed && !Ctx.RequireNewJumpPress)
+        {
+            SwitchState(Factory.Jump());
+        }
     }
 
     
     void CrouchHendle()
     {
-
     }
 }
