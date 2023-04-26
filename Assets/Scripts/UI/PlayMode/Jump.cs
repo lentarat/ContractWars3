@@ -14,7 +14,7 @@ public class Jump : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         //JumpPressed = true;
         OnJumpButtonPressed();
-        Debug.Log("On Pointer Down");
+       // Debug.Log("On Pointer Down");
 
     }
     
@@ -22,7 +22,7 @@ public class Jump : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         //JumpPressed = false;
         OnJumpButtonReleased();
-        Debug.Log("On Pointer Up");
+        //Debug.Log("On Pointer Up");
     }
 
     

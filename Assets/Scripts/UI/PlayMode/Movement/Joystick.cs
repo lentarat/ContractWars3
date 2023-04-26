@@ -38,15 +38,15 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDr
             _handle.rectTransform.anchoredPosition = new Vector3(Direction.x * _maximumRadius, Direction.y * _maximumRadius);
         }
 
-        Debug.Log($"X : {Direction.x}, Y :  {Direction.y}");
+        //Debug.Log($"X : {Direction.x}, Y :  {Direction.y}");
      
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("test");
+        //Debug.Log("OnEndDrag");
         _handle.transform.position = _startPoint;
         Direction = Vector3.zero;
-        //UpdateHandlePosition(Vector3.zero + transform.position);
+      
     }
 
 }

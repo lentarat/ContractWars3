@@ -2890,13 +2890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9da9008b4cfca84692241513f4850b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _joystick: {fileID: 2109043884}
-  _jumpingButton: {fileID: 1507259095}
-  _crouchButton: {fileID: 952240839}
   _controller: {fileID: 1077033967}
-  _horizontalInput: 0
-  _verticalInput: 0
-  _speed: 10
   _gravity: -9.81
   _velocity: {x: 0, y: 0, z: 0}
   _groundCheck: {fileID: 1647864572}
@@ -2911,13 +2905,17 @@ MonoBehaviour:
   _isRunningHash: 0
   _isJumpingHash: 0
   _isCrouchingHash: 0
-  _isJumpingHashTrigger: 0
+  _speed: 5
+  _horizontalInput: 0
+  _verticalInput: 0
   _isMovementPressed: 0
-  _isJoystickPressed: 0
   _isRunPressed: 0
   _isJumpPressed: 0
   _isCrouchPressed: 0
   move: {x: 0, y: 0, z: 0}
+  _joystick: {fileID: 2109043884}
+  _jumpingButton: {fileID: 1507259095}
+  _crouchButton: {fileID: 952240839}
   _mainCamera: {fileID: 1411828763}
   _LerpCameraFrom: {fileID: 1319256503}
   _LerpCameraTo: {fileID: 1869386003}
@@ -3905,7 +3903,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411828760}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2772bcbc7a1883f4b91c951d0a316426, type: 3}
   m_Name: 

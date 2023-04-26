@@ -6,26 +6,14 @@ using UnityEngine;
 
 public class PlayerCCStateMachine : MonoBehaviour
 {
-
-    [SerializeField] private Joystick _joystick;
-    public Joystick Joysick { get { return _joystick; } set { _joystick = value; } }
-
-    [SerializeField] private Jump _jumpingButton;
-    public Jump JumpingButton { get { return _jumpingButton; } set { _jumpingButton = value; } }
-
-    [SerializeField] private Crouch _crouchButton;
-    public Crouch CrouchButton { get { return _crouchButton; } set { _crouchButton = value; } }
+   
 
     [SerializeField] private CharacterController _controller;
     public CharacterController Controller { get { return _controller; } set { _controller = value; } }
 
-    [SerializeField] private float _horizontalInput;
-    public float HorizontalInput { get { return _horizontalInput; } set { _horizontalInput = value; } }
-    [SerializeField] private float _verticalInput;
-    public float VericalInput { get { return _verticalInput; } set { _verticalInput = value; } }
+   
 
-    [SerializeField] private float _speed = 15f;
-    public float Speed { get { return _speed; } set { _speed = value; } }
+  
     [Header("Gravity")]
     [SerializeField] private float _gravity = -9.81f;
     public float Gravity { get { return _gravity; } set { _gravity = value; } }
@@ -62,16 +50,19 @@ public class PlayerCCStateMachine : MonoBehaviour
     [SerializeField] public int _isCrouchingHash;
     public int IsCrouchingHash { get { return _isCrouchingHash; } set { _isCrouchingHash = value; } }
 
-    [SerializeField] public int _isJumpingHashTrigger;
-    public int IsJumpingHashTrigger { get { return _isJumpingHashTrigger; } set { _isJumpingHashTrigger = value; } }
-
 
     [Header("Input")]
+
+    [SerializeField] private float _speed ;
+    public float Speed { get { return _speed; } set { _speed = value; } }
+
+    [SerializeField] private float _horizontalInput;
+    public float HorizontalInput { get { return _horizontalInput; } set { _horizontalInput = value; } }
+    [SerializeField] private float _verticalInput;
+    public float VericalInput { get { return _verticalInput; } set { _verticalInput = value; } }
+
     [SerializeField] private bool _isMovementPressed = false;
     public bool IsMovementPressed { get { return _isMovementPressed; } set { _isMovementPressed = value; } }
-
-    [SerializeField] private bool _isJoystickPressed = false;
-    public bool IsJoystickPressed { get { return _isJoystickPressed; } set { _isJoystickPressed = value; } }
 
     [SerializeField] private bool _isRunPressed = false;
     public bool IsRunPressed { get { return _isRunPressed; } set { _isRunPressed = value; } }
@@ -83,13 +74,27 @@ public class PlayerCCStateMachine : MonoBehaviour
     public bool IsCrouchPressed { get { return _isCrouchPressed; } set { _isCrouchPressed = value; } }
 
 
+    public Vector3 move;
+
+    
+
     private bool _requireNewJumpPress = true;
     public bool RequireNewJumpPress { get { return _requireNewJumpPress; } set { _requireNewJumpPress = value; } }
 
-    public Vector3 move;
+    [Header("UI Elements")]
+    [SerializeField] private Joystick _joystick;
+    public Joystick Joystick { get { return _joystick; } set { _joystick = value; } }
 
-    PlayerBaseState _currentState;
-    PlayerStateFactory _states;
+    [SerializeField] private Jump _jumpingButton;
+    public Jump JumpingButton { get { return _jumpingButton; } set { _jumpingButton = value; } }
+
+    [SerializeField] private Crouch _crouchButton;
+    public Crouch CrouchButton { get { return _crouchButton; } set { _crouchButton = value; } }
+
+    
+
+
+    
 
 
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
@@ -100,10 +105,14 @@ public class PlayerCCStateMachine : MonoBehaviour
     public string VerticalPatameterName { get { return _verticalPatameterName; } set { _verticalPatameterName = value; } }
     public string HorizontalPatameterName { get { return _horizontalPatameterName; } set { _horizontalPatameterName = value; } }
 
+    [Header("Camera")]
     [SerializeField] private Camera _mainCamera;
     public Camera CameraMainCamera { get { return _mainCamera;} set { _mainCamera = value; } }
     public Transform _LerpCameraFrom;
     public Transform _LerpCameraTo;
+
+    PlayerBaseState _currentState;
+    PlayerStateFactory _states;
 
     private void Awake()
     {
@@ -114,7 +123,6 @@ public class PlayerCCStateMachine : MonoBehaviour
         IsRunningHash = Animator.StringToHash("IsRunning");
         IsJumpingHash = Animator.StringToHash("IsJumping");
         IsCrouchingHash = Animator.StringToHash("IsCrouching");
-        IsJumpingHashTrigger = Animator.StringToHash("IsJump");
 
         _jumpingButton.OnJumpButtonPressed += OnJumpClick;
         _jumpingButton.OnJumpButtonReleased += OnJumpReleased;
@@ -151,11 +159,11 @@ public class PlayerCCStateMachine : MonoBehaviour
 
         /////////////////////////Walk
 
-        /*_horizontalInput = Input.GetAxis(HorizontalPatameterName);
-        _verticalInput = Input.GetAxis(VerticalPatameterName);*/
+        _horizontalInput = Input.GetAxis(HorizontalPatameterName);
+        _verticalInput = Input.GetAxis(VerticalPatameterName);
 
-        _horizontalInput = _joystick.Direction.x;
-        _verticalInput = _joystick.Direction.y;
+        /* _horizontalInput = _joystick.Direction.x;
+         _verticalInput = _joystick.Direction.y;*/
 
         //Debug.Log(_joystick.Direction);
 
@@ -179,8 +187,21 @@ public class PlayerCCStateMachine : MonoBehaviour
             _isRunPressed = false;
         }
 
+        /*if ((_joystick.Direction.x >= 0.8 && _joystick.Direction.y >=0.8) || (_joystick.Direction.x <= -0.8 && _joystick.Direction.y <= -0.8))
+        {
+            //_isMovementPressent = false;
+            _isRunPressed = true;
+
+        }
+        else 
+        {
+            //_isMovementPressent = true;
+            _isRunPressed = false;
+        }*/
+
+
         //////////////////////// jump
-        /*if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
 
             _isJumpPressed = true;
@@ -190,7 +211,7 @@ public class PlayerCCStateMachine : MonoBehaviour
         {
             _isJumpPressed = false;
             _requireNewJumpPress = true;
-        }*/
+        }
         /*if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
         {
             _isJumpPressed = true;
@@ -204,18 +225,18 @@ public class PlayerCCStateMachine : MonoBehaviour
 
         //////////////////////Crouch 
 
-        /*  if (Input.GetKeyUp(KeyCode.C))
-          {
+        if (Input.GetKeyUp(KeyCode.C))
+        {
 
-              if (_isCrouchPressed)
-              {
-                  _isCrouchPressed = false;
-              }
-              else
-              {
-                  _isCrouchPressed = true;
-              }
-          }*/
+            if (_isCrouchPressed)
+            {
+                _isCrouchPressed = false;
+            }
+            else
+            {
+                _isCrouchPressed = true;
+            }
+        }
 
     }
     private void OnJumpClick()

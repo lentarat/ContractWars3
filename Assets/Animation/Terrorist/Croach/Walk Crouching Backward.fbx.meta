@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7af11258435784d4282009a907594a5a
+guid: e56ec216be35f284bbb265070db53a14
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -17,7 +17,12 @@ ModelImporter:
     removeConstantScaleCurves: 1
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
+      copied configuration does not match position in animation file:\n\t'mixamorig:LeftUpLeg'
+      : position error = 5.530519 mm\n\t'mixamorig:LeftLeg' : position error = 15.535112
+      mm\n\t'mixamorig:LeftFoot' : position error = 3.820735 mm\n\t'mixamorig:RightUpLeg'
+      : position error = 5.294736 mm\n\t'mixamorig:RightLeg' : position error = 15.520171
+      mm\n\t'mixamorig:RightFoot' : position error = 3.766486 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -33,11 +38,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: strafeRight
+      name: Walk Crouching Backward
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 43
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -48,7 +53,7 @@ ModelImporter:
       loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1

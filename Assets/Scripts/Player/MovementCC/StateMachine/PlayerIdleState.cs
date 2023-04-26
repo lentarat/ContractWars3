@@ -14,11 +14,12 @@ public class PlayerIdleState : PlayerBaseState
         _ctx.CCAnimator.SetBool(_ctx.IsRunningHash, false);*/
         Ctx.CCAnimator.SetFloat(Ctx.HorizontalPatameterName, Ctx.HorizontalInput);
         Ctx.CCAnimator.SetFloat(Ctx.VerticalPatameterName, Ctx.VericalInput);
-
+        Debug.Log("Idle EnterState");
     }
     
     public override void UpdateState() 
     {
+       Debug.Log("Idle UpdateState");
         CheckSwitchStates();
     }
 

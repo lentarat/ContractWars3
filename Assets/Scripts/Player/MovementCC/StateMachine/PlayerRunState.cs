@@ -10,29 +10,25 @@ public class PlayerRunState : PlayerBaseState
 
     public override void EnterState() 
     {
-        //_ctx.Speed += 100;
-        /*_ctx.CCAnimator.SetBool("IsWalking", true);
-        _ctx.CCAnimator.SetBool("IsRunning", true);*/
-        /* _ctx.CCAnimator.SetBool(_ctx.IsWalkingHash, true);
-         _ctx.CCAnimator.SetBool(_ctx.IsRunningHash, true);*/
+        Ctx.Speed = Ctx.Speed * 2;
+
         Ctx.CCAnimator.SetFloat(Ctx.HorizontalPatameterName, Ctx.HorizontalInput);
         Ctx.CCAnimator.SetFloat(Ctx.VerticalPatameterName, Ctx.VericalInput);
-
+       
+        Debug.Log("Run EnterState");
     }
 
-    public override void UpdateState() 
+    public override void UpdateState()
     {
-       
-        //Ctx.move = Ctx.transform.right * Ctx.HorizontalInput + Ctx.transform.forward * Ctx.VericalInput;
-
-        //Ctx.Controller.Move(Ctx.move * (Ctx.Speed * 2) * Time.deltaTime);  //??? 
+        Debug.Log("Run UpdateState");
+        Ctx.move = (Ctx.gameObject.transform.right * Ctx.HorizontalInput) + (Ctx.gameObject.transform.forward * Ctx.VericalInput);
+        Ctx.Controller.Move(Ctx.move * (Ctx.Speed) * Time.deltaTime);
         CheckSwitchStates();
     }
 
     public override void ExitState() 
     {
-
-        //_ctx.Speed -= 100;
+        Ctx.Speed = Ctx.Speed /2;
 
     }
 

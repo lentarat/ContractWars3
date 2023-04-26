@@ -18,19 +18,25 @@ public class PlayerWalkState : PlayerBaseState
         Ctx.CCAnimator.SetFloat(Ctx.HorizontalPatameterName, Ctx.HorizontalInput);
         Ctx.CCAnimator.SetFloat(Ctx.VerticalPatameterName, Ctx.VericalInput);
         
+        Debug.Log("Walk EnterState");
 
 
     }
 
     public override void UpdateState() 
     {
-        /* Ctx.move = Ctx.transform.right * Ctx.HorizontalInput + Ctx.transform.forward * Ctx.VericalInput;
-         Ctx.Controller.Move(Ctx.move * Ctx.Speed * Time.deltaTime);*/
+        Debug.Log("Walk UpdateState");
+        Ctx.move = (Ctx.gameObject.transform.right * Ctx.HorizontalInput) + (Ctx.gameObject.transform.forward * Ctx.VericalInput);
+        Ctx.Controller.Move(Ctx.move * Ctx.Speed * Time.deltaTime);
         CheckSwitchStates();
         
     }
 
-    public override void ExitState() { }
+    public override void ExitState() 
+    {
+        
+
+    }
 
 
     public override void InitializeSubState() { }

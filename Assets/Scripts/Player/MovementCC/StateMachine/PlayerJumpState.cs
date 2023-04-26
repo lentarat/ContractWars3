@@ -8,13 +8,14 @@ public class PlayerJumpState : PlayerBaseState
     public PlayerJumpState(PlayerCCStateMachine currentContext, PlayerStateFactory playerStateFactory)
     : base(currentContext, playerStateFactory) 
     {
-        InitializeSubState();
+        
         IsRootState= true;
     }
     public override void EnterState() 
     {
+        InitializeSubState();
         Ctx.CCAnimator.SetBool(Ctx.IsJumpingHash, true);
-
+        HandleJump();
         //_ctx.CCAnimator.SetTrigger(_ctx.IsJumpingHashTrigger);
         Debug.Log("Jumping");
         
@@ -24,7 +25,7 @@ public class PlayerJumpState : PlayerBaseState
     {
        // Ctx.Controller.Move(Ctx.move * Ctx.Speed * Time.deltaTime);
         CheckSwitchStates();
-        HandleJump();
+       
     }
 
     public override void ExitState() 
@@ -35,7 +36,6 @@ public class PlayerJumpState : PlayerBaseState
             
         }
         Ctx.CCAnimator.SetBool(Ctx.IsJumpingHash, false);
-        Ctx.IsJoystickPressed= false;
 
     }
 
@@ -45,7 +45,7 @@ public class PlayerJumpState : PlayerBaseState
         {
             SetSubState(Factory.Idle());
         }
-        else if (Ctx.IsMovementPressed && !Ctx.IsRunPressed)
+        else if (Ctx.IsMovementPressed )
         {
             SetSubState(Factory.Walk());
         }

@@ -8,21 +8,23 @@ public class PlayerGroundedState : PlayerBaseState
     public PlayerGroundedState(PlayerCCStateMachine currentContext, PlayerStateFactory playerStateFactory)
     : base(currentContext, playerStateFactory) 
     {
-        InitializeSubState();
+        
         IsRootState= true;
     }
 
     public override void EnterState() 
     {
+        InitializeSubState();
         //_ctx.CCAnimator.SetBool(_ctx.IsCrouchingHash, false);
         Ctx.CCAnimator.SetBool(Ctx.IsJumpingHash, false);
 
-
+        Debug.Log("Ground EnterState");
     }
 
     public override void UpdateState() 
     {
-       
+        Debug.Log("Ground UpdateState");
+
         GravityHandler();
         CheckSwitchStates();
     }
@@ -35,7 +37,7 @@ public class PlayerGroundedState : PlayerBaseState
         {
             SetSubState(Factory.Idle());
         }
-        else if (Ctx.IsMovementPressed && !Ctx.IsRunPressed)
+        else if (Ctx.IsMovementPressed )
         {
             SetSubState(Factory.Walk());
         }
