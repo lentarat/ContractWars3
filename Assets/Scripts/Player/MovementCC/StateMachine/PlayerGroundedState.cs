@@ -54,10 +54,6 @@ public class PlayerGroundedState : PlayerBaseState
         {
             SwitchState(Factory.Jump());
         }
-       /* else if (!Ctx.Controller.isGrounded)
-        {
-            SwitchState(Factory.Fall());
-        }*/
         else if (Ctx.IsCrouchPressed)
         {
             SwitchState(Factory.Crouch());

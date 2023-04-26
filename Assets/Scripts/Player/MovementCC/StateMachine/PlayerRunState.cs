@@ -12,14 +12,15 @@ public class PlayerRunState : PlayerBaseState
     {
         Ctx.Speed = Ctx.Speed * 2;
 
-        Ctx.CCAnimator.SetFloat(Ctx.HorizontalPatameterName, Ctx.HorizontalInput);
-        Ctx.CCAnimator.SetFloat(Ctx.VerticalPatameterName, Ctx.VericalInput);
+        
        
         Debug.Log("Run EnterState");
     }
 
     public override void UpdateState()
     {
+        Ctx.CCAnimator.SetFloat(Ctx.HorizontalPatameterName, Ctx.HorizontalInput);
+        Ctx.CCAnimator.SetFloat(Ctx.VerticalPatameterName, Ctx.VericalInput);
         Debug.Log("Run UpdateState");
         Ctx.move = (Ctx.gameObject.transform.right * Ctx.HorizontalInput) + (Ctx.gameObject.transform.forward * Ctx.VericalInput);
         Ctx.Controller.Move(Ctx.move * (Ctx.Speed) * Time.deltaTime);

@@ -8,8 +8,7 @@ enum PlayerStates
     run,
     grounded,
     jump,
-    crouch,
-    fall
+    crouch
 }
 
 public class PlayerStateFactory 
@@ -25,7 +24,7 @@ public class PlayerStateFactory
         _states[PlayerStates.jump] = new PlayerJumpState(_context, this);
         _states[PlayerStates.grounded] = new PlayerGroundedState(_context, this);
         _states[PlayerStates.crouch] = new PlayerCrouchState(_context, this);
-        _states[PlayerStates.fall] = new PlayerFallState(_context, this);
+
     }
 
     public PlayerBaseState Idle()
@@ -52,10 +51,7 @@ public class PlayerStateFactory
     {
         return _states[PlayerStates.crouch];
     }
-    public PlayerBaseState Fall()
-    {
-        return _states[PlayerStates.fall];
-    }
+
 
 
 }

@@ -63,10 +63,6 @@ public class PlayerCrouchState : PlayerBaseState
         {   
             SwitchState(Factory.Grounded());
         }
-        /*else if (!Ctx.Controller.isGrounded)
-        {
-            SwitchState(Factory.Fall());
-        }*/
         else if (Ctx.IsJumpPressed && !Ctx.RequireNewJumpPress)
         {
             SwitchState(Factory.Jump());

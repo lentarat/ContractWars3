@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 71749fd4be9d825478ebabbca3b66f16
+guid: cc124d43d78c35449828d0efcced9bdc
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,33 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: bakelite
-    second: {fileID: 2100000, guid: 9610d8d7a8e34924faa940da03037af6, type: 2}
+      name: Material
+    second: {fileID: 2100000, guid: 1728f9bd70d30f14d8172e249b1c9823, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: finish
-    second: {fileID: 2100000, guid: 4f06e444cf3dbd447958388d4237a62c, type: 2}
+      name: Material.001
+    second: {fileID: 2100000, guid: d1cf5945e66865045b1d3e3b84ee1a4a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: finish_milled
-    second: {fileID: 2100000, guid: 45e2b3fcd271d7443a16610122fb405e, type: 2}
+      name: Material.002
+    second: {fileID: 2100000, guid: 958a6d0628fb9a64fa4720ac8e63ad13, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: polymer mag
-    second: {fileID: 2100000, guid: 5bdd5313b4d38c5418187812ce3cfebc, type: 2}
+      name: Material.003
+    second: {fileID: 2100000, guid: 483ca4cb56d1eb149a7ddbb3e62509ab, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: wood
-    second: {fileID: 2100000, guid: 7a35664987f1f844496d1008cf96dea4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: wood_untreated
-    second: {fileID: 2100000, guid: 7bbde95031d800f40a6025f0ebfa7fc1, type: 2}
+      name: Material.004
+    second: {fileID: 2100000, guid: 9b9eb297245c98240b5d088cc126330a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -65,9 +60,9 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
@@ -82,7 +77,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     bakeAxisConversion: 0
-    preserveHierarchy: 1
+    preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
@@ -118,7 +113,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.01
+    globalScale: 0.001
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

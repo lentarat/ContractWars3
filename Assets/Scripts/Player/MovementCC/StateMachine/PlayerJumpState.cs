@@ -8,7 +8,6 @@ public class PlayerJumpState : PlayerBaseState
     public PlayerJumpState(PlayerCCStateMachine currentContext, PlayerStateFactory playerStateFactory)
     : base(currentContext, playerStateFactory) 
     {
-        
         IsRootState= true;
     }
     public override void EnterState() 
@@ -62,10 +61,6 @@ public class PlayerJumpState : PlayerBaseState
         {
             SwitchState(Factory.Grounded());
         }
-      /*  else if (!Ctx.Controller.isGrounded)
-        {
-            SwitchState(Factory.Fall());
-        }*/
         else if (Ctx.IsCrouchPressed )
         {
             SwitchState(Factory.Crouch());

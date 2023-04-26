@@ -15,8 +15,7 @@ public class PlayerWalkState : PlayerBaseState
         /*_ctx.CCAnimator.SetBool(_ctx.IsWalkingHash, true);
 
         _ctx.CCAnimator.SetBool(_ctx.IsRunningHash, false);*/
-        Ctx.CCAnimator.SetFloat(Ctx.HorizontalPatameterName, Ctx.HorizontalInput);
-        Ctx.CCAnimator.SetFloat(Ctx.VerticalPatameterName, Ctx.VericalInput);
+        
         
         Debug.Log("Walk EnterState");
 
@@ -25,6 +24,8 @@ public class PlayerWalkState : PlayerBaseState
 
     public override void UpdateState() 
     {
+        Ctx.CCAnimator.SetFloat(Ctx.HorizontalPatameterName, Ctx.HorizontalInput);
+        Ctx.CCAnimator.SetFloat(Ctx.VerticalPatameterName, Ctx.VericalInput);
         Debug.Log("Walk UpdateState");
         Ctx.move = (Ctx.gameObject.transform.right * Ctx.HorizontalInput) + (Ctx.gameObject.transform.forward * Ctx.VericalInput);
         Ctx.Controller.Move(Ctx.move * Ctx.Speed * Time.deltaTime);
