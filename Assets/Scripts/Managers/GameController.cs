@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    // switch between players when death mode
-    [SerializeField] private List<Player> _playerList;
+    [SerializeField] private GameObject _mapParent;
+    private string _mapsPath = "Maps/";
 
-    private WeaponManager _bulletsManager;
+    private void Awake()
+    {
+        LoadMap();
+    }
+
+    private void LoadMap()
+    {
+        var maps =_mapParent.GetComponentsInChildren<Renderer>();
+        foreach (var go in maps)
+        {
+            Destroy(go.gameObject);
+        }
+        Instantiate(Resources.Load(_mapsPath + MapChoose.ChosenMapName), _mapParent.transform).name = MapChoose.ChosenMapName;
+    }
 }

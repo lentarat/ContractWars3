@@ -10,19 +10,22 @@ public class ScenesManager : MonoBehaviour
     public enum Scene
     {
         MainMenu,
-        Map1,
-        Map2,
-        Map3
+        Map
     }
-
 
     private void Awake()
     {
         Instance = this;
     }
-    public void LoadScene(Scene scene)
+
+    //public void LoadScene(Scene scene)
+    //{
+    //    SceneManager.LoadScene(scene.ToString());
+    //}
+
+    public void LoadMap()
     {
-        SceneManager.LoadScene(scene.ToString());
+        SceneManager.LoadScene(Scene.Map.ToString());
     }
     public void LoadMainMenu()
     {
