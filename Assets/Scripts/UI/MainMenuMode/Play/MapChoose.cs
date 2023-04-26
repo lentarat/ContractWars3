@@ -1,23 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MapChoose : MonoBehaviour
 {
     [SerializeField] private GameObject _mapsParent;
     
+    public static string ChosenMapName = "Pool Red";
+
     void Awake()
     {
         Button[] maps = _mapsParent.GetComponentsInChildren<Button>();
         foreach (Button button in maps)
         {
-            /*button.onClick.AddListener(() => LoadMap(ScenesManager.Scene.Map1));*/  //////////////////////????????????
+            button.onClick.AddListener(() => SaveMapName(button.GetComponentInChildren<TextMeshProUGUI>().text));
         }
     }
 
-    private void LoadMap(ScenesManager.Scene map)
+    private void SaveMapName(string mapName)
     {
-        ScenesManager.Instance.LoadScene(map);
+        ChosenMapName = mapName;
+        StartGame();
+    }
+
+    private void StartGame()
+    {
+        ScenesManager.Instance.LoadMap();
     }
 }

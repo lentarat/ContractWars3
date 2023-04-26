@@ -28,20 +28,23 @@ public class UIMainMenu : MonoBehaviour
     }
     private void OnPlayButtonPressed()
     {
-        gameObject.SetActive(false);
         _play.SetActive(true);
+        _returnBackButton.gameObject.SetActive(true);
+        gameObject.SetActive(false);
         _currentActivatedTab = _play;
     }
     private void OnSettingsButtonPressed()
     {
-        gameObject.SetActive(false);
         _settings.SetActive(true);
+        _returnBackButton.gameObject.SetActive(true);
+        gameObject.SetActive(false);
         _currentActivatedTab = _play;
     }
     private void OnCreditsButtonPressed()
     {
-        gameObject.SetActive(false);
         _credits.SetActive(true);
+        _returnBackButton.gameObject.SetActive(true);
+        gameObject.SetActive(false);
         _currentActivatedTab = _play;
     }
     private void OnQuitButtonPressed()
@@ -54,6 +57,7 @@ public class UIMainMenu : MonoBehaviour
     private void OnReturnBackPressed()
     {
         gameObject.SetActive(true);
+        _returnBackButton.gameObject.SetActive(false);
         _currentActivatedTab.SetActive(false);
     }
 }

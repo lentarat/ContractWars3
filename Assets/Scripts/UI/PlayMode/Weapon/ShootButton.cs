@@ -32,7 +32,7 @@ public class ShootButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         while (true)
         {
-            if (Time.time > _timeWhenStoppedShooting + _bulletsManager.CurrentWeapon.PeriodBetweenShots)
+            if (Time.time > _timeWhenStoppedShooting + 1f / _bulletsManager.CurrentWeapon.FireRate)
             {
                 _bulletsManager.SubtractABullet();
                 _timeWhenStoppedShooting = Time.time;

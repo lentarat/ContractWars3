@@ -7,7 +7,6 @@ public class QuitConfirm : MonoBehaviour
 {
     [SerializeField] private GameObject _mainMenu;
 
-    [SerializeField] private Button _returnBackButton;
     [SerializeField] private Button YesButton;
     [SerializeField] private Button NoButton;
 
@@ -25,7 +24,6 @@ public class QuitConfirm : MonoBehaviour
     private void ReturnBack()
     {
         _mainMenu.SetActive(true);
-        _returnBackButton.gameObject.SetActive(true);
         gameObject.SetActive(false);
     }
 }
