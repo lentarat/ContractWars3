@@ -15,16 +15,13 @@ public class PlayerJumpState : PlayerBaseState
         InitializeSubState();
         Ctx.CCAnimator.SetBool(Ctx.IsJumpingHash, true);
         HandleJump();
-        //_ctx.CCAnimator.SetTrigger(_ctx.IsJumpingHashTrigger);
         Debug.Log("Jumping");
         
     }
 
     public override void UpdateState() 
     {
-       // Ctx.Controller.Move(Ctx.move * Ctx.Speed * Time.deltaTime);
         CheckSwitchStates();
-       
     }
 
     public override void ExitState() 
