@@ -152,8 +152,8 @@ public class PlayerCCStateMachine : MonoBehaviour
     private void OnInputHandler()
     {
         
-        //KeybordInput();
-        JoystickInput(); 
+        KeybordInput();
+        //JoystickInput(); 
     }
 
     private void KeybordInput()

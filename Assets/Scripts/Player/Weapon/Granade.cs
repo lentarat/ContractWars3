@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Granade : MonoBehaviour
 {
+    [SerializeField] private GameObject _granadePrefab;
+    [SerializeField] private float _explosionForce;
+    [SerializeField] private float _explosionSpeed;
+    public float _delay = 3f;
+    public float _radius = 20f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +19,9 @@ public class Granade : MonoBehaviour
     void Update()
     {
         
+    }
+    public void GrandeHendle()
+    {
+
     }
 }
