@@ -50,3 +50,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDr
     }
 
 }
+
+
+
+

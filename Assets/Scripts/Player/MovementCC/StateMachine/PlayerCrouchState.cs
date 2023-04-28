@@ -15,16 +15,10 @@ public class PlayerCrouchState : PlayerBaseState
     {
         InitializeSubState();
         Ctx.CCAnimator.SetBool(Ctx.IsCrouchingHash, true);
-        /*Ctx.CCAnimator.SetFloat(Ctx.HorizontalPatameterName, Ctx.HorizontalInput);
-        Ctx.CCAnimator.SetFloat(Ctx.VerticalPatameterName, Ctx.VericalInput);*/
         Ctx.Speed = Ctx.Speed / 2;
         Ctx.Controller.height = Ctx.Controller.height / 1.4f;
         Ctx.Controller.center = Ctx.Controller.center / 2;
         Ctx.CameraMainCamera.transform.position = Ctx._LerpCameraTo.transform.position;
-
-        Debug.Log("Crouching");
-
-
     }
 
     public override void UpdateState()

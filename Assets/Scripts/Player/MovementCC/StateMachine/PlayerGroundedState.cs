@@ -15,16 +15,11 @@ public class PlayerGroundedState : PlayerBaseState
     public override void EnterState() 
     {
         InitializeSubState();
-        //_ctx.CCAnimator.SetBool(_ctx.IsCrouchingHash, false);
         Ctx.CCAnimator.SetBool(Ctx.IsJumpingHash, false);
-
-        Debug.Log("Ground EnterState");
     }
 
     public override void UpdateState() 
     {
-        Debug.Log("Ground UpdateState");
-
         GravityHandler();
         CheckSwitchStates();
     }
