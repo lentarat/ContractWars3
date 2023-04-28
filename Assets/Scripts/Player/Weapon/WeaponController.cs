@@ -14,6 +14,8 @@ public class WeaponController : MonoBehaviour
         _humanLayer = LayerMask.NameToLayer("Human");
     }
 
+   
+
     public void Shoot()
     {
         if (Physics.Raycast(transform.position, cameraTransform.forward, out RaycastHit hit))
@@ -80,4 +82,8 @@ public class WeaponController : MonoBehaviour
     {
         EventAggregator.Post(this, CurrentWeapon);
     }
+
+
+
+
 }
