@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class ShootButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] private WeaponManager _bulletsManager;
+    [SerializeField] private WeaponController _weaponController;
 
     private IEnumerator _shootCoroutine;
     private float _timeWhenStoppedShooting;
@@ -32,15 +32,12 @@ public class ShootButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         while (true)
         {
-            if (Time.time > _timeWhenStoppedShooting + 1f / _bulletsManager.CurrentWeapon.FireRate)
+            if (Time.time > _timeWhenStoppedShooting + 1f / _weaponController.CurrentWeapon.FireRate)
             {
-                _bulletsManager.SubtractABullet();
+                _weaponController.SubtractABullet();
                 _timeWhenStoppedShooting = Time.time;
             }
             yield return null;
         }
     }
-
-
-
 }

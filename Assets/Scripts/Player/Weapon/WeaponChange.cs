@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class WeaponChange : MonoBehaviour
 {
-    [SerializeField] private WeaponManager _bulletsManager;
+    [SerializeField] private WeaponController _weaponController;
 
     [SerializeField] private Image _inventoryImage;
 
@@ -47,7 +47,7 @@ public class WeaponChange : MonoBehaviour
         _currentWeaponHolder.ImageInSlot.color = tempColor;
         _currentWeaponHolder.WeaponInSlot = tempWeapon; 
 
-        _bulletsManager.SetCurrentWeapon(_currentWeaponHolder.WeaponInSlot);
+        _weaponController.SetCurrentWeapon(_currentWeaponHolder.WeaponInSlot);
         SetInventoryActive(false);
     }
 

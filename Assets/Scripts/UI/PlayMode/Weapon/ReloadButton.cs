@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ReloadButton : MonoBehaviour
 {
-    [SerializeField] private WeaponManager _weaponManager;
+    [SerializeField] private WeaponController _weaponManager;
 
     [SerializeField] private Button _reloadButton;
 

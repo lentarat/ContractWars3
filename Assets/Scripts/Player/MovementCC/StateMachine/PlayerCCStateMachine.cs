@@ -116,7 +116,6 @@ public class PlayerCCStateMachine : MonoBehaviour
 
     private void Awake()
     {
-        _controller = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
 
         IsWalkingHash = Animator.StringToHash("IsWalking");
@@ -124,14 +123,15 @@ public class PlayerCCStateMachine : MonoBehaviour
         IsJumpingHash = Animator.StringToHash("IsJumping");
         IsCrouchingHash = Animator.StringToHash("IsCrouching");
 
-        _jumpingButton.OnJumpButtonPressed += OnJumpClick;
-        _jumpingButton.OnJumpButtonReleased += OnJumpReleased;
-
-        _crouchButton.OnCrouchButtonPressed += OnCrouchClick;
-       //_crouchButton.OnCrouchButtonReleased += OnCrouchReleased;
-
-
-
+        if (gameObject.CompareTag("Player"))
+        {
+            _controller = GetComponent<CharacterController>();
+            _jumpingButton.OnJumpButtonPressed += OnJumpClick;
+            _jumpingButton.OnJumpButtonReleased += OnJumpReleased;
+            _crouchButton.OnCrouchButtonPressed += OnCrouchClick;
+            //_crouchButton.OnCrouchButtonReleased += OnCrouchReleased;
+        }
+       
         _states = new PlayerStateFactory(this);
         _currentState = _states.Grounded();
         _currentState.EnterState();
