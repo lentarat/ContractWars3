@@ -6,11 +6,21 @@ public class WeaponController : MonoBehaviour
     [SerializeField] public Weapon CurrentWeapon;
 
     [SerializeField] private Transform cameraTransform;
-    
+
+    private int _humanLayer;
+
     public void Shoot()
     {
-    //    RaycastHit hit;
-    //    Physics.Raycast();
+        RaycastHit hit;
+        Physics.Raycast(transform.position, cameraTransform.forward, out hit);
+
+        if (hit.collider.gameObject.layer == _humanLayer)
+        {
+            if (TryGetComponent<HumanStats>(out HumanStats humanStats))
+            {
+                humanStats.Hp -= CurrentWeapon.Damage;
+            }
+        }
 
         // 
         //graphics

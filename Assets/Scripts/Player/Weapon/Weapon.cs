@@ -7,8 +7,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] private WeaponType _weaponType;
     [SerializeField] private WeaponModel _weaponModel;
 
-    [SerializeField] private float _damage;
-    public float Damage { get => _damage; set => _damage = value; }
+    [SerializeField] private int _damage;
+    public int Damage { get => _damage; set => _damage = value; }
     [SerializeField] private float _reloadTime;
     public float ReloadTime { get => _reloadTime; set => _reloadTime = value; }
     [SerializeField] private float _fireRate;

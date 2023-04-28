@@ -116,7 +116,6 @@ public class PlayerCCStateMachine : MonoBehaviour
 
     private void Awake()
     {
-        _controller = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
 
         IsWalkingHash = Animator.StringToHash("IsWalking");
@@ -124,56 +123,81 @@ public class PlayerCCStateMachine : MonoBehaviour
         IsJumpingHash = Animator.StringToHash("IsJumping");
         IsCrouchingHash = Animator.StringToHash("IsCrouching");
 
-        _jumpingButton.OnJumpButtonPressed += OnJumpClick;
-        _jumpingButton.OnJumpButtonReleased += OnJumpReleased;
-
-        _crouchButton.OnCrouchButtonPressed += OnCrouchClick;
-
-
-
+        if (gameObject.CompareTag("Player"))
+        {
+            _controller = GetComponent<CharacterController>();
+            _jumpingButton.OnJumpButtonPressed += OnJumpClick;
+            _jumpingButton.OnJumpButtonReleased += OnJumpReleased;
+            _crouchButton.OnCrouchButtonPressed += OnCrouchClick;
+            //_crouchButton.OnCrouchButtonReleased += OnCrouchReleased;
+        }
+       
         _states = new PlayerStateFactory(this);
         _currentState = _states.Grounded();
         _currentState.EnterState();
 
     }
 
-
+    // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    // Update is called once per frame
     void Update()
     {
         OnInputHandler();
+        //GravityHandler();
         _currentState.UpdateStates();
+        //_controller.Move(move* _speed * Time.deltaTime);
+
     }
 
     private void OnInputHandler()
     {
-        
-        //KeybordInput();
-        JoystickInput(); 
-    }
 
-    private void KeybordInput()
-    {
         /////////////////////////Walk
+
         _horizontalInput = Input.GetAxis(HorizontalPatameterName);
         _verticalInput = Input.GetAxis(VerticalPatameterName);
-        _isMovementPressed = _horizontalInput != 0 || _verticalInput != 0;
 
+        /* _horizontalInput = _joystick.Direction.x;
+         _verticalInput = _joystick.Direction.y;*/
+
+        //Debug.Log(_joystick.Direction);
+
+        _isMovementPressed = _horizontalInput != 0 || _verticalInput != 0;
+        if (!_isMovementPressed)
+        {
+            CCAnimator.SetFloat(_horizontalPatameterName, _horizontalInput);
+            CCAnimator.SetFloat(_verticalPatameterName, _verticalInput);
+        }
 
         ///////////////////////Run
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+            //_isMovementPressent = false;
             _isRunPressed = true;
 
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            //_isMovementPressent = true;
             _isRunPressed = false;
         }
+
+        /*if ((_joystick.Direction.x >= 0.8 && _joystick.Direction.y >=0.8) || (_joystick.Direction.x <= -0.8 && _joystick.Direction.y <= -0.8))
+        {
+            //_isMovementPressent = false;
+            _isRunPressed = true;
+
+        }
+        else 
+        {
+            //_isMovementPressent = true;
+            _isRunPressed = false;
+        }*/
 
 
         //////////////////////// jump
@@ -188,6 +212,16 @@ public class PlayerCCStateMachine : MonoBehaviour
             _isJumpPressed = false;
             _requireNewJumpPress = true;
         }
+        /*if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
+        {
+            _isJumpPressed = true;
+            _requireNewJumpPress = false;
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            _isJumpPressed = false;
+            _requireNewJumpPress = true;
+        }*/
 
         //////////////////////Crouch 
 
@@ -205,16 +239,6 @@ public class PlayerCCStateMachine : MonoBehaviour
         }
 
     }
-
-    private void JoystickInput()
-    {
-        _horizontalInput = _joystick.Direction.x;
-        _verticalInput = _joystick.Direction.y;
-        _isMovementPressed = _horizontalInput != 0 || _verticalInput != 0;
-
-    }
-
-
     private void OnJumpClick()
     {
         _isJumpPressed = true;
@@ -238,5 +262,10 @@ public class PlayerCCStateMachine : MonoBehaviour
             _isCrouchPressed = true;
         }
     }
+
+  /*  private void OnCrouchReleased()
+    {
+        // _isCrouchPressed = false;
+    }*/
 
 }
