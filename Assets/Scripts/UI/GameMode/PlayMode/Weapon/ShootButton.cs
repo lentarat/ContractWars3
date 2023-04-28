@@ -34,7 +34,8 @@ public class ShootButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             if (Time.time > _timeWhenStoppedShooting + 1f / _weaponController.CurrentWeapon.FireRate)
             {
-                _weaponController.SubtractABullet();
+                //_weaponController.SubtractABullet();
+                _weaponController.Shoot();
                 _timeWhenStoppedShooting = Time.time;
             }
             yield return null;

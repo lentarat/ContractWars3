@@ -9,23 +9,35 @@ public class WeaponController : MonoBehaviour
 
     private int _humanLayer;
 
+    private void Awake()
+    {
+        _humanLayer = LayerMask.NameToLayer("Human");
+    }
+
     public void Shoot()
     {
-        RaycastHit hit;
-        Physics.Raycast(transform.position, cameraTransform.forward, out hit);
-
-        if (hit.collider.gameObject.layer == _humanLayer)
+        if (Physics.Raycast(transform.position, cameraTransform.forward, out RaycastHit hit))
         {
-            if (TryGetComponent<HumanStats>(out HumanStats humanStats))
+            //need profiler
+            if (hit.collider.gameObject.layer == _humanLayer)
             {
-                humanStats.Hp -= CurrentWeapon.Damage;
+                if (hit.collider.gameObject.TryGetComponent<HumanStats>(out HumanStats humanStats))
+                {
+                    if (humanStats.Armor > 0)
+                    {
+                        humanStats.Hp -= (int)((float)CurrentWeapon.Damage * 0.85f);
+                    }
+                    else
+                    {
+                        humanStats.Hp -= CurrentWeapon.Damage;
+                    }
+                }
             }
         }
-
-        // 
-        //graphics
-        //sounds
-        //
+            // 
+            //vfx
+            //sounds
+            //
 
         SubtractABullet();
     }
