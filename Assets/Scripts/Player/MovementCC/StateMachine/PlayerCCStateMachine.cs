@@ -214,8 +214,12 @@ public class PlayerCCStateMachine : MonoBehaviour
 
     private void OnJumpClick()
     {
-        _isJumpPressed = true;
-        _requireNewJumpPress = false;
+        if (_requireNewJumpPress == true && _isGrounded)
+        {
+            _isJumpPressed = true;
+            _requireNewJumpPress = false;
+        }
+        
     }
 
     private void OnJumpReleased()

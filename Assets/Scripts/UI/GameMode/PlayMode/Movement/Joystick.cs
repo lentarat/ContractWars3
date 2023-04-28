@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Diagnostics.CodeAnalysis;
 
-public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDragHandler
+public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDragHandler, IPointerUpHandler
 {
     [SerializeField] private Image _handle;
     [SerializeField] private Image _button;
@@ -12,7 +12,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDr
     [SerializeField] private float _maximumRadius = 100;
     public Vector3 Direction { get; private set; }
 
-    private Vector3 _startPoint = Vector3.zero;
+    private Vector3 _startPoint;
  
 
     private void Awake()
@@ -47,6 +47,11 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDr
         _handle.transform.position = _startPoint;
         Direction = Vector3.zero;
       
+    }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        _handle.transform.position = _startPoint;
+        Direction = Vector3.zero;
     }
 
 }

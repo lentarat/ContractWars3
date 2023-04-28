@@ -47,8 +47,15 @@ public class MouseLook : MonoBehaviour
 
         // _playerBody.Rotate(Vector3.up * _mouseX);
 
+        if (EventSystem.current.IsPointerOverGameObject()) // проверяет UI 
+        {
+            return;
+        }
+
         if (Input.touchCount > 0)
         {
+            
+
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Moved)
             {

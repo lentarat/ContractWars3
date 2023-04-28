@@ -26,12 +26,13 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void ExitState() 
     {
-        if(Ctx.IsJumpPressed) 
-        { 
-        Ctx.RequireNewJumpPress = true; 
+        Ctx.CCAnimator.SetBool(Ctx.IsJumpingHash, false);
+        if (Ctx.IsJumpPressed) 
+        {   
+            Ctx.RequireNewJumpPress = true; 
             
         }
-        Ctx.CCAnimator.SetBool(Ctx.IsJumpingHash, false);
+        
 
     }
 
