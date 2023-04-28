@@ -18,7 +18,7 @@ public class PlayerCrouchState : PlayerBaseState
         Ctx.Speed = Ctx.Speed / 2;
         Ctx.Controller.height = Ctx.Controller.height / 1.4f;
         Ctx.Controller.center = Ctx.Controller.center / 2;
-        Ctx.CameraMainCamera.transform.position = Ctx._LerpCameraTo.transform.position;
+        Ctx.MainCamera.transform.position = Ctx._LerpCameraTo.transform.position;
     }
 
     public override void UpdateState()
@@ -34,7 +34,7 @@ public class PlayerCrouchState : PlayerBaseState
         Ctx.Speed = Ctx.Speed * 2;
         Ctx.Controller.height = Ctx.Controller.height * 1.4f;
         Ctx.Controller.center = Ctx.Controller.center * 2;
-        Ctx.CameraMainCamera.transform.position = Ctx._LerpCameraFrom.transform.position;
+        Ctx.MainCamera.transform.position = Ctx._LerpCameraFrom.transform.position;
     }
 
     public override void InitializeSubState() 
