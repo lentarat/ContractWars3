@@ -5,12 +5,12 @@ using UnityEngine;
 public class GameModeSwitcher : MonoBehaviour
 {
     [SerializeField] private GameObject _chooseModeUI;
-    [SerializeField] private GameObject _gameModeUI;
+    [SerializeField] private GameObject _playModeUI;
 
     private void Awake()
     {
-        _chooseModeUI.SetActive(true);
-        _gameModeUI.SetActive(false);
+        //_chooseModeUI.SetActive(true);
+        //_playModeUI.SetActive(false);
 
 
     }

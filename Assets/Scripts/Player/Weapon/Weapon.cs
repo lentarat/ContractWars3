@@ -21,7 +21,10 @@ public class Weapon : MonoBehaviour
     public int MaximumBulletsInMagazine { get => _maximumBulletsInMagazine; set => _maximumBulletsInMagazine = value; }
     [SerializeField] private int _bulletsLeft;
     public int BulletsLeft { get => _bulletsLeft; set => _bulletsLeft = value; }
-
+    [SerializeField] private AudioSource _shootSFX;
+    public AudioSource ShootSFX { get => _shootSFX; set => _shootSFX = value; }
+    [SerializeField] private AudioSource _reloadSFX;
+    public AudioSource ReloadSFX { get => _reloadSFX; set => _reloadSFX = value; }
 
     enum WeaponType
     {
