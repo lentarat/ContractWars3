@@ -752,6 +752,24 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &-7360402621484157853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7449902860229439211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ae5210dc9ed1d54395c1a10c4738e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _granadePrefab: {fileID: 919132149155446097, guid: cc124d43d78c35449828d0efcced9bdc, type: 3}
+  _positionToTrow: {fileID: 0}
+  _explosionForce: 0
+  _explosionSpeed: 0
+  _delay: 3
+  _radius: 20
 --- !u!114 &1077033966
 MonoBehaviour:
   m_ObjectHideFlags: 0
