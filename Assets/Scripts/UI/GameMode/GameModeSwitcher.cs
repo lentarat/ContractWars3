@@ -7,11 +7,33 @@ public class GameModeSwitcher : MonoBehaviour
     [SerializeField] private GameObject _chooseModeUI;
     [SerializeField] private GameObject _playModeUI;
 
+    [SerializeField] private ChooseUnit _chooseUnit;
+
+    [SerializeField] private GameObject _tBody;
+    [SerializeField] private GameObject _ctBody;
+
     private void Awake()
     {
-        //_chooseModeUI.SetActive(true);
-        //_playModeUI.SetActive(false);
+        _chooseModeUI.SetActive(true);
+        _playModeUI.SetActive(false);
 
+        _chooseUnit.OnUnitChosen += SwitchToPlayMode;
+    }
 
+    private void SwitchToPlayMode(ChooseUnit.Unit unit)
+    {
+        _chooseModeUI.SetActive(false);
+        _playModeUI.SetActive(true);
+
+        if (unit == ChooseUnit.Unit.T)
+        {
+            _tBody.SetActive(true);
+            _ctBody.SetActive(false);
+        }
+        else
+        {
+            _tBody.SetActive(false);
+            _ctBody.SetActive(true);
+        }
     }
 }
