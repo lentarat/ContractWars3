@@ -13,7 +13,7 @@ public class CurrentWeaponButton : MonoBehaviour, IPointerDownHandler, IPointerU
     private float _buttonClickedTime;
     private bool _buttonReleased = true;
 
-    private void Awake()
+    private void Start()
     {
         _buttonBehaviourCoroutine = ButtonBehaviour();
         _weaponChange.SetCurrentWeaponFromInventory(_weaponChange.MainWeaponHolder);

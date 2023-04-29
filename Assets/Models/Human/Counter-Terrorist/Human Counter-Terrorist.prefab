@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 339651674687770205}
   - component: {fileID: 5485192770945430797}
   m_Layer: 10
-  m_Name: Human Terrorist
+  m_Name: Human Counter-Terrorist
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1943,7 +1943,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2169404174937330924}
   m_Layer: 0
-  m_Name: Body T
+  m_Name: Body CT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

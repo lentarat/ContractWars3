@@ -22,7 +22,7 @@ public class WeaponChange : MonoBehaviour
     [SerializeField] private WeaponHolder _previousWeaponHolder;
     public WeaponHolder PreviousWeaponHolder { get => _previousWeaponHolder; }
 
-    private void Start()
+    private void Awake()
     {
         _mainButton.onClick.AddListener(()=>SetCurrentWeaponFromInventory(_mainWeaponHolder));
         _secondaryButton.onClick.AddListener(()=>SetCurrentWeaponFromInventory(_secondaryWeaponHolder));

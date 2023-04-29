@@ -142,13 +142,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponType: 0
-  _weaponModel: 0
+  _weaponModel: 1
   _damage: 5
   _reloadTime: 3
-  _fireRate: 0
+  _fireRate: 8
   _weight: 3.75
   _bulletsInMagazine: 30
-  _maximumBulletsInMagazine: 0
+  _maximumBulletsInMagazine: 30
   _bulletsLeft: 90
   _shootSFX: {fileID: -1587158229610743650}
   _reloadSFX: {fileID: 0}
