@@ -38,20 +38,20 @@ public class UIMainMenu : MonoBehaviour
         _settings.SetActive(true);
         _returnBackButton.gameObject.SetActive(true);
         gameObject.SetActive(false);
-        _currentActivatedTab = _play;
+        _currentActivatedTab = _settings;
     }
     private void OnCreditsButtonPressed()
     {
         _credits.SetActive(true);
         _returnBackButton.gameObject.SetActive(true);
         gameObject.SetActive(false);
-        _currentActivatedTab = _play;
+        _currentActivatedTab = _credits;
     }
     private void OnQuitButtonPressed()
     {
         gameObject.SetActive(false);
         _quit.SetActive(true);
-        _currentActivatedTab = _play;
+        _currentActivatedTab = _quit;
         _returnBackButton.gameObject.SetActive(false);
     }
     private void OnReturnBackPressed()
