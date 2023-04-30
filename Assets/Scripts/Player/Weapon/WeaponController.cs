@@ -6,6 +6,10 @@ public class WeaponController : MonoBehaviour
     [SerializeField] public Weapon CurrentWeapon;
 
     [SerializeField] private Transform cameraTransform;
+    
+
+    [SerializeField] private GameObject _shootButton;
+    [SerializeField] private GameObject _trowGrenadeButton;
 
     private int _humanLayer;
 
@@ -16,6 +20,7 @@ public class WeaponController : MonoBehaviour
 
     public void Shoot()
     {
+        if (CurrentWeapon.BulletsInMagazine  <= 0 && CurrentWeapon.BulletsLeft <= 0) return;
         if (Physics.Raycast(transform.position, cameraTransform.forward, out RaycastHit hit))
         {
             //need profiler
@@ -44,16 +49,34 @@ public class WeaponController : MonoBehaviour
         SubtractABullet();
     }
 
+
     public void SetCurrentWeapon(Weapon chosenWeaponFromInventory)
     {
         CurrentWeapon = chosenWeaponFromInventory;
+
+        // bad realization (((
+
+        if (CurrentWeapon.WeaponTypes == Weapon.WeaponType.Grenade)
+        {
+            _shootButton.SetActive(false);
+            _trowGrenadeButton.SetActive(true);
+
+            Debug.Log("Granade Choose");
+        }
+
+        if (CurrentWeapon.WeaponTypes == Weapon.WeaponType.Main)
+        {
+            _shootButton.SetActive(true);
+            _trowGrenadeButton.SetActive(false);
+        }
+
+
         NotifyBulletsAmountChange();
     }
 
     public void SubtractABullet()
     {
         Debug.Log("SubtractingABullet...");
-        if (CurrentWeapon.BulletsInMagazine <= 0) return;
         CurrentWeapon.BulletsInMagazine--;
         if (CurrentWeapon.BulletsInMagazine == 0)
         {

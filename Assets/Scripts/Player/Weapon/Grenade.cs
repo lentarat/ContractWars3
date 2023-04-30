@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
+    [SerializeField] private WeaponController _weaponController;
     [SerializeField] private GameObject _grenadePrefab;
     [SerializeField] private GameObject _explosionPrefab;
     [SerializeField] private Transform _positionToTrow;
@@ -12,30 +13,22 @@ public class Grenade : MonoBehaviour
     [SerializeField] private float _explosionSpeed;
     public float delay = 3f;
     public float radius = 20f;
-    public int quantityGranade = 3;
+
    // private bool _enabledToTrow = true;
     [SerializeField] private Camera _cam ;
     // Start is called before the first frame update
-    void Start()
-    {
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void StartThrowGrenade()
     {
-        InputHandler();
-    }
-    private void InputHandler()
-    {
-        if(Input.GetKeyDown(KeyCode.G) && quantityGranade > 0) 
-        {
-            StartCoroutine(GrendeHendle());
-        }
+        if (_weaponController.CurrentWeapon.BulletsInMagazine <= 0 && _weaponController.CurrentWeapon.BulletsLeft <= 0) return;
+        _weaponController.SubtractABullet();
+        StartCoroutine(GrendeHendle());
+        
     }
 
     public IEnumerator GrendeHendle()
     {
-        quantityGranade--;
+        
         GameObject projectile = Instantiate(_grenadePrefab, _positionToTrow.transform.position, _positionToTrow.transform.rotation);
         
         Rigidbody projecrileRB = projectile.GetComponent<Rigidbody>();
@@ -45,6 +38,15 @@ public class Grenade : MonoBehaviour
         projecrileRB.AddForce(forceToAdd, ForceMode.Impulse);
         yield return new WaitForSeconds(delay);
         GameObject explotion = Instantiate(_explosionPrefab, projectile.transform.position, projectile.transform.rotation);
+
+        var players= FindPlayers.GetPlayersInRadius(projectile.transform.position,radius);
+        //Debug.Log(players.Length);
+        foreach (var player in players)
+        {
+            player.Hp -= (int)(_weaponController.CurrentWeapon.Damage / Vector3.Distance(player.transform.position, projectile.transform.position));
+            Debug.Log(player.Hp);
+        }
+
         Destroy(projectile);
         yield return new WaitForSeconds(delay);
         Destroy(explotion);
