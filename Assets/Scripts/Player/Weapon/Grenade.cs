@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Granade : MonoBehaviour
+public class Grenade : MonoBehaviour
 {
-    [SerializeField] private GameObject _granadePrefab;
+    [SerializeField] private GameObject _grenadePrefab;
     [SerializeField] private GameObject _explosionPrefab;
     [SerializeField] private Transform _positionToTrow;
     [SerializeField] private float _explosionForce;
@@ -13,7 +13,7 @@ public class Granade : MonoBehaviour
     public float delay = 3f;
     public float radius = 20f;
     public int quantityGranade = 3;
-    private bool _enabledToTrow = true;
+   // private bool _enabledToTrow = true;
     [SerializeField] private Camera _cam ;
     // Start is called before the first frame update
     void Start()
@@ -29,14 +29,14 @@ public class Granade : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.G) && quantityGranade > 0) 
         {
-            StartCoroutine(GrandeHendle());
+            StartCoroutine(GrendeHendle());
         }
     }
 
-    public IEnumerator GrandeHendle()
+    public IEnumerator GrendeHendle()
     {
         quantityGranade--;
-        GameObject projectile = Instantiate(_granadePrefab, _positionToTrow.transform.position, _positionToTrow.transform.rotation);
+        GameObject projectile = Instantiate(_grenadePrefab, _positionToTrow.transform.position, _positionToTrow.transform.rotation);
         
         Rigidbody projecrileRB = projectile.GetComponent<Rigidbody>();
 
