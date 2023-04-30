@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 5485192770945430797}
   m_Layer: 10
   m_Name: Human Counter-Terrorist
-  m_TagString: Player
+  m_TagString: Bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2633,10 +2633,14 @@ PrefabInstance:
       propertyPath: WeaponInSlot
       value: 
       objectReference: {fileID: 6179937821750235070}
+    - target: {fileID: 6576090157656791957, guid: 6671434c89489724fbcf288eb6b10d1e, type: 3}
+      propertyPath: _secondsToElapseToOpenInventory
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6576090157656791979, guid: 6671434c89489724fbcf288eb6b10d1e, type: 3}
       propertyPath: WeaponInSlot
       value: 
-      objectReference: {fileID: 6179937821750235070}
+      objectReference: {fileID: 2799435299799285896}
     - target: {fileID: 6576090157783565785, guid: 6671434c89489724fbcf288eb6b10d1e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

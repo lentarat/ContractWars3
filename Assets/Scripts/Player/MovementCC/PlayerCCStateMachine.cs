@@ -109,7 +109,7 @@ public class PlayerCCStateMachine : MonoBehaviour
 
     private bool _isPlayer;
 
-    private void Awake()
+    private void Start()
     {
         if (gameObject.CompareTag("Player"))
         {
@@ -135,6 +135,16 @@ public class PlayerCCStateMachine : MonoBehaviour
         _currentState = _states.Grounded();
         _currentState.EnterState();
 
+    }
+
+    private void OnDestroy()
+    {
+        if (_isPlayer)
+        {
+            _jumpingButton.OnJumpButtonPressed -= OnJumpClick;
+            _jumpingButton.OnJumpButtonReleased -= OnJumpReleased;
+            _crouchButton.OnCrouchButtonPressed -= OnCrouchClick;
+        }
     }
 
     void Update()

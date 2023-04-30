@@ -27,8 +27,8 @@ public class WeaponChange : MonoBehaviour
         _mainButton.onClick.AddListener(()=>SetCurrentWeaponFromInventory(_mainWeaponHolder));
         _secondaryButton.onClick.AddListener(()=>SetCurrentWeaponFromInventory(_secondaryWeaponHolder));
 
-        _currentWeaponHolder.ImageInSlot.color = _mainWeaponHolder.ImageInSlot.color; // _currentWeaponHolder or CurrentWeaponHolder?
-        _currentWeaponHolder.WeaponInSlot = _mainWeaponHolder.WeaponInSlot;
+        //_currentWeaponHolder.ImageInSlot.color = _mainWeaponHolder.ImageInSlot.color; // _currentWeaponHolder or CurrentWeaponHolder?
+        //_currentWeaponHolder.WeaponInSlot = _mainWeaponHolder.WeaponInSlot;
     }
     public void SetCurrentWeaponFromInventory(WeaponHolder chosenWeaponHolder)
     {

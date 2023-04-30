@@ -17,29 +17,33 @@ public class PlayerListCreator : MonoBehaviour
     private void Awake()
     {
         _chooseUnit.OnUnitChosen += AddPlayer;
-        
+    }
+
+    private void OnDestroy()
+    {
+        _chooseUnit.OnUnitChosen -= AddPlayer;
     }
 
     private void AddPlayer(ChooseUnit.Unit unit)
     {
         if (unit == ChooseUnit.Unit.Ct)
         {
-            Instantiate(_ctBody, _ctPlayersHolder);
+            Instantiate(_ctBody, _ctPlayersHolder).tag = "Player";
         }
         else
         {
-            Instantiate(_tBody, _tPlayersHolder);
+            Instantiate(_tBody, _tPlayersHolder).tag = "Player";
         }
         
         //creating bots after players
 
-        for (int i = _tBotsHolder.GetComponentsInChildren<WeaponController>().Length; i < _tMaxNumber; i++)
+        for (int i = _tPlayersHolder.GetComponentsInChildren<WeaponController>().Length; i < _tMaxNumber; i++)
         {
-            Instantiate(_tBody, _tBotsHolder.transform).tag = "Bot";
+            Instantiate(_tBody, _tBotsHolder.transform);
         }
-        for (int i = _ctBotsHolder.GetComponentsInChildren<WeaponController>().Length; i < _ctMaxNumber; i++)
+        for (int i = _ctPlayersHolder.GetComponentsInChildren<WeaponController>().Length; i < _ctMaxNumber; i++)
         {
-            Instantiate(_ctBody, _ctBotsHolder.transform).tag = "Bot";
+            Instantiate(_ctBody, _ctBotsHolder.transform);
         }
     }
 }

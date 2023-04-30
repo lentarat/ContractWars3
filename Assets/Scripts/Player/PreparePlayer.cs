@@ -7,9 +7,8 @@ public class PreparePlayer : MonoBehaviour
     [SerializeField] private GameObject _cameraHolder;
     [SerializeField] private GameObject _miniMapCameraHolder;
     [SerializeField] private GameObject _ui;
-    //[SerializeField] private ChooseUnit _chooseUnit;
   
-    private void Awake()
+    private void Start()
     {
         if (gameObject.CompareTag("Player"))
         {
@@ -18,12 +17,5 @@ public class PreparePlayer : MonoBehaviour
             _cameraHolder.SetActive(true);
             _miniMapCameraHolder.SetActive(true);
         }
-    }
-
-    //private void Prepare(ChooseUnit.Unit unit)
-    //{
-    //    _cameraHolder.SetActive(true);
-    //    _miniMapCameraHolder.SetActive(true);
-    //}
-    
+    }    
 }
