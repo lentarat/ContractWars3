@@ -11,7 +11,7 @@ public class MouseLook : MonoBehaviour
     [SerializeField] private float _mouseY;
     [SerializeField] private float _sensitivity = 50f ;
     [SerializeField] private Transform _playerBody;
-    [SerializeField] private Transform _xRotation ;
+    //[SerializeField] private Transform _xRotation ;
     [SerializeField] private Camera _camera;
 
     private float _xRot;
@@ -47,26 +47,26 @@ public class MouseLook : MonoBehaviour
 
         // _playerBody.Rotate(Vector3.up * _mouseX);
 
-        if (EventSystem.current.IsPointerOverGameObject()) // проверяет UI 
-        {
-            return;
-        }
+        
 
         if (Input.touchCount > 0)
         {
-            
-
+            if (EventSystem.current.IsPointerOverGameObject(0)) // проверяет UI 
+            {
+                return;
+            }
             Touch touch = Input.GetTouch(0);
+            
             if (touch.phase == TouchPhase.Moved)
             {
 
                 _xRot += touch.deltaPosition.x * _sensitivity *Time.deltaTime;
                 _yRot += touch.deltaPosition.y * _sensitivity *Time.deltaTime;
                 _yRot = Mathf.Clamp(_yRot, -90, 90);
-                Debug.Log(_yRot);
+
 
                 transform.rotation = Quaternion.Euler(-_yRot , _xRot, 0);
-
+                _playerBody.transform.rotation = Quaternion.Euler(Vector3.up * _xRot);
             }
         }
 

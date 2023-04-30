@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] private WeaponType _weaponType;
+    public WeaponType WeaponTypes { get => _weaponType; }
     [SerializeField] private WeaponModel _weaponModel;
 
     [SerializeField] private int _damage;
@@ -26,7 +27,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private AudioSource _reloadSFX;
     public AudioSource ReloadSFX { get => _reloadSFX; set => _reloadSFX = value; }
 
-    enum WeaponType
+     public enum WeaponType
     {
         Main,
         Secondary,

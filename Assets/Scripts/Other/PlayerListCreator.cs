@@ -13,15 +13,25 @@ public class PlayerListCreator : MonoBehaviour
     [SerializeField] private int _ctMaxNumber;
     [SerializeField] private int _tMaxNumber;
     [SerializeField] private ChooseUnit _chooseUnit; // reference vs static action?
+    
 
     private void Awake()
     {
         _chooseUnit.OnUnitChosen += AddPlayer;
+       
+
+    }
+    private void Start()
+    {
+        _chooseUnit.OnUnitChosen += SetPlayers;
+        
     }
 
     private void OnDestroy()
     {
         _chooseUnit.OnUnitChosen -= AddPlayer;
+        _chooseUnit.OnUnitChosen -= SetPlayers;
+
     }
 
     private void AddPlayer(ChooseUnit.Unit unit)
@@ -45,5 +55,11 @@ public class PlayerListCreator : MonoBehaviour
         {
             Instantiate(_ctBody, _ctBotsHolder.transform);
         }
+    }
+
+    private void SetPlayers(ChooseUnit.Unit unit)
+    {
+        HumanStats[] players = gameObject.GetComponentsInChildren<HumanStats>();
+        FindPlayers.SetPlayersOnTheMap(players);
     }
 }
