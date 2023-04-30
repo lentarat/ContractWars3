@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 040cf72984dce6246acb3c80e2183518, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 5ee9615934ecfcb42a60bd9ddff47502, type: 2}
 --- !u!1001 &5193088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16db5e0a4ca1446458a15b5fc3d219bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ctBody: {fileID: 610174767519303396, guid: 632ea302ab177f347b847f5a876b29b6, type: 3}
+  _ctBody: {fileID: 610174767519303396, guid: 3f7bff130ccdc3545bc0a822875be197, type: 3}
   _tBody: {fileID: 610174767519303396, guid: 2c4a8510936b53a4fa52db43c4982f66, type: 3}
   _ctBotsHolder: {fileID: 403168667}
   _tBotsHolder: {fileID: 1494630342}
@@ -533,7 +533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906715871}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.1875, y: 1.875, z: -18.375}
+  m_LocalPosition: {x: -7.3, y: 4.72, z: -18.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -898,7 +898,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-417716
+  m_Name: pb_Mesh-714180
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

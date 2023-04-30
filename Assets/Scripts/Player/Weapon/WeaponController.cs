@@ -21,22 +21,20 @@ public class WeaponController : MonoBehaviour
     public void Shoot()
     {
         if (CurrentWeapon.BulletsInMagazine  <= 0 && CurrentWeapon.BulletsLeft <= 0) return;
-        if (Physics.Raycast(transform.position, cameraTransform.forward, out RaycastHit hit))
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit))
         {
+
             //need profiler
             if (hit.collider.gameObject.layer == _humanLayer)
-            {
+            { 
                 if (hit.collider.gameObject.TryGetComponent<HumanStats>(out HumanStats humanStats))
                 {
-                    if (humanStats.Armor > 0)
-                    {
-                        humanStats.Hp -= (int)((float)CurrentWeapon.Damage * 0.85f);
-                    }
-                    else
-                    {
-                        humanStats.Hp -= CurrentWeapon.Damage;
-                    }
+                    humanStats.Hp -= CurrentWeapon.Damage;
+                    Debug.Log(humanStats.Hp + "   " +CurrentWeapon.Damage);
+                    // humanStats.Hp -= (int)((float)CurrentWeapon.Damage * 0.85f); 
+
                 }
+            
             }
         }
 
@@ -49,6 +47,10 @@ public class WeaponController : MonoBehaviour
         SubtractABullet();
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(cameraTransform.position, cameraTransform.forward);
+    }
 
     public void SetCurrentWeapon(Weapon chosenWeaponFromInventory)
     {

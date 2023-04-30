@@ -834,6 +834,7 @@ GameObject:
   - component: {fileID: 7234142405437935414}
   - component: {fileID: 7234142405437935368}
   - component: {fileID: 7234142405437935369}
+  - component: {fileID: 4603091663412450267}
   m_Layer: 5
   m_Name: RightUpArea
   m_TagString: Untagged
@@ -905,6 +906,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4603091663412450267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7234142405437935415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2005a6de6c7636149846e2644bfc4659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthText: {fileID: 7234142406260462605}
+  _armorText: {fileID: 7234142406945654564}
+  _player: {fileID: 339651674687770205, guid: 2c4a8510936b53a4fa52db43c4982f66, type: 3}
 --- !u!1 &7234142405452947974
 GameObject:
   m_ObjectHideFlags: 0

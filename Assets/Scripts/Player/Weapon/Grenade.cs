@@ -22,11 +22,11 @@ public class Grenade : MonoBehaviour
     {
         if (_weaponController.CurrentWeapon.BulletsInMagazine <= 0 && _weaponController.CurrentWeapon.BulletsLeft <= 0) return;
         _weaponController.SubtractABullet();
-        StartCoroutine(GrendeHendle());
+        StartCoroutine(GrenedeHendle());
         
     }
 
-    public IEnumerator GrendeHendle()
+    public IEnumerator GrenedeHendle()
     {
         
         GameObject projectile = Instantiate(_grenadePrefab, _positionToTrow.transform.position, _positionToTrow.transform.rotation);
@@ -38,16 +38,17 @@ public class Grenade : MonoBehaviour
         projecrileRB.AddForce(forceToAdd, ForceMode.Impulse);
         yield return new WaitForSeconds(delay);
         GameObject explotion = Instantiate(_explosionPrefab, projectile.transform.position, projectile.transform.rotation);
-
+        Destroy(projectile.gameObject);
         var players= FindPlayers.GetPlayersInRadius(projectile.transform.position,radius);
+
         //Debug.Log(players.Length);
         foreach (var player in players)
         {
-            player.Hp -= (int)(_weaponController.CurrentWeapon.Damage / Vector3.Distance(player.transform.position, projectile.transform.position));
-            Debug.Log(player.Hp);
+            player.Hp += (int)(_weaponController.CurrentWeapon.Damage / Vector3.Distance(player.transform.position, projectile.transform.position)  < 1 ? 1 : Vector3.Distance(player.transform.position, projectile.transform.position));
+            //Debug.Log(player.Hp);
         }
 
-        Destroy(projectile);
+        
         yield return new WaitForSeconds(delay);
         Destroy(explotion);
         
