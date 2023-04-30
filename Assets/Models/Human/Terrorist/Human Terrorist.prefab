@@ -212,10 +212,12 @@ GameObject:
   - component: {fileID: 233085587116350558}
   - component: {fileID: 6186884652107073060}
   - component: {fileID: 339651674687770182}
+  - component: {fileID: 827560446208152666}
   - component: {fileID: 339651674687770203}
   - component: {fileID: 339651674687770202}
   - component: {fileID: 339651674687770205}
   - component: {fileID: 5485192770945430797}
+  - component: {fileID: 4763279339566159946}
   m_Layer: 10
   m_Name: Human Terrorist
   m_TagString: Bot
@@ -282,6 +284,28 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!195 &827560446208152666
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610174767519303396}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &339651674687770203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,6 +390,20 @@ MonoBehaviour:
   _cameraHolder: {fileID: 3646256606104096027}
   _miniMapCameraHolder: {fileID: 339651676230126279}
   _ui: {fileID: 5935343947389932782}
+--- !u!114 &4763279339566159946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610174767519303396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28cc58cd5dd59d24384dab56fe5f8ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _navMeshAgent: {fileID: 827560446208152666}
+  _transform: {fileID: 8196968898506969230, guid: a6ed9a60b793d624b8aa28513be8cb6d, type: 3}
 --- !u!1 &781587426451657408
 GameObject:
   m_ObjectHideFlags: 0
