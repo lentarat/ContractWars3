@@ -6,11 +6,17 @@ using UnityEngine.AI;
 public class NavMeshController : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent _navMeshAgent;
-    [SerializeField] private Transform _transformCube;
+    [SerializeField] private Transform[] _pathPoints;
 
-    public void SetAgentDestination(Vector3 position)
+    public void GoToRandomPoint()
     {
-        _navMeshAgent.SetDestination(_transformCube.position);
+        if (_navMeshAgent.hasPath) return;
+        SetAgentDestination(_pathPoints[Random.Range(0, _pathPoints.Length)].position);
+    }
+
+    private void SetAgentDestination(Vector3 position)
+    {
+        _navMeshAgent.SetDestination(position);
     }
 }
 

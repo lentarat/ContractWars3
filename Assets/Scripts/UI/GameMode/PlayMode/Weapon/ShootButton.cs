@@ -32,12 +32,14 @@ public class ShootButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         while (true)
         {
-            if (Time.time > _timeWhenStoppedShooting + 1f / _weaponController.CurrentWeapon.FireRate)
-            {
-                //_weaponController.SubtractABullet();
-                _weaponController.Shoot();
-                _timeWhenStoppedShooting = Time.time;
-            }
+            //if (Time.time > _timeWhenStoppedShooting + 1f / _weaponController.CurrentWeapon.FireRate)
+            //{
+            //    //_weaponController.SubtractABullet();
+            //    _weaponController.Shoot();
+            //    _timeWhenStoppedShooting = Time.time;
+            //}
+            //yield return null;
+            _weaponController.Shoot();
             yield return null;
         }
     }
