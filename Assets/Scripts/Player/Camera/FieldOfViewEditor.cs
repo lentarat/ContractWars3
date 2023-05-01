@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -13,4 +13,4 @@ public class FieldOfViewEditor : Editor
         Handles.color = Color.white;
         Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.Radius);
     }
-}
+}*/

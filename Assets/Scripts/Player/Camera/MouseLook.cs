@@ -27,7 +27,7 @@ public class MouseLook : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         /* if (Input.GetMouseButton(0))
          {
@@ -47,7 +47,6 @@ public class MouseLook : MonoBehaviour
 
         // _playerBody.Rotate(Vector3.up * _mouseX);
 
-        
 
         if (Input.touchCount > 0)
         {
@@ -55,26 +54,21 @@ public class MouseLook : MonoBehaviour
             {
                 return;
             }
+
             Touch touch = Input.GetTouch(0);
-            
+
             if (touch.phase == TouchPhase.Moved)
             {
 
-                _xRot += touch.deltaPosition.x * _sensitivity *Time.deltaTime;
-                _yRot += touch.deltaPosition.y * _sensitivity *Time.deltaTime;
+                _xRot += touch.deltaPosition.x * _sensitivity * Time.deltaTime;
+                _yRot += touch.deltaPosition.y * _sensitivity * Time.deltaTime;
                 _yRot = Mathf.Clamp(_yRot, -90, 90);
 
 
-                transform.rotation = Quaternion.Euler(-_yRot , _xRot, 0);
+                transform.rotation = Quaternion.Euler(-_yRot, _xRot, 0);
                 _playerBody.transform.rotation = Quaternion.Euler(Vector3.up * _xRot);
             }
+
         }
-
-
-
-
-
-
-
     }
 }

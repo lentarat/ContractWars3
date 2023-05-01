@@ -8,11 +8,10 @@ public class Grenade : MonoBehaviour
     [SerializeField] private GameObject _grenadePrefab;
     [SerializeField] private GameObject _explosionPrefab;
     [SerializeField] private Transform _positionToTrow;
-    [SerializeField] private float _explosionForce;
-    [SerializeField] private float _UpwardForce;
-    [SerializeField] private float _explosionSpeed;
-    public float delay = 3f;
-    public float radius = 20f;
+    [SerializeField] private float _forwardForce;
+    [SerializeField] private float _upwardForce;
+    private float _delay = 3f;
+    private float _radius = 20f;
 
    // private bool _enabledToTrow = true;
     [SerializeField] private Camera _cam ;
@@ -33,13 +32,13 @@ public class Grenade : MonoBehaviour
         
         Rigidbody projecrileRB = projectile.GetComponent<Rigidbody>();
 
-        Vector3 forceToAdd = _cam.transform.forward * _explosionForce + gameObject.transform.up * _UpwardForce;
+        Vector3 forceToAdd = _cam.transform.forward * _forwardForce + _positionToTrow.transform.up * _upwardForce;
 
         projecrileRB.AddForce(forceToAdd, ForceMode.Impulse);
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(_delay);
         GameObject explotion = Instantiate(_explosionPrefab, projectile.transform.position, projectile.transform.rotation);
         Destroy(projectile.gameObject);
-        var players= FindPlayers.GetPlayersInRadius(projectile.transform.position,radius);
+        var players = FindPlayers.GetPlayersInRadius(projectile.transform.position, _radius);
 
         //Debug.Log(players.Length);
         foreach (var player in players)
@@ -49,7 +48,7 @@ public class Grenade : MonoBehaviour
         }
 
         
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(_delay);
         Destroy(explotion);
         
     }

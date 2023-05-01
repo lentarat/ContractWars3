@@ -38,7 +38,8 @@ public class Weapon : MonoBehaviour
     {
         Ak_47,
         M4a4,
-        usp,
-        glock
+        Usp,
+        Glock,
+        Grenade
     }
 }
