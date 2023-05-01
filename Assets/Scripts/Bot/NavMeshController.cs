@@ -8,9 +8,14 @@ public class NavMeshController : MonoBehaviour
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private Transform _transformCube;
 
-    public void SetAgentDestination(Vector3 position)
+    public void SetAgentDestination()
     {
-        _navMeshAgent.SetDestination(_transformCube.position);
+        float randomZ = Random.Range(-10, 100);
+        float randomX = Random.Range(-10, 100);
+
+        Vector3 walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        _navMeshAgent.SetDestination(walkPoint);
     }
 }
 
