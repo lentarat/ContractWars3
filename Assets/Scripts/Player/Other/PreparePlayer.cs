@@ -12,6 +12,7 @@ public class PreparePlayer : MonoBehaviour
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private NavMeshController _navMeshController;
     [SerializeField] private NavMeshAgent _navMeshAgent;
+    [SerializeField] private CapsuleCollider _capsuleCollider;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class PreparePlayer : MonoBehaviour
             _characterController.enabled = true;
             _navMeshAgent.enabled = false;
             _navMeshController.enabled = false;
+            _capsuleCollider.enabled = false;
         }
     }    
 }

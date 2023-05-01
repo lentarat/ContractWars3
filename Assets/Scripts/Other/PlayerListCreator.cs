@@ -8,12 +8,16 @@ public class PlayerListCreator : MonoBehaviour
     [SerializeField] private GameObject _tBody;
     [SerializeField] private Transform _ctBotsHolder;
     [SerializeField] private Transform _tBotsHolder;
+    [SerializeField] private Transform[] _tBotsSpawnPoints;
+    [SerializeField] private Transform[] _ctBotsSpawnPoints;
     [SerializeField] private Transform _ctPlayersHolder;
     [SerializeField] private Transform _tPlayersHolder;
     [SerializeField] private int _ctMaxNumber;
     [SerializeField] private int _tMaxNumber;
     [SerializeField] private ChooseUnit _chooseUnit; // reference vs static action?
-    
+   // private Transform randomSpawnPosition;
+
+
 
     private void Awake()
     {
@@ -49,11 +53,12 @@ public class PlayerListCreator : MonoBehaviour
 
         for (int i = _tPlayersHolder.GetComponentsInChildren<WeaponController>().Length; i < _tMaxNumber; i++)
         {
-            Instantiate(_tBody, _tBotsHolder.transform);
+            //var randomSpawnPosition = new Vector3(Random.Range(4, 16), 1, Random.Range(-17, -19));
+            Instantiate(_tBody, _tBotsSpawnPoints[Random.Range(0,5)].position, Quaternion.identity);
         }
         for (int i = _ctPlayersHolder.GetComponentsInChildren<WeaponController>().Length; i < _ctMaxNumber; i++)
         {
-            Instantiate(_ctBody, _ctBotsHolder.transform);
+            Instantiate(_ctBody, _ctBotsSpawnPoints[Random.Range(0, 5)].position, Quaternion.identity);
         }
     }
 

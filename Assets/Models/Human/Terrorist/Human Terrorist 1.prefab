@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 2304377704607507307}
   - component: {fileID: 6192100318020099386}
   m_Layer: 10
-  m_Name: Human Terrorist
+  m_Name: Human Terrorist 1
   m_TagString: Bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +10,6 @@ public class aa : MonoBehaviour
     [ContextMenu("test")]
     private void Test()
     {
-        _navMeshController.SetAgentDestination( Vector3.zero);
+        _navMeshController.SetAgentDestination(Vector3.zero);
     }
-}*/
+}
