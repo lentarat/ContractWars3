@@ -106,13 +106,13 @@ public class WeaponController : MonoBehaviour
     {
         if (CurrentWeapon.BulletsInMagazine + CurrentWeapon.BulletsLeft == 0)
         {
-            Debug.Log("Has got ammo");
-            return true;
+            Debug.Log("Hasn't got ammo");
+            return false;
         }
         else
         {
-            Debug.Log("Hasn't got ammo");
-            return false;
+            Debug.Log("Has got ammo");
+            return true;
         }
     } 
 
