@@ -44,7 +44,7 @@ public class FieldOfView : MonoBehaviour
         }
     }
 
-    public bool CheckForEnemies()
+    public HumanStats CheckForEnemies()
     {
         foreach (var human in _playersOnTheMap)
         {
@@ -53,12 +53,12 @@ public class FieldOfView : MonoBehaviour
             {
                 if (!Physics.Raycast(transform.position, _directionToEnemy, _mapLayerMask))
                 {
-                    return true;
+                    return human;
                     Debug.Log("can see");
                 }
             }
         }
-        return false;
+        return null;
     }
 
 

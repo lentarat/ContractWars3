@@ -6,8 +6,15 @@ public class EnemyDetectionSystem : MonoBehaviour
 {
     [SerializeField] private FieldOfView _fieldOfView;
 
-    //public bool HasPlayer()
-    //{
-    //    _fieldOfView.Upda
-    //}
+    public HumanStats CurrentSpottedPlayer { get; set; }
+
+    public bool HasPlayer()
+    {
+        CurrentSpottedPlayer = _fieldOfView.CheckForEnemies();
+        if (CurrentSpottedPlayer != null)
+        {
+            return true;
+        }
+        return false;
+    }
 }
