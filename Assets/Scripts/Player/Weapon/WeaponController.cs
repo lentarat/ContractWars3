@@ -39,11 +39,6 @@ public class WeaponController : MonoBehaviour
         }
 
         CurrentWeapon.ShootSFX.Play();
-            // 
-            //vfx
-            //sounds
-            //
-
         SubtractABullet();
     }
 
@@ -56,23 +51,21 @@ public class WeaponController : MonoBehaviour
     {
         CurrentWeapon = chosenWeaponFromInventory;
 
-        // bad realization (((
-
+        // bad architecture implementation (((
         if (CurrentWeapon.WeaponTypes == Weapon.WeaponType.Grenade)
         {
             _shootButton.SetActive(false);
             _trowGrenadeButton.SetActive(true);
 
-            Debug.Log("Granade Choose");
+            Debug.Log("Grenade Choose");
         }
-
-        if (CurrentWeapon.WeaponTypes == Weapon.WeaponType.Main)
+        else
         {
             _shootButton.SetActive(true);
             _trowGrenadeButton.SetActive(false);
         }
-
-
+        //
+        
         NotifyBulletsAmountChange();
     }
 
@@ -86,6 +79,7 @@ public class WeaponController : MonoBehaviour
         }
         NotifyBulletsAmountChange();
     }
+
     public void Reload()
     {
         if (CurrentWeapon.BulletsInMagazine == CurrentWeapon.MaximumBulletsInMagazine || CurrentWeapon.BulletsLeft == 0) return;
@@ -103,12 +97,22 @@ public class WeaponController : MonoBehaviour
         NotifyBulletsAmountChange();
     }
 
+    public bool HasAmmo()
+    {
+        if (CurrentWeapon.BulletsInMagazine + CurrentWeapon.BulletsLeft == 0)
+        {
+            Debug.Log("Has got ammo");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Hasn't got ammo");
+            return false;
+        }
+    } 
+
     private void NotifyBulletsAmountChange()
     {
         EventAggregator.Post(this, CurrentWeapon);
     }
-
-
-
-
 }

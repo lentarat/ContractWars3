@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class FSMController : MonoBehaviour
 {
+    [SerializeField] private NavMeshController _navMeshController;
+    //[SerializeField] private DetectionSystem _detectionSystem;
+    [SerializeField] private WeaponController _weaponController;
+
     private AIStates _currentState;
 
     private enum AIStates
@@ -16,6 +20,8 @@ public class FSMController : MonoBehaviour
     private void UpdateState(AIStates state)
     {
         _currentState = state;
+        
+        Debug.Log(_currentState);
 
         switch (state)
         {
@@ -35,16 +41,19 @@ public class FSMController : MonoBehaviour
 
     private void OnIdleState()
     {
-        
+    //    if (_detectionSystem.HasPlayer && _weaponController.HasAmmo)
+    //    {
+    //        UpdateState(AIStates.SeekEnemy);
+    //    }
     }
 
     private void OnSeekEnemyState()
     {
-    
+
     }
 
     private void OnAttackEnemyState()
     {
-        
+
     }
 }

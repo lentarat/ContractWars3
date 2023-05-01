@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Helpers;
-using Helpers.Events;
 
 public class BulletsShower : MonoBehaviour
 {
