@@ -25,8 +25,8 @@ public class WeaponController : MonoBehaviour
 
         _lastTimeShot = Time.time;
 
-        if (Time.time > _lastTimeShot + 1f / CurrentWeapon.FireRate)
-        {
+        //if (Time.time > _lastTimeShot + 1f / CurrentWeapon.FireRate)
+        //{
             _lastTimeShot = Time.time;
             if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit))
             {
@@ -44,7 +44,7 @@ public class WeaponController : MonoBehaviour
 
             CurrentWeapon.ShootSFX.Play();
             SubtractABullet();
-        }
+        //}
     }
 
     private void OnDrawGizmos()

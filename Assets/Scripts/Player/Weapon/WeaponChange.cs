@@ -48,8 +48,7 @@ public class WeaponChange : MonoBehaviour
         }
 
         Weapon tempWeapon = chosenWeaponHolder.WeaponInSlot;
-        //Vector4 tempColor = chosenWeaponHolder.ImageInSlot.color;
-        //Image tempImage = chosenWeaponHolder.ImageInSlot;
+
         Sprite tempSprite = chosenWeaponHolder.ImageInSlot.sprite;
 
         _previousWeaponHolder.ImageInSlot.sprite = _currentWeaponHolder.ImageInSlot.sprite;
@@ -62,26 +61,7 @@ public class WeaponChange : MonoBehaviour
         SetInventoryActive(false);
     }
 
-   /* public void SetCurrentWeaponFromInventory(WeaponHolder chosenWeaponHolder)
-    {
-        if (chosenWeaponHolder.WeaponInSlot == _currentWeaponHolder.WeaponInSlot)
-        {
-            SetInventoryActive(false);
-            return;
-        }
 
-        Weapon tempWeapon = chosenWeaponHolder.WeaponInSlot;
-        Vector4 tempColor = chosenWeaponHolder.ImageInSlot.color;
-
-        _previousWeaponHolder.ImageInSlot.color = _currentWeaponHolder.ImageInSlot.color;
-        _previousWeaponHolder.WeaponInSlot = _currentWeaponHolder.WeaponInSlot;
-
-        _currentWeaponHolder.ImageInSlot.color = tempColor;
-        _currentWeaponHolder.WeaponInSlot = tempWeapon;
-
-        _weaponController.SetCurrentWeapon(_currentWeaponHolder.WeaponInSlot);
-        SetInventoryActive(false);
-    }*/
 
     public void SetInventoryActive(bool state)
     {
