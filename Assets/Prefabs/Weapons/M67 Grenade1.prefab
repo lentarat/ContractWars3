@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 2876762148187094372}
   - component: {fileID: -7761452725847219203}
   - component: {fileID: 8861968278734990217}
-  m_Layer: 0
+  - component: {fileID: 1095455044163531590}
+  - component: {fileID: 8053863279254000678}
+  m_Layer: 10
   m_Name: M67 Grenade1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,3 +120,45 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.0045970683
   m_Center: {x: 0.00033905377, y: 1.13190134e-11, z: -0.001135111}
+--- !u!114 &1095455044163531590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390081230907153585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a74a38170966f94ea3fbf21d9b796eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponType: 3
+  _weaponModel: 4
+  _damage: 100
+  _reloadTime: 0
+  _fireRate: 0
+  _weight: 0
+  _bulletsInMagazine: 1
+  _maximumBulletsInMagazine: 1
+  _bulletsLeft: 2
+  _shootSFX: {fileID: 0}
+  _reloadSFX: {fileID: 0}
+--- !u!114 &8053863279254000678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390081230907153585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ae5210dc9ed1d54395c1a10c4738e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponController: {fileID: 0}
+  _grenadePrefab: {fileID: 4390081230907153585}
+  _explosionPrefab: {fileID: 1000013462590818, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
+  _positionToTrow: {fileID: 0}
+  _forwardForce: 8
+  _upwardForce: 6
+  _cam: {fileID: 0}
