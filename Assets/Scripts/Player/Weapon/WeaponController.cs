@@ -7,7 +7,6 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField] private Transform cameraTransform;
     
-
     [SerializeField] private GameObject _shootButton;
     [SerializeField] private GameObject _trowGrenadeButton;
 

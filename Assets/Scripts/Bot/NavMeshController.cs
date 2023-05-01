@@ -6,13 +6,11 @@ using UnityEngine.AI;
 public class NavMeshController : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent _navMeshAgent;
-    [SerializeField] private Transform _transform;
-    private void Update()
+    [SerializeField] private Transform _transformCube;
+
+    public void SetAgentDestination(Vector3 position)
     {
-        SetAgentDestination(_transform.position); 
-    }
-    public void SetAgentDestination(Vector3 position) 
-    {
-        _navMeshAgent.SetDestination(position);
+        _navMeshAgent.SetDestination(_transformCube.position);
     }
 }
+

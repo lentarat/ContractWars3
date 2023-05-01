@@ -28,10 +28,13 @@ public class FindPlayers
 
     public static HumanStats[] GetPlayersInRadius(Vector3 from, float radius)
     {
-        
         List<HumanStats> players = new List<HumanStats>();
         foreach (HumanStats player in _players)
         {
+            if (from == player.transform.position)
+            {
+                continue;
+            }
             //Debug.Log(Vector3.Distance(player.transform.position, from));
             if (Vector3.Distance(player.transform.position, from) < radius)
             {

@@ -14,7 +14,11 @@ public class GameManager : MonoBehaviour
         LoadMap();
     }
 
-
+    [ContextMenu("debug")]
+    public void deb()
+    {
+        Debug.Log("ttt");
+    }
     private void LoadMap()
     {
         var maps =_mapParent.GetComponentsInChildren<Renderer>();
