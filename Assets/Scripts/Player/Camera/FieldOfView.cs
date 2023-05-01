@@ -11,6 +11,8 @@ public class FieldOfView : MonoBehaviour
     [Range(0, 360)]
     [SerializeField] private float _angle;
 
+    public System.Action OnEnemyDetect;
+
     private int _humanLayerMask;
     private int _mapLayerMask;
 
@@ -28,6 +30,7 @@ public class FieldOfView : MonoBehaviour
         _mapLayerMask = LayerMask.NameToLayer("Map");
 
         _playersOnTheMap = FindPlayers.GetPlayersInRadius(transform.position, _radius);
+        Debug.Log(_playersOnTheMap.Length);
     }
 
     private IEnumerator FovCoroutine()
@@ -49,12 +52,14 @@ public class FieldOfView : MonoBehaviour
         foreach (var human in _playersOnTheMap)
         {
             Vector3 _directionToEnemy = human.transform.position - transform.position;
+            Debug.Log(Vector3.Angle(transform.forward, _directionToEnemy));
             if (Vector3.Angle(transform.forward, _directionToEnemy) < _angle / 2f)
             {
                 if (!Physics.Raycast(transform.position, _directionToEnemy, _mapLayerMask))
                 {
-                    return human;
+                    OnEnemyDetect?.Invoke();
                     Debug.Log("can see");
+                    return human;
                 }
             }
         }

@@ -5,9 +5,11 @@ using UnityEngine;
 public class FSMController : MonoBehaviour
 {
     [SerializeField] private NavMeshController _navMeshController;
-    [SerializeField] private EnemyDetectionSystem _detectionSystem;
     [SerializeField] private WeaponController _weaponController;
     [SerializeField] private WeaponChange _weaponChange;
+    [SerializeField] private FieldOfView _fieldOfView;
+
+    private EnemyDetectionSystem _detectionSystem;
     private AttackSystem _attackSystem;
 
     private AIStates _currentState;
@@ -22,23 +24,25 @@ public class FSMController : MonoBehaviour
     private void Awake()
     {
         _attackSystem = new AttackSystem(_weaponController, transform, _weaponController.CameraTransform);
+        _detectionSystem = new EnemyDetectionSystem(_fieldOfView);
+        _fieldOfView.OnEnemyDetect += OnAttackEnemyState;
     }
 
-    //private void Start()
-    //{
-    //    UpdateState(AIStates.Idle);
-    //}
+    private void Start()
+    {
+        UpdateState(AIStates.Idle);
+    }
 
     private void Update()
     {
-        UpdateState(_currentState);
+        //UpdateState(_currentState);
     }
 
     private void UpdateState(AIStates state)
     {
         _currentState = state;
 
-        Debug.Log(_currentState);
+        //Debug.Log(_currentState);
 
         switch (state)
         {
@@ -75,6 +79,7 @@ public class FSMController : MonoBehaviour
 
     private void OnAttackEnemyState()
     {
+        
         _attackSystem.Attack(_detectionSystem.CurrentSpottedPlayer);
 
         if (!_weaponController.HasAmmo())

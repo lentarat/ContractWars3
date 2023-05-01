@@ -7,15 +7,22 @@ public class NavMeshController : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private Transform[] _pathPoints;
-
+    private bool _wasHere;
     public void GoToRandomPoint()
     {
-        if (_navMeshAgent.hasPath) return;
-        SetAgentDestination(_pathPoints[Random.Range(0, _pathPoints.Length)].position);
+        if (!_wasHere)
+        {
+            _wasHere = true;
+            if (_navMeshAgent.hasPath) return;
+            int random = Random.Range(0, _pathPoints.Length - 1);
+            SetAgentDestination(_pathPoints[random].position);
+        }
     }
 
     private void SetAgentDestination(Vector3 position)
     {
+        Debug.Log("going");
+        Debug.Log(position);
         _navMeshAgent.SetDestination(position);
     }
 }

@@ -278,7 +278,7 @@ CharacterController:
   m_GameObject: {fileID: 610174767519303396}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Height: 2.4
   m_Radius: 0.5
@@ -399,6 +399,7 @@ MonoBehaviour:
   _characterController: {fileID: 339651674687770182}
   _navMeshController: {fileID: 4763279339566159946}
   _navMeshAgent: {fileID: 5844763217439571475}
+  _fsmController: {fileID: 3821000988012502343}
 --- !u!114 &4763279339566159946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,7 +413,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _navMeshAgent: {fileID: 5844763217439571475}
-  _pathPoints: []
+  _pathPoints:
+  - {fileID: 8662794883206164637, guid: cf3b45faf2d6a414da623dfabb9d1b15, type: 3}
 --- !u!114 &2304377704607507307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,10 +443,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef50fd0b9991da34bb153b472235336b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _navMeshController: {fileID: 0}
-  _detectionSystem: {fileID: 0}
-  _weaponController: {fileID: 0}
-  _weaponChange: {fileID: 0}
+  _navMeshController: {fileID: 4763279339566159946}
+  _weaponController: {fileID: 339651674687770202}
+  _weaponChange: {fileID: 5935343948201953123}
+  _fieldOfView: {fileID: 2304377704607507307}
 --- !u!1 &781587426451657408
 GameObject:
   m_ObjectHideFlags: 0
@@ -3149,6 +3151,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f31a589e28a549c46bad4067017dfb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5935343948201953123 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7234142406337406480, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
+  m_PrefabInstance: {fileID: 3907512519564140915}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4843d859c31aedd4bb94e04aff7b686e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5935343948465918749 stripped
