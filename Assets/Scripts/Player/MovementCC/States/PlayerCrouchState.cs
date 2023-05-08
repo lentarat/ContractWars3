@@ -23,7 +23,7 @@ public class PlayerCrouchState : PlayerBaseState
 
     public override void UpdateState()
     {
-        CrouchHendle();
+        GravityHandler();
         CheckSwitchStates();
     }
 
@@ -63,8 +63,18 @@ public class PlayerCrouchState : PlayerBaseState
         }
     }
 
-    
-    void CrouchHendle()
+    private void GravityHandler()
     {
+
+        Ctx.IsGrounded = Physics.CheckSphere(Ctx.GroundCheck.position, Ctx.GroundDistance, Ctx.GroundMask);
+
+        if (Ctx.IsGrounded && Ctx._velocity.y < 0)
+        {
+            Ctx._velocity.y = -2f;
+        }
+
+        Ctx._velocity.y += Ctx.Gravity * Time.deltaTime;
+        Ctx.Controller.Move(Ctx._velocity * Time.deltaTime);
     }
+
 }

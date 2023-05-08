@@ -1,19 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerCCStateMachine : MonoBehaviour
+public class TestMovementCC : MonoBehaviour
 {
-   
 
     [SerializeField] private CharacterController _controller;
     public CharacterController Controller { get { return _controller; } set { _controller = value; } }
 
-   
 
-  
+
+
     [Header("Gravity")]
     [SerializeField] private float _gravity = -9.81f;
     public float Gravity { get { return _gravity; } set { _gravity = value; } }
@@ -29,10 +26,10 @@ public class PlayerCCStateMachine : MonoBehaviour
     [SerializeField] private LayerMask _groundMask;
     public LayerMask GroundMask { get { return _groundMask; } set { _groundMask = value; } }
     [SerializeField] private bool _isGrounded;
-    public bool IsGrounded { get { return _isGrounded; } set { _isGrounded= value; } }
+    public bool IsGrounded { get { return _isGrounded; } set { _isGrounded = value; } }
 
     [SerializeField] private float _jumpHeight = 3f;
-    public float JumpHeight { get { return _jumpHeight; }set { _jumpHeight= value; } }
+    public float JumpHeight { get { return _jumpHeight; } set { _jumpHeight = value; } }
 
     [Header("Animation")]
     [SerializeField] private Animator _animator;
@@ -45,7 +42,7 @@ public class PlayerCCStateMachine : MonoBehaviour
     public int IsRunningHash { get { return _isRunningHash; } set { _isRunningHash = value; } }
 
     [SerializeField] public int _isJumpingHash;
-    public int IsJumpingHash { get { return _isJumpingHash; } set { _isJumpingHash= value; } }
+    public int IsJumpingHash { get { return _isJumpingHash; } set { _isJumpingHash = value; } }
 
     [SerializeField] public int _isCrouchingHash;
     public int IsCrouchingHash { get { return _isCrouchingHash; } set { _isCrouchingHash = value; } }
@@ -53,7 +50,7 @@ public class PlayerCCStateMachine : MonoBehaviour
 
     [Header("Input")]
 
-    [SerializeField] private float _speed ;
+    [SerializeField] private float _speed;
     public float Speed { get { return _speed; } set { _speed = value; } }
 
     [SerializeField] private float _horizontalInput;
@@ -71,6 +68,7 @@ public class PlayerCCStateMachine : MonoBehaviour
     public bool IsJumpPressed { get { return _isJumpPressed; } set { _isJumpPressed = value; } }
 
     [SerializeField] private bool _isCrouchPressed = false;
+    [SerializeField] private bool _isCrouchHandle = false;
     public bool IsCrouchPressed { get { return _isCrouchPressed; } set { _isCrouchPressed = value; } }
 
     public Vector3 move;
@@ -78,96 +76,41 @@ public class PlayerCCStateMachine : MonoBehaviour
     private bool _requireNewJumpPress = true;
     public bool RequireNewJumpPress { get { return _requireNewJumpPress; } set { _requireNewJumpPress = value; } }
 
-    [Header("UI Elements")]
-    [SerializeField] private Joystick _joystick;
-    public Joystick Joystick { get { return _joystick; } set { _joystick = value; } }
-
-    [SerializeField] private Jump _jumpingButton;
-    public Jump JumpingButton { get { return _jumpingButton; } set { _jumpingButton = value; } }
-
-    [SerializeField] private Crouch _crouchButton;
-    public Crouch CrouchButton { get { return _crouchButton; } set { _crouchButton = value; } }
-
-    public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
 
 
-    
-    public string VerticalPatameterName { get { return _verticalPatameterName; } set { _verticalPatameterName = value; } }
-    public string HorizontalPatameterName { get { return _horizontalPatameterName; } set { _horizontalPatameterName = value; } }
 
     [Header("Camera")]
     [SerializeField] private Transform _mainCamera;
-    public Transform MainCamera { get { return _mainCamera;} set { _mainCamera = value; } }
+    public Transform MainCamera { get { return _mainCamera; } set { _mainCamera = value; } }
     public Transform _LerpCameraFrom;
     public Transform _LerpCameraTo;
 
-    private PlayerBaseState _currentState;
-    private PlayerStateFactory _states;
 
-    private string _verticalPatameterName = "Vertical";
-    private string _horizontalPatameterName = "Horizontal";
 
-    [SerializeField] private bool _isPlayer;
 
-    private void Start()
+    void Awake()
     {
-        /*if (gameObject.CompareTag("Player"))
-        {
-            _isPlayer = true;
-        }*/
-
-        //_controller = GetComponent<CharacterController>();
-       // _animator = GetComponent<Animator>();
+        _controller = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
 
         IsWalkingHash = Animator.StringToHash("IsWalking");
         IsRunningHash = Animator.StringToHash("IsRunning");
         IsJumpingHash = Animator.StringToHash("IsJumping");
         IsCrouchingHash = Animator.StringToHash("IsCrouching");
-
-       /* if (_isPlayer)
-        {
-        }*/
-            _jumpingButton.OnJumpButtonPressed += OnJumpClick;
-            _jumpingButton.OnJumpButtonReleased += OnJumpReleased;
-            _crouchButton.OnCrouchButtonPressed += OnCrouchClick;
-
-        _states = new PlayerStateFactory(this);
-        _currentState = _states.Grounded();
-        _currentState.EnterState();
-
-    }
-
-    private void OnDestroy()
-    {
-       /* if (_isPlayer)
-        {
-        }*/
-            _jumpingButton.OnJumpButtonPressed -= OnJumpClick;
-            _jumpingButton.OnJumpButtonReleased -= OnJumpReleased;
-            _crouchButton.OnCrouchButtonPressed -= OnCrouchClick;
     }
 
     void Update()
     {
-      /*  if (_isPlayer)
-        {
-        }*/
-            OnInputHandler();
-            _currentState.UpdateStates();
-    }
-
-    private void OnInputHandler()
-    {
-        
         KeybordInput();
-        JoystickInput(); 
+        Movement();
+        GravityHandler();
     }
 
     private void KeybordInput()
     {
         /////////////////////////Walk
-        _horizontalInput = Input.GetAxis(HorizontalPatameterName);
-        _verticalInput = Input.GetAxis(VerticalPatameterName);
+        _horizontalInput = Input.GetAxis("Horizontal");
+        _verticalInput = Input.GetAxis("Vertical");
         _isMovementPressed = _horizontalInput != 0 || _verticalInput != 0;
 
 
@@ -184,10 +127,12 @@ public class PlayerCCStateMachine : MonoBehaviour
 
 
         //////////////////////// jump
-        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
+
             _isJumpPressed = true;
             _requireNewJumpPress = false;
+
         }
         else
         {
@@ -204,50 +149,83 @@ public class PlayerCCStateMachine : MonoBehaviour
             if (_isCrouchPressed)
             {
                 _isCrouchPressed = false;
+                _isCrouchHandle = true;
             }
             else
             {
                 _isCrouchPressed = true;
+                _isCrouchHandle = false;
             }
         }
 
     }
 
-    private void JoystickInput()
+
+    void Movement()
     {
-        _horizontalInput = _joystick.Direction.x;
-        _verticalInput = _joystick.Direction.y;
-        _isMovementPressed = _horizontalInput != 0 || _verticalInput != 0;
-
-    }
-
-
-    private void OnJumpClick()
-    {
-        if (_requireNewJumpPress == true && _isGrounded)
+        if (_isMovementPressed)
         {
-            _isJumpPressed = true;
-            _requireNewJumpPress = false;
+            
+            CCAnimator.SetFloat("Horizontal", HorizontalInput);
+            CCAnimator.SetFloat("Vertical", VericalInput);
+            Controller.Move(move * (Speed) * Time.deltaTime);
         }
-        
-    }
 
-    private void OnJumpReleased()
-    {
-        _isJumpPressed = false;
-        //_requireNewJumpPress = true;
-    }
-
-    private void OnCrouchClick()
-    {
-        if (_isCrouchPressed)
+        if (_isRunPressed)
         {
-            _isCrouchPressed = false;
+            CCAnimator.SetFloat("Horizontal", HorizontalInput);
+            CCAnimator.SetFloat("Vertical", VericalInput);
+
+            move = (gameObject.transform.right * HorizontalInput) + (gameObject.transform.forward * VericalInput);
+            Controller.Move(move * (Speed) * Time.deltaTime);
+        }
+
+        if (_isJumpPressed)
+        {
+            CCAnimator.SetBool(IsJumpingHash, true);
+
+            _velocity.y = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+            Controller.Move(move * (Speed) * Time.deltaTime);
+
         }
         else 
         {
-            _isCrouchPressed = true;
+            CCAnimator.SetBool(IsJumpingHash, false);
+
         }
+
+        if (_isCrouchPressed)
+        {
+            CCAnimator.SetBool(IsCrouchingHash, true);
+            //Speed = Speed / 2;
+            //Controller.height = Controller.height / 1.4f;
+            //Controller.center = Controller.center / 2;
+            //MainCamera.transform.position = _LerpCameraTo.transform.position;
+            Controller.Move(move * (Speed) * Time.deltaTime);
+        }
+        else 
+        {
+            CCAnimator.SetBool(IsCrouchingHash, false);
+            //Speed = Speed * 2;
+            //Controller.height = Controller.height * 1.4f;
+            //Controller.center = Controller.center * 2;
+            //MainCamera.transform.position = _LerpCameraFrom.transform.position;
+            Controller.Move(move * (Speed) * Time.deltaTime);
+        }
+    }
+
+    private void GravityHandler()
+    {
+
+        IsGrounded = Physics.CheckSphere(GroundCheck.position, GroundDistance, GroundMask);
+
+        if (IsGrounded && _velocity.y < 0)
+        {
+            _velocity.y = -2f;
+        }
+
+        _velocity.y += Gravity * Time.deltaTime;
+        Controller.Move(_velocity * Time.deltaTime);
     }
 
 }

@@ -15,7 +15,6 @@ public class PlayerGroundedState : PlayerBaseState
     public override void EnterState() 
     {
         InitializeSubState();
-        Ctx.CCAnimator.SetBool(Ctx.IsJumpingHash, false);
     }
 
     public override void UpdateState() 

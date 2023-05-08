@@ -10,9 +10,8 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void EnterState() 
     {
-        Ctx.CCAnimator.SetFloat(Ctx.HorizontalPatameterName, Ctx.HorizontalInput);
-        Ctx.CCAnimator.SetFloat(Ctx.VerticalPatameterName, Ctx.VericalInput);
-        Ctx.CCAnimator.SetBool(Ctx.IsJumpingHash, false);
+       // Ctx.CCAnimator.SetFloat(Ctx.HorizontalPatameterName, Ctx.HorizontalInput);
+       //Ctx.CCAnimator.SetFloat(Ctx.VerticalPatameterName, Ctx.VericalInput);
     }
     
     public override void UpdateState() 

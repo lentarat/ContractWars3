@@ -13,14 +13,9 @@ public class PlayerJumpState : PlayerBaseState
     public override void EnterState() 
     {
         InitializeSubState();
-        if (Ctx.IsJumpPressed == true)
-        {
-            Ctx.CCAnimator.SetBool(Ctx.IsJumpingHash, false);
-        }
         Ctx.CCAnimator.SetBool(Ctx.IsJumpingHash, true);
         HandleJump();
-        Debug.Log("Jumping");
-        
+      
     }
 
     public override void UpdateState() 
