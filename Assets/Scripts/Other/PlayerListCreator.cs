@@ -65,6 +65,6 @@ public class PlayerListCreator : MonoBehaviour
     private void SetPlayers(ChooseUnit.Unit unit)
     {
         HumanStats[] players = gameObject.GetComponentsInChildren<HumanStats>();
-        FindPlayers.SetPlayersOnTheMap(players);
+        PlayerList.Instance.SetPlayersOnTheMap(players);
     }
 }

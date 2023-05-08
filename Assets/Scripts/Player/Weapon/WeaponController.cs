@@ -13,10 +13,13 @@ public class WeaponController : MonoBehaviour
 
     private int _humanLayer;
     private float _lastTimeShot;
+    private bool _isPlayer;
 
-    private void Awake()
+    private void Start()
     {
         _humanLayer = LayerMask.NameToLayer("Human");
+        _isPlayer = gameObject.CompareTag("Player");
+        Debug.Log(_isPlayer);
     }
 
     public void Shoot()
@@ -35,7 +38,6 @@ public class WeaponController : MonoBehaviour
                     if (hit.collider.gameObject.TryGetComponent<HumanStats>(out HumanStats humanStats))
                     {
                         humanStats.Hp -= CurrentWeapon.Damage;
-                        Debug.Log(humanStats.Hp + "   " + CurrentWeapon.Damage);
                     }
                 }
             }
@@ -43,11 +45,6 @@ public class WeaponController : MonoBehaviour
             CurrentWeapon.ShootSFX.Play();
             SubtractABullet();
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(_cameraTransform.position, _cameraTransform.forward);
     }
 
     public void SetCurrentWeapon(Weapon chosenWeaponFromInventory)
@@ -59,8 +56,6 @@ public class WeaponController : MonoBehaviour
         {
             _shootButton.SetActive(false);
             _trowGrenadeButton.SetActive(true);
-
-            Debug.Log("Grenade Choose");
         }
         else
         {
@@ -109,10 +104,18 @@ public class WeaponController : MonoBehaviour
         {
             return true;
         }
-    } 
+    }
 
     private void NotifyBulletsAmountChange()
     {
-        EventAggregator.Post(this, CurrentWeapon);
+        if (_isPlayer)
+        {
+            EventAggregator.Post(this, CurrentWeapon);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(_cameraTransform.position, _cameraTransform.forward);
     }
 }

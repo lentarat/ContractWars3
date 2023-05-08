@@ -21,24 +21,25 @@ public class Grenade : MonoBehaviour
     {
         if (_weaponController.CurrentWeapon.BulletsInMagazine <= 0 && _weaponController.CurrentWeapon.BulletsLeft <= 0) return;
         _weaponController.SubtractABullet();
-        StartCoroutine(GrenedeHendle());
+        StartCoroutine(GrenadeHandle());
         
     }
 
-    public IEnumerator GrenedeHendle()
+    public IEnumerator GrenadeHandle()
     {
         
         GameObject projectile = Instantiate(_grenadePrefab, _positionToTrow.transform.position, _positionToTrow.transform.rotation);
         
-        Rigidbody projecrileRB = projectile.GetComponent<Rigidbody>();
+        Rigidbody projectileRB = projectile.GetComponent<Rigidbody>();
 
         Vector3 forceToAdd = _cam.transform.forward * _forwardForce + _positionToTrow.transform.up * _upwardForce;
 
-        projecrileRB.AddForce(forceToAdd, ForceMode.Impulse);
+        projectileRB.AddForce(forceToAdd, ForceMode.Impulse);
         yield return new WaitForSeconds(_delay);
         GameObject explotion = Instantiate(_explosionPrefab, projectile.transform.position, projectile.transform.rotation);
         Destroy(projectile.gameObject);
-        var players = FindPlayers.GetPlayersInRadius(projectile.transform.position, _radius);
+        var players = PlayerList.Instance.GetPlayersInRadius(projectile.transform.position, _radius);
+        //var players = PlayerList.Instance.GetPlayersInRadius(projectile.transform.position, _radius);
 
         //Debug.Log(players.Length);
         foreach (var player in players)

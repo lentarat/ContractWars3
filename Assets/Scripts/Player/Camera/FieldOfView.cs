@@ -11,12 +11,14 @@ public class FieldOfView : MonoBehaviour
     [Range(0, 360)]
     [SerializeField] private float _angle;
 
-    public System.Action OnEnemyDetect;
+    public System.Action OnEnemyDetected;
+
+    private Vector3 _directionToEnemy;
+
+    private HumanStats[] _playersOnTheMap;
 
     private int _humanLayerMask;
     private int _mapLayerMask;
-
-    private HumanStats[] _playersOnTheMap;
 
     private void Start()
     {
@@ -29,7 +31,7 @@ public class FieldOfView : MonoBehaviour
         _humanLayerMask = LayerMask.NameToLayer("Human");
         _mapLayerMask = LayerMask.NameToLayer("Map");
 
-        _playersOnTheMap = FindPlayers.GetPlayersInRadius(transform.position, _radius);
+        _playersOnTheMap = PlayerList.Instance.GetPlayersInRadius(transform.position, _radius);
     }
 
     private IEnumerator FovCoroutine()
@@ -48,15 +50,19 @@ public class FieldOfView : MonoBehaviour
 
     public HumanStats CheckForEnemies()
     {
-        foreach (var human in _playersOnTheMap)
+        foreach (var human in PlayerList.Instance.Players)
         {
-            Vector3 _directionToEnemy = human.transform.position - transform.position;
+            if(human.gameObject == gameObject)
+            {
+                continue;
+            }
+            _directionToEnemy = human.transform.position - transform.position;
             //Debug.Log(Vector3.Angle(transform.forward, _directionToEnemy));
             if (Vector3.Angle(transform.forward, _directionToEnemy) < _angle / 2f)
             {
                 if (!Physics.Raycast(transform.position, _directionToEnemy, _mapLayerMask))
                 {
-                    OnEnemyDetect?.Invoke();
+                    OnEnemyDetected?.Invoke();
                     //Debug.Log("can see");
                     return human;
                 }
@@ -65,7 +71,14 @@ public class FieldOfView : MonoBehaviour
         return null;
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
 
+        Gizmos.DrawLine(transform.position, transform.position + _directionToEnemy * 50f);
+        Gizmos.DrawSphere(transform.position, 10f);
+        //Gizmos.DrawRay(transform.position, _directionToEnemy*50f);
+    }
     //public void CheckForEnemies()
     //{
     //    Fov

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyDetectionSystem
 {
     private FieldOfView _fieldOfView;
-    public HumanStats CurrentSpottedPlayer { get; set; }
+    private HumanStats _lastSpottedPlayer { get; set; }
 
     public EnemyDetectionSystem(FieldOfView fieldOfView)
     {
@@ -18,13 +18,19 @@ public class EnemyDetectionSystem
     //    CurrentSpottedPlayer = enemy;
     //}
 
+    public HumanStats GetLastSpottedEnemy()
+    {
+        return _fieldOfView.CheckForEnemies();
+    }
+
     public bool HasPlayer()
     {
-        CurrentSpottedPlayer = _fieldOfView.CheckForEnemies();
-        if (CurrentSpottedPlayer != null)
+        _lastSpottedPlayer = _fieldOfView.CheckForEnemies();
+        if (_lastSpottedPlayer == null)
         {
-            return true;
+            return false;
         }
-        return false;
+        Debug.Log("enemy spotted");
+        return true;
     }
 }
