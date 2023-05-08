@@ -54,11 +54,11 @@ public class PlayerListCreator : MonoBehaviour
         for (int i = _tPlayersHolder.GetComponentsInChildren<WeaponController>().Length; i < _tMaxNumber; i++)
         {
             //var randomSpawnPosition = new Vector3(Random.Range(4, 16), 1, Random.Range(-17, -19));
-            Instantiate(_tBody, _tBotsSpawnPoints[Random.Range(0,5)].position, Quaternion.identity);
+            Instantiate(_tBody, _tBotsSpawnPoints[Random.Range(0,5)].position, Quaternion.identity, _tBotsHolder);
         }
         for (int i = _ctPlayersHolder.GetComponentsInChildren<WeaponController>().Length; i < _ctMaxNumber; i++)
         {
-            Instantiate(_ctBody, _ctBotsSpawnPoints[Random.Range(0, 5)].position, Quaternion.identity);
+            Instantiate(_ctBody, _ctBotsSpawnPoints[Random.Range(0, 5)].position, Quaternion.identity, _ctBotsHolder);
         }
     }
 

@@ -23,10 +23,8 @@ public class WeaponController : MonoBehaviour
     {
         if (CurrentWeapon.BulletsInMagazine <= 0 && CurrentWeapon.BulletsLeft <= 0) return;
 
-        _lastTimeShot = Time.time;
-
-        //if (Time.time > _lastTimeShot + 1f / CurrentWeapon.FireRate)
-        //{
+        if (Time.time > _lastTimeShot + 1f / CurrentWeapon.FireRate)
+        {
             _lastTimeShot = Time.time;
             if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit))
             {
@@ -44,7 +42,7 @@ public class WeaponController : MonoBehaviour
 
             CurrentWeapon.ShootSFX.Play();
             SubtractABullet();
-        //}
+        }
     }
 
     private void OnDrawGizmos()
@@ -57,7 +55,7 @@ public class WeaponController : MonoBehaviour
         CurrentWeapon = chosenWeaponFromInventory;
 
         // bad architecture implementation (((
-        if (CurrentWeapon.WeaponTypes == Weapon.WeaponType.Grenade)
+        if (CurrentWeapon.WeaponTypes  == Weapon.WeaponType.Grenade)
         {
             _shootButton.SetActive(false);
             _trowGrenadeButton.SetActive(true);
@@ -76,7 +74,6 @@ public class WeaponController : MonoBehaviour
 
     public void SubtractABullet()
     {
-        Debug.Log("SubtractingABullet...");
         CurrentWeapon.BulletsInMagazine--;
         if (CurrentWeapon.BulletsInMagazine == 0)
         {
@@ -106,12 +103,10 @@ public class WeaponController : MonoBehaviour
     {
         if (CurrentWeapon.BulletsInMagazine + CurrentWeapon.BulletsLeft == 0)
         {
-            Debug.Log("Hasn't got ammo");
             return false;
         }
         else
         {
-            Debug.Log("Has got ammo");
             return true;
         }
     } 

@@ -26,7 +26,6 @@ public class WeaponChange : MonoBehaviour
     [SerializeField] private WeaponHolder _grenadeWeaponHolder;
     public WeaponHolder GrenadeWeaponHolder { get => _grenadeWeaponHolder; }
 
-
     [SerializeField] private WeaponHolder _previousWeaponHolder;
     public WeaponHolder PreviousWeaponHolder { get => _previousWeaponHolder; }
 
@@ -41,6 +40,8 @@ public class WeaponChange : MonoBehaviour
     }
     public void SetCurrentWeaponFromInventory(WeaponHolder chosenWeaponHolder)
     {
+        //_weaponController.SetCurrentWeapon(_currentWeaponHolder.WeaponInSlot);
+        _weaponController.SetCurrentWeapon(chosenWeaponHolder.WeaponInSlot);
         if (chosenWeaponHolder.WeaponInSlot == _currentWeaponHolder.WeaponInSlot)
         {
             SetInventoryActive(false);
@@ -57,11 +58,8 @@ public class WeaponChange : MonoBehaviour
         _currentWeaponHolder.ImageInSlot.sprite = tempSprite;
         _currentWeaponHolder.WeaponInSlot = tempWeapon;
 
-        _weaponController.SetCurrentWeapon(_currentWeaponHolder.WeaponInSlot);
         SetInventoryActive(false);
     }
-
-
 
     public void SetInventoryActive(bool state)
     {

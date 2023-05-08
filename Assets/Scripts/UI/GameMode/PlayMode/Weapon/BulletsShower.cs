@@ -17,7 +17,6 @@ public class BulletsShower : MonoBehaviour
     }
     private void BulletAmountChangeHandler(object sender, Weapon eventData)
     {
-        
-        _bulletShowerText.text =/* eventData.BulletsInMagazine.ToString();*/string.Concat(eventData.BulletsInMagazine.ToString(), "/", eventData.BulletsLeft.ToString());
+        _bulletShowerText.text = string.Concat(eventData.BulletsInMagazine.ToString(), "/", eventData.BulletsLeft.ToString());
     }
 }

@@ -21,8 +21,6 @@ public class NavMeshController : MonoBehaviour
 
     private void SetAgentDestination(Vector3 position)
     {
-        Debug.Log("going");
-        Debug.Log(position);
         _navMeshAgent.SetDestination(position);
     }
 }
