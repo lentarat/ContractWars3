@@ -17,6 +17,11 @@ public class AttackSystem
 
     public void Attack(HumanStats currentSpottedEnemy)
     {
+        if (currentSpottedEnemy == null)
+        {
+            Debug.Log("null");
+            return;
+        }
         Body.LookAt(currentSpottedEnemy.transform);
         WeaponController.Shoot();
     }

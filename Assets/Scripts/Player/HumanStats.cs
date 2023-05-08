@@ -12,14 +12,13 @@ public class HumanStats : MonoBehaviour
             if(Armor > 0 )
             {
                 _hp = (int)(value * 0.85f);
-                Debug.Log(_hp);
                 Armor -= (int)(_armor * 0.1f); 
             }
             if (_hp < 0)
             {
                 _hp = 0;
                 Destroy(gameObject);
-
+                PlayerList.Instance.RemovePlayer(this);
             }
             OnHPChanged?.Invoke();
         }

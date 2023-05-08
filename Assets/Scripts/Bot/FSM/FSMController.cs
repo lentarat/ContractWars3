@@ -9,7 +9,7 @@ public class FSMController : MonoBehaviour
     [SerializeField] private WeaponChange _weaponChange;
     [SerializeField] private FieldOfView _fieldOfView;
 
-    private EnemyDetectionSystem _detectionSystem;
+    private EnemyDetectionSystem _enemyDetectionSystem;
     private AttackSystem _attackSystem;
 
     private AIStates _currentState;
@@ -24,27 +24,14 @@ public class FSMController : MonoBehaviour
     private void Awake()
     {
         _attackSystem = new AttackSystem(_weaponController, transform, _weaponController.CameraTransform);
-        _detectionSystem = new EnemyDetectionSystem(_fieldOfView);
-        _fieldOfView.OnEnemyDetect += OnAttackEnemyState;
+        _enemyDetectionSystem = new EnemyDetectionSystem(_fieldOfView);
+        //_fieldOfView.OnEnemyDetect += OnAttackEnemyState;
     }
 
-    private void Start()
-    {
-        UpdateState(AIStates.Idle);
-    }
 
     private void Update()
     {
-        //UpdateState(_currentState);
-    }
-
-    private void UpdateState(AIStates state)
-    {
-        _currentState = state;
-
-        //Debug.Log(_currentState);
-
-        switch (state)
+        switch (_currentState)
         {
             case AIStates.Idle:
                 OnIdleState();
@@ -56,7 +43,11 @@ public class FSMController : MonoBehaviour
                 OnAttackEnemyState();
                 break;
             default:
-                break;
+                {
+                    Debug.Log("default");
+                    _currentState = AIStates.Idle;
+                    break;
+                }
         }
     }
 
@@ -64,33 +55,33 @@ public class FSMController : MonoBehaviour
     {
         if (_weaponController.HasAmmo())
         {
-            UpdateState(AIStates.SeekEnemy);
+            _currentState = AIStates.SeekEnemy;
         }
     }
 
     private void OnSeekEnemyState()
     {
         _navMeshController.GoToRandomPoint();
-        if (_detectionSystem.HasPlayer() && _weaponController.HasAmmo())
+        if (_enemyDetectionSystem.HasPlayer() && _weaponController.HasAmmo())
         {
-            UpdateState(AIStates.AttackEnemy);
+            _currentState = AIStates.AttackEnemy;
         }
     }
 
     private void OnAttackEnemyState()
     {
-        
-        _attackSystem.Attack(_detectionSystem.CurrentSpottedPlayer);
+        HumanStats enemy = _enemyDetectionSystem.GetLastSpottedEnemy();
 
-        if (!_weaponController.HasAmmo())
+        if (enemy == null)
+        {
+            _currentState = AIStates.SeekEnemy;
+        }
+
+        else if (!_weaponController.HasAmmo())
         {
             _weaponChange.SetCurrentWeaponFromInventory(_weaponChange.PreviousWeaponHolder);
-            UpdateState(AIStates.SeekEnemy);
+            _currentState = AIStates.SeekEnemy;
         }
-        if (!_detectionSystem.HasPlayer())
-        {
-            UpdateState(AIStates.SeekEnemy);
-        }
-        UpdateState(_currentState);
+        _attackSystem.Attack(enemy);
     }
 }
