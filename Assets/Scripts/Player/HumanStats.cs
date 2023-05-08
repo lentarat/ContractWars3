@@ -6,6 +6,10 @@ using UnityEngine;
 public class HumanStats : MonoBehaviour
 {
     [SerializeField] private int _hp;
+
+    public Action OnHPChanged;
+    public Action OnArmorChanged;
+
     public int Hp { get => _hp;
         set
         { 
@@ -35,8 +39,4 @@ public class HumanStats : MonoBehaviour
             OnArmorChanged?.Invoke();
         }
     }
-
-    public Action OnHPChanged;
-
-    public Action OnArmorChanged;
 }

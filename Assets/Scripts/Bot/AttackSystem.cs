@@ -19,7 +19,6 @@ public class AttackSystem
     {
         if (currentSpottedEnemy == null)
         {
-            Debug.Log("null");
             return;
         }
         Body.LookAt(currentSpottedEnemy.transform);

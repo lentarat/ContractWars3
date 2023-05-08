@@ -367,7 +367,7 @@ MonoBehaviour:
   CurrentWeapon: {fileID: 6455256880683883327}
   _cameraTransform: {fileID: 7448925165473144839}
   _shootButton: {fileID: 5935343947401054850}
-  _trowGrenadeButton: {fileID: 1912400697850837072}
+  _throwGrenadeButton: {fileID: 1912400697850837072}
 --- !u!114 &339651674687770205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2679,6 +2679,10 @@ PrefabInstance:
     - target: {fileID: 2892634319653845122, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3220200874862745891, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
+      propertyPath: m_Name
+      value: ThrowGrenedeButton
       objectReference: {fileID: 0}
     - target: {fileID: 3220200874862745891, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
       propertyPath: m_Layer

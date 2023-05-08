@@ -20,7 +20,6 @@ public class PreparePlayer : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
-            //_chooseUnit.OnUnitChosen += Prepare;
             _ui.SetActive(true);
             _cameraHolder.SetActive(true);
             _miniMapCameraHolder.SetActive(true);
