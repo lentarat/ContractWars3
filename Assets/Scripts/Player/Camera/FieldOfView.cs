@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
@@ -16,6 +17,7 @@ public class FieldOfView : MonoBehaviour
     private Vector3 _directionToEnemy;
 
     private HumanStats[] _playersOnTheMap;
+    private Vector3 _offset = Vector3.up; 
 
     private int _humanLayerMask;
     private int _mapLayerMask;
@@ -56,11 +58,11 @@ public class FieldOfView : MonoBehaviour
             {
                 continue;
             }
-            _directionToEnemy = human.transform.position - transform.position;
+            _directionToEnemy = human.transform.position - transform.position ;
             //Debug.Log(Vector3.Angle(transform.forward, _directionToEnemy));
             if (Vector3.Angle(transform.forward, _directionToEnemy) < _angle / 2f)
             {
-                if (!Physics.Raycast(transform.position, _directionToEnemy, _mapLayerMask))
+                if (!Physics.Raycast(transform.position + _offset, _directionToEnemy , _mapLayerMask))
                 {
                     OnEnemyDetected?.Invoke();
                     //Debug.Log("can see");
@@ -75,8 +77,8 @@ public class FieldOfView : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawLine(transform.position, transform.position + _directionToEnemy * 50f);
-        Gizmos.DrawSphere(transform.position, 10f);
+        Gizmos.DrawLine(transform.position + _offset,_directionToEnemy * 50f);
+       // Gizmos.DrawSphere(transform.position, 10f);
         //Gizmos.DrawRay(transform.position, _directionToEnemy*50f);
     }
     //public void CheckForEnemies()

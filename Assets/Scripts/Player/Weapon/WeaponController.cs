@@ -30,8 +30,7 @@ public class WeaponController : MonoBehaviour
         {
             _lastTimeShot = Time.time;
             if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit))
-            {
-
+            { 
                 //need profiler
                 if (hit.collider.gameObject.layer == _humanLayer)
                 {
@@ -116,6 +115,9 @@ public class WeaponController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawLine(_cameraTransform.position, _cameraTransform.forward);
+        //Gizmos.DrawLine(_cameraTransform.position, _cameraTransform.forward);
+        
     }
+
+
 }
