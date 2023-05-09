@@ -6,7 +6,7 @@ public class MapChoose : MonoBehaviour
 {
     [SerializeField] private GameObject _mapsParent;
     
-    public static string ChosenMapName = "Pool Black";
+    public static string ChosenMapName = "Source";
 
     void Awake()
     {

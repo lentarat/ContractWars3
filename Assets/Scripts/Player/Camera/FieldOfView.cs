@@ -57,18 +57,20 @@ public class FieldOfView : MonoBehaviour
                 continue;
             }
             
-            Debug.DrawLine(_camera.position, _camera.transform.position + _directionToEnemy * 50f);
             _directionToEnemy = human.transform.position + Vector3.up - _camera.position;
             //Debug.Log(Vector3.Angle(transform.forward, _directionToEnemy));
             if (Vector3.Angle(transform.forward, _directionToEnemy) < _angle / 2f)
             {
+
                 //if (!Physics.Raycast(transform.position, _directionToEnemy, _mapLayerMask))
                 if (!Physics.Raycast(_camera.position, _directionToEnemy, _mapLayerMask))
                 {
+                    Debug.DrawLine(_camera.position, _camera.transform.position + _directionToEnemy * 50f);
                     OnEnemyDetected?.Invoke();
                     //Debug.Log("can see");
                     return human;
                 }
+
             }
         }
         return null;

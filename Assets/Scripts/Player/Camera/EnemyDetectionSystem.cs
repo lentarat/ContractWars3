@@ -25,10 +25,16 @@ public class EnemyDetectionSystem
 
     public bool HasPlayer()
     {
+
+        
         _lastSpottedPlayer = _fieldOfView.CheckForEnemies();
         if (_lastSpottedPlayer == null)
         {
             return false;
+        }
+        else 
+        {
+            Debug.Log(_lastSpottedPlayer);
         }
         Debug.Log("enemy spotted");
         return true;
