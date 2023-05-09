@@ -293,7 +293,7 @@ MonoBehaviour:
   - {fileID: 1568598087}
   _ctPlayersHolder: {fileID: 2144017916}
   _tPlayersHolder: {fileID: 1404970282}
-  _ctMaxNumber: 0
+  _ctMaxNumber: 3
   _tMaxNumber: 3
   _chooseUnit: {fileID: 404590419}
 --- !u!4 &267954999

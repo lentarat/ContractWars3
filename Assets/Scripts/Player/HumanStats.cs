@@ -7,6 +7,7 @@ public class HumanStats : MonoBehaviour
 {
     public Action OnHPChanged;
     public Action OnArmorChanged;
+    public Action OnPlayerDeath;
 
     [SerializeField] private int _hp;
 
@@ -21,7 +22,8 @@ public class HumanStats : MonoBehaviour
             if (_hp < 0)
             {
                 _hp = 0;
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                OnPlayerDeath?.Invoke();
                 PlayerList.Instance.RemovePlayer(this);
             }
             OnHPChanged?.Invoke();
