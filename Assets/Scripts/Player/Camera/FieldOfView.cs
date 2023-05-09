@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
@@ -17,7 +16,6 @@ public class FieldOfView : MonoBehaviour
     private Vector3 _directionToEnemy;
 
     private HumanStats[] _playersOnTheMap;
-    private Vector3 _offset = Vector3.up; 
 
     private int _humanLayerMask;
     private int _mapLayerMask;
@@ -58,11 +56,14 @@ public class FieldOfView : MonoBehaviour
             {
                 continue;
             }
-            _directionToEnemy = human.transform.position - transform.position ;
+            
+            Debug.DrawLine(_camera.position, _camera.transform.position + _directionToEnemy * 50f);
+            _directionToEnemy = human.transform.position + Vector3.up - _camera.position;
             //Debug.Log(Vector3.Angle(transform.forward, _directionToEnemy));
             if (Vector3.Angle(transform.forward, _directionToEnemy) < _angle / 2f)
             {
-                if (!Physics.Raycast(transform.position + _offset, _directionToEnemy , _mapLayerMask))
+                //if (!Physics.Raycast(transform.position, _directionToEnemy, _mapLayerMask))
+                if (!Physics.Raycast(_camera.position, _directionToEnemy, _mapLayerMask))
                 {
                     OnEnemyDetected?.Invoke();
                     //Debug.Log("can see");
@@ -73,85 +74,10 @@ public class FieldOfView : MonoBehaviour
         return null;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-
-        Gizmos.DrawLine(transform.position + _offset,_directionToEnemy * 50f);
-       // Gizmos.DrawSphere(transform.position, 10f);
-        //Gizmos.DrawRay(transform.position, _directionToEnemy*50f);
-    }
-    //public void CheckForEnemies()
+    //private void OnDrawGizmos()
     //{
-    //    Fov
+    //    Gizmos.color = Color.red;
+    //    //Gizmos.DrawLine(transform.position, transform.position + _directionToEnemy * 50f);
+    //    Gizmos.DrawLine(_camera.position, _camera.transform.position + _directionToEnemy * 50f);
     //}
 }
-
-
-
-
-
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-
-//public class FieldOfView : MonoBehaviour
-//{
-//    [SerializeField] private float _timeToUpdateFov;
-//    [SerializeField] private Transform _camera;
-//    [SerializeField] private float _radius;
-//    public float Radius { get => _radius; }
-//    [Range(0, 360)]
-//    [SerializeField] private float _angle;
-
-//    private int _humanLayerMask;
-//    private int _mapLayerMask;
-
-//    private HumanStats[] _playersOnTheMap;
-
-//    private void Start()
-//    {
-//        if (gameObject.CompareTag("Player"))
-//        {
-//            return;
-//        }
-
-//        StartCoroutine(FovCoroutine());
-//        _humanLayerMask = LayerMask.NameToLayer("Human");
-//        _mapLayerMask = LayerMask.NameToLayer("Map");
-
-//        _playersOnTheMap = FindPlayers.GetPlayersInRadius(transform.position, _radius);
-//    }
-
-//    private IEnumerator FovCoroutine()
-//    {
-//        float lastTimeUpdated = Time.time;
-//        while (true)
-//        {
-//            if (Time.time > lastTimeUpdated + _timeToUpdateFov)
-//            {
-//                lastTimeUpdated = Time.time;
-//                Fov();
-//            }
-//            yield return null;
-//        }
-//    }
-
-//    private void Fov()
-//    {
-//        foreach (var human in _playersOnTheMap)
-//        {
-//            Vector3 _directionToEnemy = human.transform.position - transform.position;
-//            Debug.Log(Vector3.Angle(transform.forward, _directionToEnemy));
-//            if (Vector3.Angle(transform.forward, _directionToEnemy) < _angle / 2f)
-//            {
-//                if (!Physics.Raycast(transform.position, _directionToEnemy, _mapLayerMask))
-//                {
-//                    Debug.Log("can see");
-//                }
-//            }
-//        }
-//    }
-//}
-
-

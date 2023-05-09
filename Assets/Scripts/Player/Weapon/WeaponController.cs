@@ -9,7 +9,7 @@ public class WeaponController : MonoBehaviour
     public Transform CameraTransform { get => _cameraTransform; }
     
     [SerializeField] private GameObject _shootButton;
-    [SerializeField] private GameObject _trowGrenadeButton;
+    [SerializeField] private GameObject _throwGrenadeButton;
 
     private int _humanLayer;
     private float _lastTimeShot;
@@ -29,8 +29,9 @@ public class WeaponController : MonoBehaviour
         if (Time.time > _lastTimeShot + 1f / CurrentWeapon.FireRate)
         {
             _lastTimeShot = Time.time;
-            if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit))
-            { 
+            if (Physics.Raycast(_cameraTransform.position, _cameraTransform.position + _cameraTransform.forward, out RaycastHit hit))
+            {
+
                 //need profiler
                 if (hit.collider.gameObject.layer == _humanLayer)
                 {
@@ -50,16 +51,15 @@ public class WeaponController : MonoBehaviour
     {
         CurrentWeapon = chosenWeaponFromInventory;
 
-        // bad architecture implementation (((
         if (CurrentWeapon.WeaponTypes  == Weapon.WeaponType.Grenade)
         {
             _shootButton.SetActive(false);
-            _trowGrenadeButton.SetActive(true);
+            _throwGrenadeButton.SetActive(true);
         }
         else
         {
             _shootButton.SetActive(true);
-            _trowGrenadeButton.SetActive(false);
+            _throwGrenadeButton.SetActive(false);
         }
         //
         
@@ -113,11 +113,8 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        //Gizmos.DrawLine(_cameraTransform.position, _cameraTransform.forward);
-        
-    }
-
-
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawLine(_cameraTransform.position, _cameraTransform.position + _cameraTransform.forward * 10f);
+    //}
 }
