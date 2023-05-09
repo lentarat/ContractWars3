@@ -352,6 +352,7 @@ MonoBehaviour:
   _mainCamera: {fileID: 7448925165473144839}
   _LerpCameraFrom: {fileID: 339651674663679006}
   _LerpCameraTo: {fileID: 339651675180442810}
+  _isPlayer: 0
 --- !u!114 &339651674687770202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,6 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentWeapon: {fileID: 6455256880683883327}
   _cameraTransform: {fileID: 7448925165473144839}
+  _headOffset: {x: 0, y: 1.8, z: 0}
   _shootButton: {fileID: 5935343947401054850}
   _throwGrenadeButton: {fileID: 1912400697850837072}
 --- !u!114 &339651674687770205
@@ -382,6 +384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 100
   _armor: 100
+  _teamUnit: 1
 --- !u!114 &5485192770945430797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +442,7 @@ MonoBehaviour:
   _camera: {fileID: 7448925165473144839}
   _radius: 50
   _angle: 60
+  _headOffset: {x: 0, y: 1.8, z: 0}
 --- !u!114 &3821000988012502343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1297,6 +1301,7 @@ MonoBehaviour:
   _mouseY: 0
   _sensitivity: 20
   _playerBody: {fileID: 233085587116350558}
+  _xRotation: 0
   _camera: {fileID: 6330689467097167383}
 --- !u!1 &3697972024866246349
 GameObject:

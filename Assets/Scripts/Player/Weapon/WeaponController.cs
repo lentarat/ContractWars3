@@ -7,19 +7,19 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField] private Transform _cameraTransform;
     public Transform CameraTransform { get => _cameraTransform; }
+    [SerializeField] private Vector3 _headOffset;
     
     [SerializeField] private GameObject _shootButton;
     [SerializeField] private GameObject _throwGrenadeButton;
 
-    private int _humanLayer;
     private float _lastTimeShot;
     private bool _isPlayer;
+    //private HumanStats.Unit _teamUnit; // team killing
 
     private void Start()
     {
-        _humanLayer = LayerMask.NameToLayer("Human");
         _isPlayer = gameObject.CompareTag("Player");
-        Debug.Log(_isPlayer);
+        //_teamUnit = gameObject.GetComponent<HumanStats>().TeamUnit;
     }
 
     public void Shoot()
@@ -29,16 +29,16 @@ public class WeaponController : MonoBehaviour
         if (Time.time > _lastTimeShot + 1f / CurrentWeapon.FireRate)
         {
             _lastTimeShot = Time.time;
-            if (Physics.Raycast(_cameraTransform.position, _cameraTransform.position + _cameraTransform.forward, out RaycastHit hit))
+            if (Physics.Raycast(transform.position + _headOffset, transform.forward, out RaycastHit hit))
             {
-
                 //need profiler
-                if (hit.collider.gameObject.layer == _humanLayer)
+                if (hit.collider.gameObject.TryGetComponent<HumanStats>(out HumanStats humanStats))
                 {
-                    if (hit.collider.gameObject.TryGetComponent<HumanStats>(out HumanStats humanStats))
-                    {
-                        humanStats.Hp -= CurrentWeapon.Damage;
-                    }
+                    //if (humanStats.TeamUnit != _teamUnit) // disable team killing
+                    //{
+                    //    humanStats.Hp -= CurrentWeapon.Damage; 
+                    //}
+                    humanStats.Hp -= CurrentWeapon.Damage;
                 }
             }
 
@@ -113,8 +113,8 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawLine(_cameraTransform.position, _cameraTransform.position + _cameraTransform.forward * 10f);
-    //}
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(transform.position + _headOffset, transform.forward);
+    }
 }

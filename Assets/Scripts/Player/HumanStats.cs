@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class HumanStats : MonoBehaviour
 {
-    [SerializeField] private int _hp;
-
     public Action OnHPChanged;
     public Action OnArmorChanged;
+
+    [SerializeField] private int _hp;
 
     public int Hp { get => _hp;
         set
@@ -27,6 +27,7 @@ public class HumanStats : MonoBehaviour
             OnHPChanged?.Invoke();
         }
     }
+
     [SerializeField] private int _armor;
     public int Armor { get => _armor;
         set
@@ -39,4 +40,13 @@ public class HumanStats : MonoBehaviour
             OnArmorChanged?.Invoke();
         }
     }
+
+    public enum Unit
+    {
+        Terrorist,
+        CounterTerrorist
+    }
+
+    [SerializeField] private Unit _teamUnit;
+    public Unit TeamUnit { get => _teamUnit; }
 }

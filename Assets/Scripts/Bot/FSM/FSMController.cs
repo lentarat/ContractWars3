@@ -29,7 +29,7 @@ public class FSMController : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
+    private void Update()
     {
         switch (_currentState)
         {
