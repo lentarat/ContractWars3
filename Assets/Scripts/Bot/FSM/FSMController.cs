@@ -62,8 +62,10 @@ public class FSMController : MonoBehaviour
     private void OnSeekEnemyState()
     {
         _navMeshController.GoToRandomPoint();
+
         if (_enemyDetectionSystem.HasPlayer() && _weaponController.HasAmmo())
         {
+            _navMeshController.StopGoingToDestination();
             _currentState = AIStates.AttackEnemy;
         }
     }

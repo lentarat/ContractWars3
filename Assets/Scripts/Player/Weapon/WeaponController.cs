@@ -113,8 +113,8 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(_cameraTransform.position, _cameraTransform.position + _cameraTransform.forward);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawLine(_cameraTransform.position, _cameraTransform.position + _cameraTransform.forward * 10f);
+    //}
 }

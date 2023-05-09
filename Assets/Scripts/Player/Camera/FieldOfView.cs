@@ -56,11 +56,14 @@ public class FieldOfView : MonoBehaviour
             {
                 continue;
             }
-            _directionToEnemy = human.transform.position - transform.position;
+            
+            Debug.DrawLine(_camera.position, _camera.transform.position + _directionToEnemy * 50f);
+            _directionToEnemy = human.transform.position + Vector3.up - _camera.position;
             //Debug.Log(Vector3.Angle(transform.forward, _directionToEnemy));
             if (Vector3.Angle(transform.forward, _directionToEnemy) < _angle / 2f)
             {
-                if (!Physics.Raycast(transform.position, _directionToEnemy, _mapLayerMask))
+                //if (!Physics.Raycast(transform.position, _directionToEnemy, _mapLayerMask))
+                if (!Physics.Raycast(_camera.position, _directionToEnemy, _mapLayerMask))
                 {
                     OnEnemyDetected?.Invoke();
                     //Debug.Log("can see");
@@ -71,9 +74,10 @@ public class FieldOfView : MonoBehaviour
         return null;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + _directionToEnemy * 50f);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    //Gizmos.DrawLine(transform.position, transform.position + _directionToEnemy * 50f);
+    //    Gizmos.DrawLine(_camera.position, _camera.transform.position + _directionToEnemy * 50f);
+    //}
 }

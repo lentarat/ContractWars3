@@ -418,7 +418,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _navMeshAgent: {fileID: 5844763217439571475}
   _pathPoints:
+  - {fileID: 8400470083712113183, guid: d0a769300c21fb94fab904cca1d87aac, type: 3}
   - {fileID: 8662794883206164637, guid: cf3b45faf2d6a414da623dfabb9d1b15, type: 3}
+  - {fileID: 7637473788855547558, guid: deba4bec3f8d3d941946d2e36cdb4dd5, type: 3}
+  - {fileID: 53908817360333297, guid: ce81caacf99d789439258dcf7d3f3fdc, type: 3}
+  - {fileID: 7343674941223426357, guid: 0e716a28aa80f3c4fb39ad982dee1ee1, type: 3}
 --- !u!114 &2304377704607507307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1219,7 +1223,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3646256606104096027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.07, z: 0.15}
+  m_LocalPosition: {x: 0, y: 2.125, z: 0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
