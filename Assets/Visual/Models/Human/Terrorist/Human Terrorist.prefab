@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 2304377704607507307}
   - component: {fileID: 3821000988012502343}
   - component: {fileID: 5271557697557234672}
+  - component: {fileID: 1390746166805753119}
   m_Layer: 10
   m_Name: Human Terrorist
   m_TagString: Bot
@@ -509,6 +510,22 @@ CapsuleCollider:
   m_Height: 2.2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1390746166805753119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610174767519303396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e848609b3c75694baccc2c1455ccc00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _humanStats: {fileID: 339651674687770205}
+  _playModeUI: {fileID: 5935343948340576470}
+  _deathModeUI: {fileID: 441750600681874592}
+  _initialTimeToRespawn: 3
 --- !u!1 &781587426451657408
 GameObject:
   m_ObjectHideFlags: 0
@@ -2001,6 +2018,7 @@ GameObject:
   - component: {fileID: 1938541568375748925}
   - component: {fileID: 3740153539815606015}
   - component: {fileID: 2904284853814695690}
+  - component: {fileID: 3607268786621054567}
   m_Layer: 10
   m_Name: RespawnCountdown
   m_TagString: Untagged
@@ -2125,6 +2143,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3607268786621054567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5416905788173026841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33196ad4d0af9c249a26171ebc9e1d48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _respawnPlayer: {fileID: 1390746166805753119}
+  _textMeshProUGUI: {fileID: 2904284853814695690}
 --- !u!1 &5577993357471431338
 GameObject:
   m_ObjectHideFlags: 0
@@ -3283,6 +3315,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4843d859c31aedd4bb94e04aff7b686e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5935343948340576470 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7234142406476161445, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
+  m_PrefabInstance: {fileID: 3907512519564140915}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5935343948465918749 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7234142406601372270, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}

@@ -31,7 +31,6 @@ public class WeaponController : MonoBehaviour
             _lastTimeShot = Time.time;
             if (Physics.Raycast(transform.position + _headOffset, transform.forward, out RaycastHit hit))
             {
-                //need profiler
                 if (hit.collider.gameObject.TryGetComponent<HumanStats>(out HumanStats humanStats))
                 {
                     //if (humanStats.TeamUnit != _teamUnit) // disable team killing
@@ -61,7 +60,6 @@ public class WeaponController : MonoBehaviour
             _shootButton.SetActive(true);
             _throwGrenadeButton.SetActive(false);
         }
-        //
         
         NotifyBulletsAmountChange();
     }
