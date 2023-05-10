@@ -26,6 +26,7 @@ public class ChooseUnit : MonoBehaviour
     {
         OnUnitChosen?.Invoke(unit);
         gameObject.SetActive(false);
+        GameManager.Instance.CurrentGameState = GameManager.GameState.Play;
     }
 }
 

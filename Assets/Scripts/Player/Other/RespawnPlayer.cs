@@ -7,6 +7,7 @@ public class RespawnPlayer : MonoBehaviour
     [SerializeField] private HumanStats _humanStats;
     [SerializeField] private GameObject _playModeUI;
     [SerializeField] private GameObject _deathModeUI;
+    [SerializeField] private Camera _camera;
 
     [SerializeField] private float _initialTimeToRespawn;
 
@@ -27,10 +28,9 @@ public class RespawnPlayer : MonoBehaviour
 
     private IEnumerator RespawnCountDown()
     {
-        OnPlayerRespawn?.Invoke();
+        SetDeathMode(true);
 
-        _playModeUI.SetActive(false);
-        _deathModeUI.SetActive(true);
+        OnPlayerRespawn?.Invoke();
 
         while (TimeLeftToRespawn > 0f)
         {
@@ -39,7 +39,20 @@ public class RespawnPlayer : MonoBehaviour
         }
         TimeLeftToRespawn = 0f;
 
-        _playModeUI.SetActive(true);
-        _deathModeUI.SetActive(false);
+        SetDeathMode(false);
+
+        Respawn();
+    }
+
+    private void SetDeathMode(bool state)
+    {
+        _playModeUI.SetActive(!state);
+        _deathModeUI.SetActive(state);
+        _camera.enabled = !state;
+    }
+
+    private void Respawn()
+    {
+
     }
 }
