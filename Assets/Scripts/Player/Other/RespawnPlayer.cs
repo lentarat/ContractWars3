@@ -17,32 +17,11 @@ public class RespawnPlayer : MonoBehaviour
 
     private void Start()
     {
-        _humanStats.OnPlayerDeath += HandlePlayerDeath;
+        //_humanStats.OnPlayerDeath += HandlePlayerDeath;
         TimeLeftToRespawn = _initialTimeToRespawn;
     }
 
-    private void HandlePlayerDeath()
-    {
-        StartCoroutine(RespawnCountDown());
-    }
-
-    private IEnumerator RespawnCountDown()
-    {
-        SetDeathMode(true);
-
-        OnPlayerRespawn?.Invoke();
-
-        while (TimeLeftToRespawn > 0f)
-        {
-            TimeLeftToRespawn -= Time.deltaTime;
-            yield return null;
-        }
-        TimeLeftToRespawn = 0f;
-
-        SetDeathMode(false);
-
-        Respawn();
-    }
+    
 
     private void SetDeathMode(bool state)
     {
@@ -53,6 +32,5 @@ public class RespawnPlayer : MonoBehaviour
 
     private void Respawn()
     {
-
     }
 }

@@ -22,9 +22,13 @@ public class HumanStats : MonoBehaviour
             if (_hp < 0)
             {
                 _hp = 0;
-                //Destroy(gameObject);
-                OnPlayerDeath?.Invoke();
+                if (TeamUnit == Unit.CounterTerrorist)
+                {
+                    GameManager.Instance.UpdateKillCounter(GameManager.Instance.TerroristsKilled++, GameManager.Instance.CounterTerroristsKilled++);
+                }
+                Destroy(gameObject);
                 PlayerList.Instance.RemovePlayer(this);
+                OnPlayerDeath?.Invoke();
             }
             OnHPChanged?.Invoke();
         }

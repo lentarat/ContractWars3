@@ -62,13 +62,14 @@ public sealed class PlayerList
         return _playersInRadius.ToArray();
     }
 
-    public void RemovePlayer()
-    {
-        _players.RemoveAll(item => item == null);
-        Debug.Log(_players.Count);
-    }
+    //public void RemovePlayer()
+    //{
+    //    _players.RemoveAll(item => item == null);
+    //    Debug.Log(_players.Count);
+    //}
     public void RemovePlayer(HumanStats player)
     {
+        RespawnManager.Instance.RespawnPlayer(player);
         _players.Remove(player);
     }
 }

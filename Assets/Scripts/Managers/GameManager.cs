@@ -3,85 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//public class GameManager : MonoBehaviour
-//{
-//    private GameManager() { }
-
-//    private static GameManager _instance;
-//    public static GameManager Instance { get => _instance; }
-
-//    [SerializeField] private GameObject _mapParent;
-//    private string _mapsPath = "Maps/";
-
-//    private void Awake()
-//    {
-//        _instance = this;
-//        LoadMap();
-//    }
-
-//    private void LoadMap()
-//    {
-//        var maps = _mapParent.GetComponentsInChildren<Renderer>();
-//        foreach (var go in maps)
-//        {
-//            Destroy(go.gameObject);
-//        }
-//        Instantiate(Resources.Load(_mapsPath + MapChoose.ChosenMapName), _mapParent.transform).name = MapChoose.ChosenMapName;
-//    }
-
-//    public void Test()
-//    {
-//        Debug.Log("test");
-//    }
-//}
-
-
-//public class GameManager : MonoBehaviour
-//{
-//    [SerializeField] private GameObject _mapParent;
-//    [SerializeField] private float _roundTime;
-
-//    public System.Action<int,int> SecondElapsed;
-
-//    private string _mapsPath = "Maps/";
-//    private float _countdownTime;
-//    private int _minutes;
-//    private int _seconds;
-
-//    private void Awake()
-//    {
-//        LoadMap();
-
-//        _countdownTime = _roundTime;
-//    }
-
-//    private void Update()
-//    {
-//        _countdownTime -= Time.deltaTime;
-
-//        _minutes = (int)(_countdownTime / 60f);
-//        _seconds = (int)_countdownTime % 60;
-
-//        if (_seconds != (int)_countdownTime)
-//        {
-//            SecondElapsed?.Invoke(_minutes, _seconds);
-//        }
-//    }
-
-//    private void LoadMap()
-//    {
-//        var maps = _mapParent.GetComponentsInChildren<Renderer>();
-//        foreach (var go in maps)
-//        {
-//            Destroy(go.gameObject);
-//        }
-//        Instantiate(Resources.Load(_mapsPath + MapChoose.ChosenMapName), _mapParent.transform).name = MapChoose.ChosenMapName;
-//    }
-
-//}
-
-
-
 public class GameManager : MonoBehaviour
 {
     private GameManager() { }
@@ -89,12 +10,17 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get => _instance; private set => _instance = value; }
 
-    public GameState CurrentGameState { get; set; }
-
     [SerializeField] private GameObject _mapParent;
     [SerializeField] private float _roundTime;
 
     public System.Action<int, int> OnSecondElapsed;
+    //public System.Action OnTimerCountdownOver;
+    public System.Action<int, int> OnSomeoneKilled;
+
+    public GameState CurrentGameState { get; set; }
+    public int TerroristsKilled { get; set; }
+    public int CounterTerroristsKilled { get; set; }
+
 
     private string _mapsPath = "Maps/";
     private float _countdownTime;
@@ -123,15 +49,30 @@ public class GameManager : MonoBehaviour
         {
             _countdownTime -= Time.deltaTime;
 
-            _minutes = (int)(_countdownTime / 60f);
-            _seconds = (int)_countdownTime % 60;
-            Debug.Log(_minutes);
-            Debug.Log(_seconds);
+            if (_countdownTime < 0f)
+            {
+                //OnTimerCountdownOver?.Invoke();
+            }
+
             if (_seconds != (int)_countdownTime)
             {
+                FormatTime();
                 OnSecondElapsed?.Invoke(_minutes, _seconds);
             }
+
+            FormatTime();
         }
+    }
+
+    public void UpdateKillCounter(int terroristsKilled, int counterTerroristsKilled)
+    {
+        OnSomeoneKilled?.Invoke(terroristsKilled, counterTerroristsKilled);
+    }
+
+    private void FormatTime()
+    {
+        _minutes = (int)(_countdownTime / 60f);
+        _seconds = (int)_countdownTime % 60;
     }
 
     private void LoadMap()
@@ -143,6 +84,5 @@ public class GameManager : MonoBehaviour
         }
         Instantiate(Resources.Load(_mapsPath + MapChoose.ChosenMapName), _mapParent.transform).name = MapChoose.ChosenMapName;
     }
-
 }
 
