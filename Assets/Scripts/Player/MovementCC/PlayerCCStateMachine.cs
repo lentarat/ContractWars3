@@ -159,7 +159,7 @@ public class PlayerCCStateMachine : MonoBehaviour
     private void OnInputHandler()
     {
         
-        KeybordInput();
+       // KeybordInput();
         JoystickInput(); 
     }
 
@@ -189,10 +189,10 @@ public class PlayerCCStateMachine : MonoBehaviour
             _isJumpPressed = true;
             _requireNewJumpPress = false;
         }
-        else
+       /* else
         {
             _isJumpPressed = false;
-        }
+        }*/
 
 
 
