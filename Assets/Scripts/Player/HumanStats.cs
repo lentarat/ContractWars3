@@ -26,8 +26,9 @@ public class HumanStats : MonoBehaviour
                 {
                     GameManager.Instance.UpdateKillCounter(GameManager.Instance.TerroristsKilled++, GameManager.Instance.CounterTerroristsKilled++);
                 }
-                Destroy(gameObject);
+                RespawnManager.Instance.RespawnPlayer(this, CompareTag("Player"));
                 PlayerList.Instance.RemovePlayer(this);
+                Destroy(gameObject);
                 OnPlayerDeath?.Invoke();
             }
             OnHPChanged?.Invoke();
@@ -55,4 +56,6 @@ public class HumanStats : MonoBehaviour
 
     [SerializeField] private Unit _teamUnit;
     public Unit TeamUnit { get => _teamUnit; }
+
+    //[HideInInspector] public string Tag { get; set; }
 }

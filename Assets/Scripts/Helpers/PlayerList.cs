@@ -69,7 +69,6 @@ public sealed class PlayerList
     //}
     public void RemovePlayer(HumanStats player)
     {
-        RespawnManager.Instance.RespawnPlayer(player);
         _players.Remove(player);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RespawnPlayer : MonoBehaviour
 {
+    //[SerializeField] private PlayerListCreator _playerListCreator;
     [SerializeField] private HumanStats _humanStats;
     [SerializeField] private GameObject _playModeUI;
     [SerializeField] private GameObject _deathModeUI;

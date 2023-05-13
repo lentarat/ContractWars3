@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RespawnManager : MonoBehaviour
 {
@@ -9,58 +10,81 @@ public class RespawnManager : MonoBehaviour
     private static RespawnManager _instance;
     public static RespawnManager Instance { get => _instance; private set => _instance = value; }
 
-    [SerializeField] private float _timeToRespawn;
+    [SerializeField] private PlayerListCreator _playerListCreator;
+    [SerializeField] private GameObject _respawnPanel;
 
-    public System.Action<ChooseUnit.Unit> OnCountdownElapsed;
-    //private List<HumanStats> _playersToBeRespawned;
+    [SerializeField] private float _initialTimeLeftToRespawn;
+    public float TimeLeftToRespawn { get; set; }
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public void RespawnPlayer (HumanStats player)
+    public void RespawnPlayer(HumanStats player, bool isPlayer)
     {
-        //_playersToBeRespawned.Add(player);
-        if (player.CompareTag("Player"))
-        {
-            //UI
-        }
-        //new WaitToRespawn(_timeToRespawn);
-        Respawn(player);
+        TimeLeftToRespawn = _initialTimeLeftToRespawn;
+        StartCoroutine(RespawnCountdown(player, isPlayer));
     }
 
-    private void Respawn(HumanStats player)
+    private IEnumerator RespawnCountdown(HumanStats playerToRespawn, bool isPlayer)
     {
-        StartCoroutine(RespawnCountdown(player, _timeToRespawn));
-    }
-
-    private IEnumerator RespawnCountdown(HumanStats player, float timeToRespawn)
-    {
+        TimeLeftToRespawn = _initialTimeLeftToRespawn;
         //SetDeathMode(true);
 
         //OnPlayerRespawn?.Invoke();
 
-        while (timeToRespawn > 0f)
+        if (isPlayer)
         {
-            timeToRespawn -= Time.deltaTime;
+            ShowRespawnPanel(true);
+        }
+
+        while (TimeLeftToRespawn > 0f)
+        {
+            TimeLeftToRespawn -= Time.deltaTime;
             yield return null;
         }
-        timeToRespawn = 0f;
 
-        if (player.TeamUnit == HumanStats.Unit.CounterTerrorist)
+        if (isPlayer)
         {
-            OnCountdownElapsed?.Invoke(ChooseUnit.Unit.CounterTerrorist);
+            if (playerToRespawn.TeamUnit == HumanStats.Unit.CounterTerrorist)
+            {
+                //OnCountdownElapsed?.Invoke(ChooseUnit.Unit.CounterTerrorist, true);
+                _playerListCreator.SpawnHuman(ChooseUnit.Unit.CounterTerrorist, true);
+            }
+            else
+            {
+                _playerListCreator.SpawnHuman(ChooseUnit.Unit.Terrorist, true);
+            }
+            ShowRespawnPanel(false);
         }
         else
         {
-            OnCountdownElapsed?.Invoke(ChooseUnit.Unit.Terrorist);
+           if (playerToRespawn.TeamUnit == HumanStats.Unit.CounterTerrorist)
+            {
+                _playerListCreator.SpawnHuman(ChooseUnit.Unit.CounterTerrorist, false);
+            }
+            else
+            {
+                _playerListCreator.SpawnHuman(ChooseUnit.Unit.Terrorist, false);
+            }
         }
-
+        //if (player.TeamUnit == HumanStats.Unit.CounterTerrorist)
+        //{
+        //    OnCountdownElapsed?.Invoke(ChooseUnit.Unit.CounterTerrorist, false);
+        //}
+        //else
+        //{
+        //    OnCountdownElapsed?.Invoke(ChooseUnit.Unit.Terrorist, false);
+        //}
+        //PlayerList.Instance.Players.Add(playerToRespawn);
         //SetDeathMode(false);
     }
 
-
+    private void ShowRespawnPanel(bool state)
+    {
+        _respawnPanel.SetActive(state);
+    }
 }
 
 //public class WaitToRespawn

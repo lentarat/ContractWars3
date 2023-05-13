@@ -30,7 +30,6 @@ public class EnemyDetectionSystem
         {
             return false;
         }
-        Debug.Log("enemy spotted");
         return true;
     }
 }
