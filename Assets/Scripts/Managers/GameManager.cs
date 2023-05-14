@@ -66,7 +66,10 @@ public class GameManager : MonoBehaviour
 
     public void UpdateKillCounter(bool isTerroristKilled, bool isCounterTerroristKilled)
     {
-        OnSomeoneKilled?.Invoke(CounterTerroristsKilled + (isCounterTerroristKilled ? 1 : 0 ), TerroristsKilled + (isTerroristKilled ? 1 : 0));
+        //OnSomeoneKilled?.Invoke(CounterTerroristsKilled + (isCounterTerroristKilled ? 1 : 0 ), TerroristsKilled + (isTerroristKilled ? 1 : 0));
+        CounterTerroristsKilled += isCounterTerroristKilled ? 1 : 0;
+        TerroristsKilled += isTerroristKilled ? 1 : 0;
+        OnSomeoneKilled?.Invoke(CounterTerroristsKilled , TerroristsKilled);
     }
 
     private void FormatTime()

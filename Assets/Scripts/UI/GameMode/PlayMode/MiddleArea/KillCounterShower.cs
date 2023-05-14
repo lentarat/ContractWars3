@@ -10,6 +10,7 @@ public class KillCounterShower : MonoBehaviour
     private void Awake()
     {
         GameManager.Instance.OnSomeoneKilled += ShowKillCounter;
+        GameManager.Instance.UpdateKillCounter(false, false);
     }
 
     private void ShowKillCounter(int terroristsKilled, int counterTerroristsKilled)
