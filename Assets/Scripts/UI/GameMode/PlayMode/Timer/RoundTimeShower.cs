@@ -21,7 +21,6 @@ public class RoundTimeShower : MonoBehaviour
     {
         if (_countdownTime < 0f)
         {
-
             return;
         }
         _countdownTime -= Time.deltaTime;

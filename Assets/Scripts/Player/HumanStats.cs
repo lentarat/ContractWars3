@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class HumanStats : MonoBehaviour
 {
-    [SerializeField] private int _hp;
-
     public Action OnHPChanged;
     public Action OnArmorChanged;
+    public Action OnPlayerDeath;
+
+    [SerializeField] private int _hp;
 
     public int Hp { get => _hp;
         set
@@ -21,12 +22,14 @@ public class HumanStats : MonoBehaviour
             if (_hp < 0)
             {
                 _hp = 0;
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                OnPlayerDeath?.Invoke();
                 PlayerList.Instance.RemovePlayer(this);
             }
             OnHPChanged?.Invoke();
         }
     }
+
     [SerializeField] private int _armor;
     public int Armor { get => _armor;
         set
@@ -39,4 +42,13 @@ public class HumanStats : MonoBehaviour
             OnArmorChanged?.Invoke();
         }
     }
+
+    public enum Unit
+    {
+        Terrorist,
+        CounterTerrorist
+    }
+
+    [SerializeField] private Unit _teamUnit;
+    public Unit TeamUnit { get => _teamUnit; }
 }

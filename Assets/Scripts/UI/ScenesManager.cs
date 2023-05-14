@@ -5,7 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManager : MonoBehaviour
 {
-    public static ScenesManager Instance;
+    private ScenesManager() { }
+
+    private static ScenesManager _instance;
+    public static ScenesManager Instance 
+    {
+        get 
+        {
+            if (_instance == null)
+            {
+                _instance = new ScenesManager();
+            }
+            return _instance;
+        }    
+    }
 
     public enum Scene
     {
@@ -13,10 +26,10 @@ public class ScenesManager : MonoBehaviour
         Map
     }
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+    //private void Awake()
+    //{
+    //    Instance = this;
+    //}
 
     //public void LoadScene(Scene scene)
     //{
