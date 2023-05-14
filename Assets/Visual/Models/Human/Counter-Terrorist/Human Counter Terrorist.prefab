@@ -267,7 +267,10 @@ Animator:
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:LeftHandIndex1'\n\tFrom animation
+    clip 'Idle'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -352,7 +355,6 @@ MonoBehaviour:
   _mainCamera: {fileID: 7448925165473144839}
   _LerpCameraFrom: {fileID: 339651674663679006}
   _LerpCameraTo: {fileID: 339651675180442810}
-  _isPlayer: 0
 --- !u!114 &339651674687770202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,6 +428,7 @@ MonoBehaviour:
   - {fileID: 7637473788855547558, guid: deba4bec3f8d3d941946d2e36cdb4dd5, type: 3}
   - {fileID: 53908817360333297, guid: ce81caacf99d789439258dcf7d3f3fdc, type: 3}
   - {fileID: 7343674941223426357, guid: 0e716a28aa80f3c4fb39ad982dee1ee1, type: 3}
+  _animatorBot: {fileID: 6186884652107073060}
 --- !u!114 &2304377704607507307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3112,6 +3115,13 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 98a9f69196f7dbb409b48bf0d1db090f, type: 2}
+    - target: {fileID: 5866666021909216657, guid: be58f720b798fae4c8d610bc2f2e236a, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:LeftHandIndex1'\n\tFrom animation
+        clip 'Idle'"
+      objectReference: {fileID: 0}
     - target: {fileID: 6809795311792032652, guid: be58f720b798fae4c8d610bc2f2e236a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

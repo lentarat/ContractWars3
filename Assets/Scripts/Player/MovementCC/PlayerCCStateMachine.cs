@@ -107,29 +107,30 @@ public class PlayerCCStateMachine : MonoBehaviour
     private string _verticalPatameterName = "Vertical";
     private string _horizontalPatameterName = "Horizontal";
 
-    [SerializeField] private bool _isPlayer;
+    private bool _isPlayer;
 
     private void Start()
     {
-        /*if (gameObject.CompareTag("Player"))
+        if (gameObject.CompareTag("Player"))
         {
             _isPlayer = true;
-        }*/
+        }
 
         //_controller = GetComponent<CharacterController>();
-       // _animator = GetComponent<Animator>();
+        // _animator = GetComponent<Animator>();
 
         IsWalkingHash = Animator.StringToHash("IsWalking");
         IsRunningHash = Animator.StringToHash("IsRunning");
         IsJumpingHash = Animator.StringToHash("IsJumping");
         IsCrouchingHash = Animator.StringToHash("IsCrouching");
 
-       /* if (_isPlayer)
+       if (_isPlayer)
         {
-        }*/
             _jumpingButton.OnJumpButtonPressed += OnJumpClick;
             _jumpingButton.OnJumpButtonReleased += OnJumpReleased;
             _crouchButton.OnCrouchButtonPressed += OnCrouchClick;
+        }
+            
 
         _states = new PlayerStateFactory(this);
         _currentState = _states.Grounded();
@@ -139,21 +140,23 @@ public class PlayerCCStateMachine : MonoBehaviour
 
     private void OnDestroy()
     {
-       /* if (_isPlayer)
+        if (_isPlayer)
         {
-        }*/
             _jumpingButton.OnJumpButtonPressed -= OnJumpClick;
             _jumpingButton.OnJumpButtonReleased -= OnJumpReleased;
             _crouchButton.OnCrouchButtonPressed -= OnCrouchClick;
+        }
+            
     }
 
     void Update()
     {
-      /*  if (_isPlayer)
+        if (_isPlayer)
         {
-        }*/
             OnInputHandler();
             _currentState.UpdateStates();
+        }
+            
     }
 
     private void OnInputHandler()

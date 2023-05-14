@@ -23,20 +23,16 @@ public class RespawnManager : MonoBehaviour
 
     public void RespawnPlayer(HumanStats player, bool isPlayer)
     {
-        //TimeLeftToRespawn = _initialTimeLeftToRespawn;
         StartCoroutine(RespawnCountdown(player, isPlayer, _initialTimeLeftToRespawn));
     }
 
     private IEnumerator RespawnCountdown(HumanStats playerToRespawn, bool isPlayer, float timeLeftToRespawn)
     {
-        //TimeLeftToRespawn = _initialTimeLeftToRespawn;
-        //SetDeathMode(true);
 
-        //OnPlayerRespawn?.Invoke();
 
         if (isPlayer)
         {
-            //UpdateRespawnPanel(false,Ti);
+
             ShowRespawnPanel(true);
         }
 
@@ -54,7 +50,6 @@ public class RespawnManager : MonoBehaviour
         {
             if (playerToRespawn.TeamUnit == HumanStats.Unit.CounterTerrorist)
             {
-                //OnCountdownElapsed?.Invoke(ChooseUnit.Unit.CounterTerrorist, true);
                 _playerListCreator.SpawnHuman(ChooseUnit.Unit.CounterTerrorist, true);
             }
             else
@@ -75,27 +70,10 @@ public class RespawnManager : MonoBehaviour
                 _playerListCreator.SpawnHuman(ChooseUnit.Unit.Terrorist, false);
             }
         }
-        //if (player.TeamUnit == HumanStats.Unit.CounterTerrorist)
-        //{
-        //    OnCountdownElapsed?.Invoke(ChooseUnit.Unit.CounterTerrorist, false);
-        //}
-        //else
-        //{
-        //    OnCountdownElapsed?.Invoke(ChooseUnit.Unit.Terrorist, false);
-        //}
-        //PlayerList.Instance.Players.Add(playerToRespawn);
-        //SetDeathMode(false);
+
     }
 
-    ////private void UpdateRespawnPanel(bool state, float timeLeftToCloseUI)
-    ////{
-    ////    TimeLeftToCloseUI = timeLeftToCloseUI;
-    ////    if (_respawnPanel.activeInHierarchy != state)
-    ////    {
-    ////        ShowRespawnPanel(state);
-    ////        Debug.Log("showing");
-    ////    }
-    ////}
+
 
     private void ShowRespawnPanel(bool state)
     {
@@ -103,11 +81,3 @@ public class RespawnManager : MonoBehaviour
     }
 }
 
-//public class WaitToRespawn
-//{
-//    private WaitToRespawn(float timeToRespawn)
-//    {
-
-//    }
-//    public int Seconds;
-//}

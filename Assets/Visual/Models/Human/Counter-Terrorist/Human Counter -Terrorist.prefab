@@ -202,7 +202,10 @@ Animator:
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:LeftHandIndex1'\n\tFrom animation
+    clip 'Idle'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -279,8 +282,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentWeapon: {fileID: 6179937821750235070}
   _cameraTransform: {fileID: 0}
+  _headOffset: {x: 0, y: 0, z: 0}
   _shootButton: {fileID: 5935343947401054850}
-  _trowGrenadeButton: {fileID: 1912400697850837072}
+  _throwGrenadeButton: {fileID: 0}
 --- !u!114 &339651674687770205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 100
   _armor: 100
+  _teamUnit: 0
 --- !u!114 &5485192770945430797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +320,8 @@ MonoBehaviour:
   _navMeshController: {fileID: 0}
   _navMeshAgent: {fileID: 0}
   _capsuleCollider: {fileID: 0}
+  _fieldOfView: {fileID: 0}
+  _FSMController: {fileID: 0}
 --- !u!114 &4763279339566159946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _navMeshAgent: {fileID: 5844763217439571475}
   _pathPoints: []
+  _animatorBot: {fileID: 6186884652107073060}
 --- !u!195 &5844763217439571475
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1237,8 +1245,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2772bcbc7a1883f4b91c951d0a316426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mouseX: 0
-  _mouseY: 0
   _sensitivity: 20
   _playerBody: {fileID: 233085587116350558}
   _camera: {fileID: 6330689467097167383}
@@ -3049,11 +3055,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7234142406172747337, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
---- !u!1 &1912400697850837072 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3220200874862745891, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
-  m_PrefabInstance: {fileID: 3907512519564140915}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5935343947347144054 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7234142405617191941, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
