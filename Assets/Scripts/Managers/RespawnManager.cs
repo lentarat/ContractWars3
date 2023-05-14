@@ -14,7 +14,7 @@ public class RespawnManager : MonoBehaviour
     [SerializeField] private GameObject _respawnPanel;
 
     [SerializeField] private float _initialTimeLeftToRespawn;
-    public float TimeLeftToRespawn { get; set; }
+    public float TimeLeftToCloseUI { get; set; }
 
     private void Awake()
     {
@@ -23,25 +23,30 @@ public class RespawnManager : MonoBehaviour
 
     public void RespawnPlayer(HumanStats player, bool isPlayer)
     {
-        TimeLeftToRespawn = _initialTimeLeftToRespawn;
-        StartCoroutine(RespawnCountdown(player, isPlayer));
+        //TimeLeftToRespawn = _initialTimeLeftToRespawn;
+        StartCoroutine(RespawnCountdown(player, isPlayer, _initialTimeLeftToRespawn));
     }
 
-    private IEnumerator RespawnCountdown(HumanStats playerToRespawn, bool isPlayer)
+    private IEnumerator RespawnCountdown(HumanStats playerToRespawn, bool isPlayer, float timeLeftToRespawn)
     {
-        TimeLeftToRespawn = _initialTimeLeftToRespawn;
+        //TimeLeftToRespawn = _initialTimeLeftToRespawn;
         //SetDeathMode(true);
 
         //OnPlayerRespawn?.Invoke();
 
         if (isPlayer)
         {
+            //UpdateRespawnPanel(false,Ti);
             ShowRespawnPanel(true);
         }
 
-        while (TimeLeftToRespawn > 0f)
+        while (timeLeftToRespawn > 0f)
         {
-            TimeLeftToRespawn -= Time.deltaTime;
+            timeLeftToRespawn -= Time.deltaTime;
+            if (isPlayer)
+            {
+                TimeLeftToCloseUI = timeLeftToRespawn;
+            }
             yield return null;
         }
 
@@ -56,6 +61,7 @@ public class RespawnManager : MonoBehaviour
             {
                 _playerListCreator.SpawnHuman(ChooseUnit.Unit.Terrorist, true);
             }
+            //UpdateRespawnPanel(false);
             ShowRespawnPanel(false);
         }
         else
@@ -80,6 +86,16 @@ public class RespawnManager : MonoBehaviour
         //PlayerList.Instance.Players.Add(playerToRespawn);
         //SetDeathMode(false);
     }
+
+    ////private void UpdateRespawnPanel(bool state, float timeLeftToCloseUI)
+    ////{
+    ////    TimeLeftToCloseUI = timeLeftToCloseUI;
+    ////    if (_respawnPanel.activeInHierarchy != state)
+    ////    {
+    ////        ShowRespawnPanel(state);
+    ////        Debug.Log("showing");
+    ////    }
+    ////}
 
     private void ShowRespawnPanel(bool state)
     {
