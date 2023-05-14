@@ -12,20 +12,21 @@ public class ChooseUnit : MonoBehaviour
 
     public enum Unit
     {
-        Ct,
-        T
+        CounterTerrorist,
+        Terrorist
     }
 
     private void Awake()
     {
-        _ctUnit.onClick.AddListener(() => SetChosenUnit(Unit.Ct));
-        _tUnit.onClick.AddListener(() => SetChosenUnit(Unit.T));
+        _ctUnit.onClick.AddListener(() => SetChosenUnit(Unit.CounterTerrorist));
+        _tUnit.onClick.AddListener(() => SetChosenUnit(Unit.Terrorist));
     }
 
     private void SetChosenUnit(Unit unit)
     {
         OnUnitChosen?.Invoke(unit);
         gameObject.SetActive(false);
+        GameManager.Instance.CurrentGameState = GameManager.GameState.Play;
     }
 }
 

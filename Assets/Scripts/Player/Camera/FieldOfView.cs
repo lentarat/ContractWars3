@@ -49,7 +49,7 @@ public class FieldOfView : MonoBehaviour
     {
         foreach (var human in PlayerList.Instance.Players)
         {
-            if(human.gameObject == gameObject || _teamUnit == human.TeamUnit)
+            if(human == null || human.gameObject == gameObject || _teamUnit == human.TeamUnit  )
             {
                 continue;
             }

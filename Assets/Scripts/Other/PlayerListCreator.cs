@@ -21,50 +21,98 @@ public class PlayerListCreator : MonoBehaviour
 
     private void Awake()
     {
-        _chooseUnit.OnUnitChosen += AddPlayer;
+        _chooseUnit.OnUnitChosen += InitializePlayerList;
        
 
     }
     private void Start()
     {
-        _chooseUnit.OnUnitChosen += SetPlayers;
-        
+        //_chooseUnit.OnUnitChosen += SetPlayers;
+        //RespawnManager.Instance.OnCountdownElapsed += SpawnHuman;
     }
 
     private void OnDestroy()
     {
-        _chooseUnit.OnUnitChosen -= AddPlayer;
-        _chooseUnit.OnUnitChosen -= SetPlayers;
+        _chooseUnit.OnUnitChosen -= InitializePlayerList;
+        //_chooseUnit.OnUnitChosen -= SetPlayers;
+        //RespawnManager.Instance.OnCountdownElapsed -= SpawnHuman;
 
     }
 
-    private void AddPlayer(ChooseUnit.Unit unit)
+    //private void AddPlayer(ChooseUnit.Unit unit)
+    //{
+    //    if (unit == ChooseUnit.Unit.CounterTerrorist)
+    //    {
+    //        //Instantiate(_ctBody, _ctPlayersHolder).tag = "Player";
+    //        Instantiate(_ctBody, _ctPlayersHolder).tag = "Player";
+
+    //    }
+    //    else
+    //    {
+    //        //Instantiate(_tBody, _tPlayersHolder).tag = "Player";
+    //        //Instantiate(_tBody, _tPlayersHolder).tag = "Player";
+    //        Instantiate(_tBody, _tBotsSpawnPoints[Random.Range(0, 5)].position, Quaternion.identity, _tBotsHolder);
+    //    }
+
+    //    //creating bots after players
+
+    //    for (int i = _tPlayersHolder.GetComponentsInChildren<WeaponController>().Length; i < _tMaxNumber; i++)
+    //    {
+    //        //var randomSpawnPosition = new Vector3(Random.Range(4, 16), 1, Random.Range(-17, -19));
+    //        Instantiate(_tBody, _tBotsSpawnPoints[Random.Range(0,5)].position, Quaternion.identity, _tBotsHolder);
+    //    }
+    //    for (int i = _ctPlayersHolder.GetComponentsInChildren<WeaponController>().Length; i < _ctMaxNumber; i++)
+    //    {
+    //        Instantiate(_ctBody, _ctBotsSpawnPoints[Random.Range(0, 5)].position, Quaternion.identity, _ctBotsHolder);
+    //    }
+    //}
+  
+    public void SpawnHuman(ChooseUnit.Unit unit, bool isPlayer)
     {
-        if (unit == ChooseUnit.Unit.Ct)
+        GameObject spawnedPlayer;
+        if (unit == ChooseUnit.Unit.CounterTerrorist)
         {
-            Instantiate(_ctBody, _ctPlayersHolder).tag = "Player";
+            spawnedPlayer = Instantiate(_ctBody, _ctBotsSpawnPoints[Random.Range(0, 5)].position, Quaternion.identity, _ctBotsHolder);
+            if (isPlayer)
+            {
+                spawnedPlayer.tag = "Player";
+                spawnedPlayer.transform.SetParent(_ctPlayersHolder);
+            }
         }
         else
         {
-            Instantiate(_tBody, _tPlayersHolder).tag = "Player";
+            spawnedPlayer = Instantiate(_tBody, _tBotsSpawnPoints[Random.Range(0, 5)].position, Quaternion.identity, _tBotsHolder);
+            if (isPlayer)
+            {
+                spawnedPlayer.tag = "Player";
+                spawnedPlayer.transform.SetParent(_tPlayersHolder);
+            }
         }
-        
+        PlayerList.Instance.Players.Add(spawnedPlayer?.GetComponent<HumanStats>());
+    }
+
+    private void InitializePlayerList(ChooseUnit.Unit unit)
+    {
+        SpawnHuman(unit, true);
+
         //creating bots after players
 
         for (int i = _tPlayersHolder.GetComponentsInChildren<WeaponController>().Length; i < _tMaxNumber; i++)
         {
+            //Debug.Log()
             //var randomSpawnPosition = new Vector3(Random.Range(4, 16), 1, Random.Range(-17, -19));
-            Instantiate(_tBody, _tBotsSpawnPoints[Random.Range(0,5)].position, Quaternion.identity, _tBotsHolder);
+            SpawnHuman(ChooseUnit.Unit.Terrorist, false);
         }
         for (int i = _ctPlayersHolder.GetComponentsInChildren<WeaponController>().Length; i < _ctMaxNumber; i++)
         {
-            Instantiate(_ctBody, _ctBotsSpawnPoints[Random.Range(0, 5)].position, Quaternion.identity, _ctBotsHolder);
+            SpawnHuman(ChooseUnit.Unit.CounterTerrorist, false);
         }
     }
 
-    private void SetPlayers(ChooseUnit.Unit unit)
-    {
-        HumanStats[] players = gameObject.GetComponentsInChildren<HumanStats>();
-        PlayerList.Instance.SetPlayersOnTheMap(players);
-    }
+
+    //private void SetPlayers(ChooseUnit.Unit unit)
+    //{
+    //    HumanStats[] players = gameObject.GetComponentsInChildren<HumanStats>();
+    //    PlayerList.Instance.SetPlayersOnTheMap(players);
+    //}
 }
