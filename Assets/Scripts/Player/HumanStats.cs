@@ -7,7 +7,7 @@ public class HumanStats : MonoBehaviour
 {
     public Action OnHPChanged;
     public Action OnArmorChanged;
-    public Action OnPlayerDeath;
+    //public Action OnPlayerDeath;
 
     [SerializeField] private int _hp;
 
@@ -24,12 +24,16 @@ public class HumanStats : MonoBehaviour
                 _hp = 0;
                 if (TeamUnit == Unit.CounterTerrorist)
                 {
-                    GameManager.Instance.UpdateKillCounter(GameManager.Instance.TerroristsKilled++, GameManager.Instance.CounterTerroristsKilled++);
+                    GameManager.Instance.UpdateKillCounter(false, true);
+                }
+                else
+                {
+                    GameManager.Instance.UpdateKillCounter(true, false);
                 }
                 RespawnManager.Instance.RespawnPlayer(this, CompareTag("Player"));
                 PlayerList.Instance.RemovePlayer(this);
                 Destroy(gameObject);
-                OnPlayerDeath?.Invoke();
+                //OnPlayerDeath?.Invoke();
             }
             OnHPChanged?.Invoke();
         }
