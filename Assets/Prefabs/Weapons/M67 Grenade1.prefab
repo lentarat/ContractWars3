@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4010283060500416011}
   - component: {fileID: 2454829157566894}
   - component: {fileID: 2876762148187094372}
-  - component: {fileID: -7761452725847219203}
   - component: {fileID: 8861968278734990217}
   - component: {fileID: 1095455044163531590}
   - component: {fileID: 8053863279254000678}
+  - component: {fileID: 5510775559030952822}
   m_Layer: 10
   m_Name: M67 Grenade1
   m_TagString: Untagged
@@ -91,22 +91,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &-7761452725847219203
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4390081230907153585}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!135 &8861968278734990217
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -162,3 +146,19 @@ MonoBehaviour:
   _forwardForce: 8
   _upwardForce: 4
   _cam: {fileID: 0}
+--- !u!54 &5510775559030952822
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390081230907153585}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

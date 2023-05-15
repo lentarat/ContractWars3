@@ -29,7 +29,7 @@ public class WeaponController : MonoBehaviour
         if (Time.time > _lastTimeShot + 1f / CurrentWeapon.FireRate)
         {
             _lastTimeShot = Time.time;
-            if (Physics.Raycast(transform.position + _headOffset, transform.forward, out RaycastHit hit))
+            if (Physics.Raycast(transform.position + transform.forward + _headOffset , transform.forward, out RaycastHit hit))
             {
                 if (hit.collider.gameObject.TryGetComponent<HumanStats>(out HumanStats humanStats))
                 {
@@ -114,5 +114,7 @@ public class WeaponController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawRay(transform.position + _headOffset, transform.forward);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(transform.position + transform.forward + _headOffset, transform.forward);
     }
 }
