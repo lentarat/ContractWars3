@@ -19,12 +19,13 @@ public class MapChoose : MonoBehaviour
 
     private void SaveMapName(string mapName)
     {
+        Debug.Log(mapName + " " + ChosenMapName);
         ChosenMapName = mapName;
         StartGame();
     }
 
     private void StartGame()
     {
-        ScenesManager.Instance.LoadMap();
+        ScenesManager.Instance.LoadGame();
     }
 }

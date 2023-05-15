@@ -26,8 +26,9 @@ public class ScenesManager
         Map
     }
 
-    public void LoadMap()
+    public void LoadGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(Scene.Map.ToString());
     }
     

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get => _instance; private set => _instance = value; }
 
+    [SerializeField] private Camera _previewMapCamera;
     [SerializeField] private UIModeController _uiModeController;
     [SerializeField] private GameObject _mapParent;
     
@@ -53,10 +54,7 @@ public class GameManager : MonoBehaviour
 
             if (_countdownTime < 0f)
             {
-                CurrentGameState = GameState.EndOfRound;
-                _countdownTime = 0f;
-                //OnRoundCountdownElapsed?.Invoke();
-                _uiModeController.ChangeUIMode(UIModeController.UIMode.EndOfRound);
+                HandleCountdownElapsed();
             }
 
             if (_seconds != (int)_countdownTime)
@@ -68,18 +66,11 @@ public class GameManager : MonoBehaviour
             FormatTime();
         }
     }
-
     public void UpdateKillCounter(bool isTerroristKilled, bool isCounterTerroristKilled)
     {
         CounterTerroristsKilled += isCounterTerroristKilled ? 1 : 0;
         TerroristsKilled += isTerroristKilled ? 1 : 0;
-        OnSomeoneKilled?.Invoke(CounterTerroristsKilled , TerroristsKilled);
-    }
-
-    private void FormatTime()
-    {
-        _minutes = (int)(_countdownTime / 60f);
-        _seconds = (int)_countdownTime % 60;
+        OnSomeoneKilled?.Invoke(CounterTerroristsKilled, TerroristsKilled);
     }
 
     private void LoadMap()
@@ -90,8 +81,24 @@ public class GameManager : MonoBehaviour
             Destroy(go.gameObject);
         }
 
+        Debug.Log(MapChoose.ChosenMapName);
         GameObject loadedMap = Instantiate(Resources.Load(_mapsPath + MapChoose.ChosenMapName), _mapParent.transform) as GameObject;
         loadedMap.name = MapChoose.ChosenMapName;
+    }
+
+    private void HandleCountdownElapsed()
+    {
+        _countdownTime = 0f;
+        CurrentGameState = GameState.EndOfRound;
+        _uiModeController.SetUIModeActive(UIModeController.UIMode.EndOfRound, true);
+        OnRoundCountdownElapsed?.Invoke();
+        Time.timeScale = 0;
+    }
+
+    private void FormatTime()
+    {
+        _minutes = (int)(_countdownTime / 60f);
+        _seconds = (int)_countdownTime % 60;
     }
 }
 

@@ -7,8 +7,10 @@ public class UIModeController : MonoBehaviour
     [SerializeField] private GameObject _chooseMode;
     [SerializeField] private GameObject _restartMode;
     [SerializeField] private GameObject _endOfRoundMode;
+    
+    //[SerializeField] private PreparePlayer _preparePlayer;
 
-    private UIMode _currentUIMode;
+    private UIMode _currentUIMode = UIMode.Restart;
 
     public enum UIMode
     {
@@ -16,44 +18,14 @@ public class UIModeController : MonoBehaviour
         UnitChoose,
         EndOfRound
     }
-
-    //public void SetAllUIModesInactive()
-    //{
-    //    _chooseMode.SetActive(false);
-    //}
-    public void SetUIModeInactive(UIMode uiMode)
+    
+    public void SetUIModeActive(UIMode uiMode, bool state)
     {
-        switch (uiMode)
+        if (_currentUIMode != uiMode)
         {
-            case UIMode.UnitChoose:
-                {
-                    _chooseMode.SetActive(false);
-                }
-                break;
-            case UIMode.Restart:
-                {
-                    _restartMode.SetActive(false);
-                }
-                break;
-            case UIMode.EndOfRound:
-                {
-                    _endOfRoundMode.SetActive(false);
-                }
-                break;
-            default:
-                { Debug.Log("null"); break; }
+            SetUIModeActive(_currentUIMode, false);
+            _currentUIMode = uiMode;
         }
-    }
-
-    public void ChangeUIMode(UIMode uiMode)
-    {
-        SetUIModeActive(_currentUIMode, false);
-        _currentUIMode = uiMode;
-        SetUIModeActive(uiMode, true);
-    }
-
-    private void SetUIModeActive(UIMode uiMode, bool state)
-    {
         switch (uiMode)
         {
             case UIMode.UnitChoose:

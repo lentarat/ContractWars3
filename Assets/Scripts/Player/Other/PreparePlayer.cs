@@ -15,7 +15,6 @@ public class PreparePlayer : MonoBehaviour
     [SerializeField] private CapsuleCollider _capsuleCollider;
     [SerializeField] private FieldOfView _fieldOfView;
     [SerializeField] private FSMController _FSMController;
-    //[SerializeField] private AudioListener _audioListener;
 
     private void Start()
     {
@@ -31,7 +30,16 @@ public class PreparePlayer : MonoBehaviour
             _capsuleCollider.enabled = false;
             _fieldOfView.enabled = false;
             _FSMController.enabled = false;
-            //_audioListener.enabled = false;
+
+            GameManager.Instance.OnRoundCountdownElapsed += () => { HandlePlayerToRespawn(false); };
+
+            RespawnManager.Instance.OnPlayerRespawned += () => { HandlePlayerToRespawn(true); };
         }
-    }    
+    }
+
+    private void HandlePlayerToRespawn(bool state)
+    {
+        _ui.SetActive(state);
+        _cameraHolder.SetActive(state);
+    }
 }

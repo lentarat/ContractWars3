@@ -15,6 +15,9 @@ public class RespawnManager : MonoBehaviour
     //[SerializeField] private GameObject _respawnPanel;
 
     [SerializeField] private float _initialTimeLeftToRespawn;
+
+    public System.Action OnPlayerRespawned;
+
     public float TimeLeftToCloseUI { get; set; }
 
     private void Awake()
@@ -30,14 +33,8 @@ public class RespawnManager : MonoBehaviour
 
     private IEnumerator RespawnCountdown(HumanStats playerToRespawn, bool isPlayer, float timeLeftToRespawn)
     {
-        //TimeLeftToRespawn = _initialTimeLeftToRespawn;
-        //SetDeathMode(true);
-
-        //OnPlayerRespawn?.Invoke();
-
         if (isPlayer)
         {
-            //UpdateRespawnPanel(false,Ti);
             ShowRespawnPanel(true);
         }
 
@@ -47,6 +44,7 @@ public class RespawnManager : MonoBehaviour
             if (isPlayer)
             {
                 TimeLeftToCloseUI = timeLeftToRespawn;
+                OnPlayerRespawned?.Invoke();
             }
             yield return null;
         }
@@ -55,14 +53,12 @@ public class RespawnManager : MonoBehaviour
         {
             if (playerToRespawn.TeamUnit == HumanStats.Unit.CounterTerrorist)
             {
-                //OnCountdownElapsed?.Invoke(ChooseUnit.Unit.CounterTerrorist, true);
                 _playerListCreator.SpawnHuman(ChooseUnit.Unit.CounterTerrorist, true);
             }
             else
             {
                 _playerListCreator.SpawnHuman(ChooseUnit.Unit.Terrorist, true);
             }
-            //UpdateRespawnPanel(false);
             ShowRespawnPanel(false);
         }
         else
@@ -79,11 +75,14 @@ public class RespawnManager : MonoBehaviour
     }
     private void ShowRespawnPanel(bool state)
     {
-        if (state == false)
+        if (state)
         {
-            _uiModeController.SetUIModeInactive(UIModeController.UIMode.Restart);
+            _uiModeController.SetUIModeActive(UIModeController.UIMode.Restart, true);
         }
-        _uiModeController.ChangeUIMode(UIModeController.UIMode.Restart);
+        else
+        {
+            _uiModeController.SetUIModeActive(UIModeController.UIMode.Restart, false);
+        }
         //_respawnPanel.SetActive(state);
     }
 }
