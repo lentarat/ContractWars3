@@ -1975,7 +1975,7 @@ MonoBehaviour:
   _previewMapCamera: {fileID: 1856260214}
   _uiModeController: {fileID: 246521864}
   _mapParent: {fileID: 588640548}
-  _roundTime: 5
+  _roundTime: 15
 --- !u!4 &1816133785
 Transform:
   m_ObjectHideFlags: 0

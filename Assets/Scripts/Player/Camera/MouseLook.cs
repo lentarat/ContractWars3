@@ -6,15 +6,25 @@ using UnityEngine.EventSystems;
 
 public class MouseLook : MonoBehaviour
 {
-    [SerializeField] private float _sensitivity;
     [SerializeField] private Transform _playerBody;
     [SerializeField] private Camera _camera;
 
+    [SerializeField] private float _sensitivity ;
     private float _xRot;
     private float _yRot;
 
+    private void Start()
+    {
+
+        JsonReadWriteSystem.Instance.LoadFromJson();
+        _sensitivity = JsonReadWriteSystem.Instance.Sensitivity.value;
+
+        Debug.Log(JsonReadWriteSystem.Instance.Sensitivity.value);
+    }
+
     void LateUpdate()
     {
+        
         if (Input.touchCount > 0)
         {
             if (EventSystem.current.IsPointerOverGameObject(0))
