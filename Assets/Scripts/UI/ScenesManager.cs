@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScenesManager : MonoBehaviour
+public class ScenesManager
 {
     private ScenesManager() { }
 
@@ -26,20 +26,11 @@ public class ScenesManager : MonoBehaviour
         Map
     }
 
-    //private void Awake()
-    //{
-    //    Instance = this;
-    //}
-
-    //public void LoadScene(Scene scene)
-    //{
-    //    SceneManager.LoadScene(scene.ToString());
-    //}
-
     public void LoadMap()
     {
         SceneManager.LoadScene(Scene.Map.ToString());
     }
+    
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(Scene.MainMenu.ToString());

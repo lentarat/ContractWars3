@@ -10,12 +10,14 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get => _instance; private set => _instance = value; }
 
+    [SerializeField] private UIModeController _uiModeController;
     [SerializeField] private GameObject _mapParent;
+    
     [SerializeField] private float _roundTime;
 
     public System.Action<int, int> OnSecondElapsed;
-    //public System.Action OnTimerCountdownOver;
     public System.Action<int, int> OnSomeoneKilled;
+    public System.Action OnRoundCountdownElapsed;
 
     public GameState CurrentGameState { get; set; }
     public int TerroristsKilled { get; set; }
@@ -30,7 +32,7 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         MapChoose,
-        Pause,
+        EndOfRound,
         Play
     }
 
@@ -51,7 +53,10 @@ public class GameManager : MonoBehaviour
 
             if (_countdownTime < 0f)
             {
-                //OnTimerCountdownOver?.Invoke();
+                CurrentGameState = GameState.EndOfRound;
+                _countdownTime = 0f;
+                //OnRoundCountdownElapsed?.Invoke();
+                _uiModeController.ChangeUIMode(UIModeController.UIMode.EndOfRound);
             }
 
             if (_seconds != (int)_countdownTime)
@@ -66,7 +71,6 @@ public class GameManager : MonoBehaviour
 
     public void UpdateKillCounter(bool isTerroristKilled, bool isCounterTerroristKilled)
     {
-        //OnSomeoneKilled?.Invoke(CounterTerroristsKilled + (isCounterTerroristKilled ? 1 : 0 ), TerroristsKilled + (isTerroristKilled ? 1 : 0));
         CounterTerroristsKilled += isCounterTerroristKilled ? 1 : 0;
         TerroristsKilled += isTerroristKilled ? 1 : 0;
         OnSomeoneKilled?.Invoke(CounterTerroristsKilled , TerroristsKilled);
@@ -85,7 +89,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(go.gameObject);
         }
-        Instantiate(Resources.Load(_mapsPath + MapChoose.ChosenMapName), _mapParent.transform).name = MapChoose.ChosenMapName;
+
+        GameObject loadedMap = Instantiate(Resources.Load(_mapsPath + MapChoose.ChosenMapName), _mapParent.transform) as GameObject;
+        loadedMap.name = MapChoose.ChosenMapName;
     }
 }
 

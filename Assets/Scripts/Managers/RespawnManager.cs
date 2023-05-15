@@ -11,7 +11,8 @@ public class RespawnManager : MonoBehaviour
     public static RespawnManager Instance { get => _instance; private set => _instance = value; }
 
     [SerializeField] private PlayerListCreator _playerListCreator;
-    [SerializeField] private GameObject _respawnPanel;
+    [SerializeField] private UIModeController _uiModeController;
+    //[SerializeField] private GameObject _respawnPanel;
 
     [SerializeField] private float _initialTimeLeftToRespawn;
     public float TimeLeftToCloseUI { get; set; }
@@ -75,39 +76,14 @@ public class RespawnManager : MonoBehaviour
                 _playerListCreator.SpawnHuman(ChooseUnit.Unit.Terrorist, false);
             }
         }
-        //if (player.TeamUnit == HumanStats.Unit.CounterTerrorist)
-        //{
-        //    OnCountdownElapsed?.Invoke(ChooseUnit.Unit.CounterTerrorist, false);
-        //}
-        //else
-        //{
-        //    OnCountdownElapsed?.Invoke(ChooseUnit.Unit.Terrorist, false);
-        //}
-        //PlayerList.Instance.Players.Add(playerToRespawn);
-        //SetDeathMode(false);
     }
-
-    ////private void UpdateRespawnPanel(bool state, float timeLeftToCloseUI)
-    ////{
-    ////    TimeLeftToCloseUI = timeLeftToCloseUI;
-    ////    if (_respawnPanel.activeInHierarchy != state)
-    ////    {
-    ////        ShowRespawnPanel(state);
-    ////        Debug.Log("showing");
-    ////    }
-    ////}
-
     private void ShowRespawnPanel(bool state)
     {
-        _respawnPanel.SetActive(state);
+        if (state == false)
+        {
+            _uiModeController.SetUIModeInactive(UIModeController.UIMode.Restart);
+        }
+        _uiModeController.ChangeUIMode(UIModeController.UIMode.Restart);
+        //_respawnPanel.SetActive(state);
     }
 }
-
-//public class WaitToRespawn
-//{
-//    private WaitToRespawn(float timeToRespawn)
-//    {
-
-//    }
-//    public int Seconds;
-//}

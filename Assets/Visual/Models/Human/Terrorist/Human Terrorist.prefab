@@ -2770,6 +2770,10 @@ PrefabInstance:
       propertyPath: _grenade
       value: 
       objectReference: {fileID: 1437584518253612878}
+    - target: {fileID: 1597148817166351052, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
+      propertyPath: m_Name
+      value: TerroritstsKilled
+      objectReference: {fileID: 0}
     - target: {fileID: 1739562395624805749, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -3102,6 +3106,10 @@ PrefabInstance:
       propertyPath: WeaponInSlot
       value: 
       objectReference: {fileID: 4732945077423229217}
+    - target: {fileID: 8900933469477359097, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
+      propertyPath: m_Name
+      value: CounterTerroritstsKilled
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7234142406172747337, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}

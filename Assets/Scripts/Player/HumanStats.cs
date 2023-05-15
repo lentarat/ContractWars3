@@ -21,19 +21,7 @@ public class HumanStats : MonoBehaviour
             }
             if (_hp < 0)
             {
-                _hp = 0;
-                if (TeamUnit == Unit.CounterTerrorist)
-                {
-                    GameManager.Instance.UpdateKillCounter(false, true);
-                }
-                else
-                {
-                    GameManager.Instance.UpdateKillCounter(true, false);
-                }
-                RespawnManager.Instance.RespawnPlayer(this, CompareTag("Player"));
-                PlayerList.Instance.RemovePlayer(this);
-                Destroy(gameObject);
-                //OnPlayerDeath?.Invoke();
+                SimulateDeath();
             }
             OnHPChanged?.Invoke();
         }
@@ -61,5 +49,18 @@ public class HumanStats : MonoBehaviour
     [SerializeField] private Unit _teamUnit;
     public Unit TeamUnit { get => _teamUnit; }
 
-    //[HideInInspector] public string Tag { get; set; }
+    private void SimulateDeath()
+    {
+        if (TeamUnit == Unit.CounterTerrorist)
+        {
+            GameManager.Instance.UpdateKillCounter(false, true);
+        }
+        else
+        {
+            GameManager.Instance.UpdateKillCounter(true, false);
+        }
+        RespawnManager.Instance.RespawnPlayer(this, CompareTag("Player"));
+        PlayerList.Instance.RemovePlayer(this);
+        Destroy(gameObject);
+    }
 }
