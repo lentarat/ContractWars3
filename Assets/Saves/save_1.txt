@@ -1,1 +1,1 @@
-{"Volume":0.0,"Music":0.0,"Sensitivity":13.66796875}
+{"Volume":0.0,"Music":0.0,"Sensitivity":8.324317932128907}
