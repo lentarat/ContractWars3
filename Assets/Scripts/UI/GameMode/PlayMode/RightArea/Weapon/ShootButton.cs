@@ -9,10 +9,14 @@ public class ShootButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private IEnumerator _shootCoroutine;
     private float _timeWhenStoppedShooting;
+    private GameObject muzzle;
 
     private void Awake()
     {
         _shootCoroutine = Shoot();
+        //_weaponController.CurrentWeapon.ShootVFX.gameObject.transform.position = _weaponController.CurrentWeapon.PositionToMuzzle.transform.position;
+        //_weaponController.CurrentWeapon.ShootVFX.gameObject.transform.rotation = _weaponController.CurrentWeapon.PositionToMuzzle.transform.rotation;
+
     }
 
 
@@ -20,12 +24,17 @@ public class ShootButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerDown(PointerEventData pointerEventData)
     {
         StartCoroutine(_shootCoroutine);
-
+        _weaponController.CurrentWeapon.ShootVFX.gameObject.SetActive(true);
+        
     }
 
     public void OnPointerUp(PointerEventData pointerEventData)
     {
         StopCoroutine(_shootCoroutine);
+        
+        _weaponController.CurrentWeapon.ShootVFX.gameObject.SetActive(false);
+
+
     }
 
     private IEnumerator Shoot()
@@ -33,6 +42,7 @@ public class ShootButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         while (true)
         {
             _weaponController.Shoot();
+
             yield return null;
         }
     }

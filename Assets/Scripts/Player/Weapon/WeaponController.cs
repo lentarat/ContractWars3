@@ -42,6 +42,7 @@ public class WeaponController : MonoBehaviour
             }
 
             CurrentWeapon.ShootSFX.Play();
+            
             SubtractABullet();
         }
     }
