@@ -796,6 +796,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _winnerText: {fileID: 1294483356}
+  _counterTerroristColor: {r: 0.13333334, g: 0.56078434, b: 0.9137255, a: 1}
+  _terroristColor: {r: 0.93333334, g: 0.6117647, b: 0.10980392, a: 1}
 --- !u!114 &503660148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,7 +1977,7 @@ MonoBehaviour:
   _previewMapCamera: {fileID: 1856260214}
   _uiModeController: {fileID: 246521864}
   _mapParent: {fileID: 588640548}
-  _roundTime: 12
+  _roundTime: 70
 --- !u!4 &1816133785
 Transform:
   m_ObjectHideFlags: 0
@@ -2005,7 +2007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerListCreator: {fileID: 267954998}
   _uiModeController: {fileID: 246521864}
-  _initialTimeLeftToRespawn: 8
+  _initialTimeLeftToRespawn: 5
 --- !u!1 &1853073390
 GameObject:
   m_ObjectHideFlags: 0

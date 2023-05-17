@@ -362,9 +362,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2772bcbc7a1883f4b91c951d0a316426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sensitivity: 20
   _playerBody: {fileID: 530375666991959740}
   _camera: {fileID: 530375665324548499}
+  _sensitivity: 20
 --- !u!1 &530375665483465240
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentWeapon: {fileID: 8975323412171084069}
   _cameraTransform: {fileID: 530375665324548508}
-  _headOffset: {x: 0, y: 0.7, z: 0}
+  _headOffset: {x: 0, y: 1, z: 0}
   _shootButton: {fileID: 4353151983733379763}
   _throwGrenadeButton: {fileID: 8411920604545310817}
 --- !u!114 &530375666991959621
@@ -6419,6 +6419,14 @@ PrefabInstance:
       propertyPath: WeaponInSlot
       value: 
       objectReference: {fileID: 3829570503544194397}
+    - target: {fileID: 7234142405287601822, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234142405287601822, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6666667
+      objectReference: {fileID: 0}
     - target: {fileID: 7234142405375427892, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
       propertyPath: _weaponManager
       value: 
@@ -6507,6 +6515,14 @@ PrefabInstance:
       propertyPath: WeaponInSlot
       value: 
       objectReference: {fileID: 8691582366656242213}
+    - target: {fileID: 7234142406946022256, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234142406946022256, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6666667
+      objectReference: {fileID: 0}
     - target: {fileID: 8503501394156903162, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
       propertyPath: WeaponInSlot
       value: 

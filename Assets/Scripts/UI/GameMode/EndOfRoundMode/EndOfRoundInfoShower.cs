@@ -7,14 +7,30 @@ using UnityEngine.UI;
 public class EndOfRoundInfoShower : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _winnerText;
+    [SerializeField] private Color _counterTerroristColor;
+    [SerializeField] private Color _terroristColor;
 
     private void Awake()
     {
-        //GameManager.Instance.OnRoundCountdownElapsed += SetMeActive;
+        AssignWinner(); 
+    }
 
-        
+    private void AssignWinner()
+    {
+        if (GameManager.Instance.CounterTerroristsKilled > GameManager.Instance.TerroristsKilled)
+        {
+            _winnerText.text = "Terrorists win";
+            _winnerText.color = _terroristColor;
+        }
+        else if (GameManager.Instance.CounterTerroristsKilled < GameManager.Instance.TerroristsKilled)
+        {
+            _winnerText.text = "Counter-Terrorists win";
+            _winnerText.color = _counterTerroristColor;
+        }
 
-        //gameObject.SetActive(false);
-      
+        if (_winnerText.text == "")
+        {
+            _winnerText.text = "Draw";
+        }
     }
 }

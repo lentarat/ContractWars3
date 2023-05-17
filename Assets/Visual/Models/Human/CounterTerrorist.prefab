@@ -3180,9 +3180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2772bcbc7a1883f4b91c951d0a316426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sensitivity: 20
   _playerBody: {fileID: 4403105943244784771}
   _camera: {fileID: 4403105943680813736}
+  _sensitivity: 20
 --- !u!1 &4403105943739897351
 GameObject:
   m_ObjectHideFlags: 0

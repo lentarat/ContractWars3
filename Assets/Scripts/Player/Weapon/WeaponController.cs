@@ -29,7 +29,7 @@ public class WeaponController : MonoBehaviour
         if (Time.time > _lastTimeShot + 1f / CurrentWeapon.FireRate)
         {
             _lastTimeShot = Time.time;
-            if (Physics.Raycast(transform.position + transform.forward + _headOffset , transform.forward, out RaycastHit hit))
+            if (Physics.Raycast(transform.position + transform.forward * 0.1f + _headOffset , transform.forward, out RaycastHit hit))
             {
                 if (hit.collider.gameObject.TryGetComponent<HumanStats>(out HumanStats humanStats))
                 {

@@ -88,11 +88,13 @@ public class GameManager : MonoBehaviour
 
     private void HandleCountdownElapsed()
     {
-        _countdownTime = 0f;
         CurrentGameState = GameState.EndOfRound;
-        _uiModeController.SetUIModeActive(UIModeController.UIMode.EndOfRound, true);
-        OnRoundCountdownElapsed?.Invoke();
+        _countdownTime = 0f;
         Time.timeScale = 0;
+
+        OnRoundCountdownElapsed?.Invoke();
+        
+        _uiModeController.SetUIModeActive(UIModeController.UIMode.EndOfRound, true);
     }
 
     private void FormatTime()
