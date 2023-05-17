@@ -26,8 +26,11 @@ public class Weapon : MonoBehaviour
     public AudioSource ShootSFX { get => _shootSFX; set => _shootSFX = value; }
     [SerializeField] private AudioSource _reloadSFX;
     public AudioSource ReloadSFX { get => _reloadSFX; set => _reloadSFX = value; }
+    [SerializeField] private GameObject _shootVFX;
+    public GameObject ShootVFX { get => _shootVFX; set => _shootVFX = value; }
 
-     public enum WeaponType
+
+    public enum WeaponType
     {
         Main,
         Secondary,
