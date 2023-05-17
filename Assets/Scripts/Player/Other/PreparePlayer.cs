@@ -31,15 +31,18 @@ public class PreparePlayer : MonoBehaviour
             _fieldOfView.enabled = false;
             _FSMController.enabled = false;
 
-            GameManager.Instance.OnRoundCountdownElapsed += () => { HandlePlayerToRespawn(false); };
-
-            RespawnManager.Instance.OnPlayerRespawned += () => { HandlePlayerToRespawn(true); };
+            GameManager.Instance.OnRoundCountdownElapsed +=  HandlePlayerOnEndOfRound;
         }
     }
 
-    private void HandlePlayerToRespawn(bool state)
+    private void OnDestroy()
     {
-        _ui.SetActive(state);
-        _cameraHolder.SetActive(state);
+        GameManager.Instance.OnRoundCountdownElapsed -= HandlePlayerOnEndOfRound;
+    }
+
+    private void HandlePlayerOnEndOfRound()
+    {
+        _ui.SetActive(false);
+        _cameraHolder.SetActive(false);
     }
 }

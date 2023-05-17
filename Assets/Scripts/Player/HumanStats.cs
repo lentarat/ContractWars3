@@ -59,7 +59,7 @@ public class HumanStats : MonoBehaviour
         {
             GameManager.Instance.UpdateKillCounter(true, false);
         }
-        RespawnManager.Instance.RespawnPlayer(this, CompareTag("Player"));
+        RespawnManager.Instance.RespawnHuman(this, CompareTag("Player"));
         PlayerList.Instance.RemovePlayer(this);
         Destroy(gameObject);
     }

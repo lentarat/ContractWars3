@@ -411,8 +411,8 @@ MonoBehaviour:
   - {fileID: 1568598087}
   _ctPlayersHolder: {fileID: 2144017916}
   _tPlayersHolder: {fileID: 1404970282}
-  _ctMaxNumber: 2
-  _tMaxNumber: 2
+  _ctMaxNumber: 1
+  _tMaxNumber: 1
   _chooseUnit: {fileID: 404590419}
 --- !u!4 &267954999
 Transform:
@@ -1975,7 +1975,7 @@ MonoBehaviour:
   _previewMapCamera: {fileID: 1856260214}
   _uiModeController: {fileID: 246521864}
   _mapParent: {fileID: 588640548}
-  _roundTime: 15
+  _roundTime: 12
 --- !u!4 &1816133785
 Transform:
   m_ObjectHideFlags: 0
@@ -2005,7 +2005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerListCreator: {fileID: 267954998}
   _uiModeController: {fileID: 246521864}
-  _initialTimeLeftToRespawn: 3
+  _initialTimeLeftToRespawn: 8
 --- !u!1 &1853073390
 GameObject:
   m_ObjectHideFlags: 0

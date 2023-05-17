@@ -12,7 +12,6 @@ public class RespawnManager : MonoBehaviour
 
     [SerializeField] private PlayerListCreator _playerListCreator;
     [SerializeField] private UIModeController _uiModeController;
-    //[SerializeField] private GameObject _respawnPanel;
 
     [SerializeField] private float _initialTimeLeftToRespawn;
 
@@ -25,9 +24,8 @@ public class RespawnManager : MonoBehaviour
         Instance = this;
     }
 
-    public void RespawnPlayer(HumanStats player, bool isPlayer)
+    public void RespawnHuman(HumanStats player, bool isPlayer)
     {
-        //TimeLeftToRespawn = _initialTimeLeftToRespawn;
         StartCoroutine(RespawnCountdown(player, isPlayer, _initialTimeLeftToRespawn));
     }
 
@@ -49,6 +47,12 @@ public class RespawnManager : MonoBehaviour
             yield return null;
         }
 
+        Respawn(playerToRespawn, isPlayer);
+    }
+
+    private void Respawn(HumanStats playerToRespawn, bool isPlayer)
+    {
+        if (GameManager.GameState.EndOfRound == GameManager.Instance.CurrentGameState) return;
         if (isPlayer)
         {
             if (playerToRespawn.TeamUnit == HumanStats.Unit.CounterTerrorist)
@@ -63,7 +67,7 @@ public class RespawnManager : MonoBehaviour
         }
         else
         {
-           if (playerToRespawn.TeamUnit == HumanStats.Unit.CounterTerrorist)
+            if (playerToRespawn.TeamUnit == HumanStats.Unit.CounterTerrorist)
             {
                 _playerListCreator.SpawnHuman(ChooseUnit.Unit.CounterTerrorist, false);
             }
@@ -73,6 +77,7 @@ public class RespawnManager : MonoBehaviour
             }
         }
     }
+
     private void ShowRespawnPanel(bool state)
     {
         if (state)
@@ -83,6 +88,5 @@ public class RespawnManager : MonoBehaviour
         {
             _uiModeController.SetUIModeActive(UIModeController.UIMode.Restart, false);
         }
-        //_respawnPanel.SetActive(state);
     }
 }
