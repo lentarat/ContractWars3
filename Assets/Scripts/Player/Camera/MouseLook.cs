@@ -15,11 +15,7 @@ public class MouseLook : MonoBehaviour
 
     private void Start()
     {
-
-        JsonReadWriteSystem.Instance.LoadFromJson();
-        _sensitivity = JsonReadWriteSystem.Instance.Sensitivity.value;
-
-        Debug.Log(JsonReadWriteSystem.Instance.Sensitivity.value);
+        _sensitivity = SaveSystem.Load<SettingsData>().Sensitivity;
     }
 
     void LateUpdate()

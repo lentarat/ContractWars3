@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     public System.Action OnRoundCountdownElapsed;
 
     public GameState CurrentGameState { get; set; }
-    public int TerroristsKilled { get; set; }
-    public int CounterTerroristsKilled { get; set; }
+    public int TerroristsKilled { get; private set; }
+    public int CounterTerroristsKilled { get; private set; }
 
 
     private string _mapsPath = "Maps/";
@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
         OnSomeoneKilled?.Invoke(CounterTerroristsKilled, TerroristsKilled);
     }
 
+
     private void LoadMap()
     {
         var maps = _mapParent.GetComponentsInChildren<Renderer>();
@@ -81,7 +82,6 @@ public class GameManager : MonoBehaviour
             Destroy(go.gameObject);
         }
 
-        Debug.Log(MapChoose.ChosenMapName);
         GameObject loadedMap = Instantiate(Resources.Load(_mapsPath + MapChoose.ChosenMapName), _mapParent.transform) as GameObject;
         loadedMap.name = MapChoose.ChosenMapName;
     }

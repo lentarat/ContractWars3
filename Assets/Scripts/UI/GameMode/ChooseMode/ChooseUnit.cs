@@ -9,7 +9,6 @@ public class ChooseUnit : MonoBehaviour
     [SerializeField] private Button _tUnit;
 
     public System.Action<Unit> OnUnitChosen;
-
     public enum Unit
     {
         CounterTerrorist,
