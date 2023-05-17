@@ -40,13 +40,24 @@ public class Grenade : MonoBehaviour
         Destroy(projectile.gameObject);
         var players = PlayerList.Instance.GetPlayersInRadius(projectile.transform.position, _radius);
         //var players = PlayerList.Instance.GetPlayersInRadius(projectile.transform.position, _radius);
-
+        string some = null;
         //Debug.Log(players.Length);
         foreach (var player in players)
         {
-            player.Hp += (int)(_weaponController.CurrentWeapon.Damage / Vector3.Distance(player.transform.position, projectile.transform.position)  < 1 ? 1 : Vector3.Distance(player.transform.position, projectile.transform.position));
+            if (player == null) some += "NULL ";
+            else
+            {
+                some  += player.gameObject.name + "  ";
+            }
+            player.Hp -= 
+                (int)(_weaponController.CurrentWeapon.Damage 
+                / Vector3.Distance(player.transform.position, projectile.transform.position));
+                 //< 1 ? 1 : Vector3.Distance(player.transform.position, projectile.transform.position));
+            
+            //player.Hp -= (int)((_weaponController.CurrentWeapon.Damage) / (Vector3.Distance(player.transform.position, projectile.transform.position) / 4));
             //Debug.Log(player.Hp);
         }
+        Debug.Log(some);
 
         
         yield return new WaitForSeconds(_delay);
