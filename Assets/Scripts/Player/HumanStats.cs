@@ -7,7 +7,6 @@ public class HumanStats : MonoBehaviour
 {
     public Action OnHPChanged;
     public Action OnArmorChanged;
-    //public Action OnPlayerDeath;
 
     [SerializeField] private int _hp;
 

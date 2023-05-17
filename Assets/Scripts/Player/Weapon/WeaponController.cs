@@ -110,11 +110,4 @@ public class WeaponController : MonoBehaviour
             EventAggregator.Post(this, CurrentWeapon);
         }
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawRay(transform.position + _headOffset, transform.forward);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(transform.position + transform.forward + _headOffset, transform.forward);
-    }
 }

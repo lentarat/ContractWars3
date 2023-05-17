@@ -7,12 +7,13 @@ public class FSMController : MonoBehaviour
     [SerializeField] private NavMeshController _navMeshController;
     [SerializeField] private WeaponController _weaponController;
     [SerializeField] private WeaponChange _weaponChange;
-    [SerializeField] private FieldOfView _fieldOfView;
 
-    private EnemyDetectionSystem _enemyDetectionSystem;
+    private EnemyDetectionSystem _enemyDetectionSystem ;
     private AttackSystem _attackSystem;
 
     private AIStates _currentState;
+
+    private HumanStats.Unit _teamUnit;
 
     private enum AIStates
     {
@@ -23,9 +24,9 @@ public class FSMController : MonoBehaviour
 
     private void Awake()
     {
-        _attackSystem = new AttackSystem(_weaponController, transform, _weaponController.CameraTransform);
-        _enemyDetectionSystem = new EnemyDetectionSystem(_fieldOfView);
-        //_fieldOfView.OnEnemyDetect += OnAttackEnemyState;
+        _attackSystem = new AttackSystem(_weaponController, transform);
+        _teamUnit = GetComponent<HumanStats>().TeamUnit;
+        _enemyDetectionSystem = new EnemyDetectionSystem();
     }
 
 
@@ -63,16 +64,17 @@ public class FSMController : MonoBehaviour
     {
         _navMeshController.GoToRandomPoint();
 
-        if (_enemyDetectionSystem.HasPlayer() && _weaponController.HasAmmo())
+        if (_enemyDetectionSystem.HasPlayer(transform, _teamUnit) &&
+            _weaponController.HasAmmo())
         {
-            _navMeshController.StopGoingToDestination();
+            _navMeshController.StopImmediately();
             _currentState = AIStates.AttackEnemy;
         }
     }
 
     private void OnAttackEnemyState()
     {
-        HumanStats enemy = _enemyDetectionSystem.GetLastSpottedEnemy();
+        HumanStats enemy = _enemyDetectionSystem.GetLastSpottedEnemy(transform, _teamUnit);
 
         if (enemy == null)
         {

@@ -24,7 +24,7 @@ public class NavMeshController : MonoBehaviour
         }
     }
 
-    public void StopGoingToDestination()
+    public void StopImmediately()
     {
         _navMeshAgent.isStopped = true;
     }

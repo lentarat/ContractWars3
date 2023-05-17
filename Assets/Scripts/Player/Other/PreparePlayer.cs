@@ -13,7 +13,6 @@ public class PreparePlayer : MonoBehaviour
     [SerializeField] private NavMeshController _navMeshController;
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private CapsuleCollider _capsuleCollider;
-    [SerializeField] private FieldOfView _fieldOfView;
     [SerializeField] private FSMController _FSMController;
 
     private void Start()
@@ -28,7 +27,6 @@ public class PreparePlayer : MonoBehaviour
             _navMeshAgent.enabled = false;
             _navMeshController.enabled = false;
             _capsuleCollider.enabled = false;
-            _fieldOfView.enabled = false;
             _FSMController.enabled = false;
 
             GameManager.Instance.OnRoundCountdownElapsed +=  HandlePlayerOnEndOfRound;

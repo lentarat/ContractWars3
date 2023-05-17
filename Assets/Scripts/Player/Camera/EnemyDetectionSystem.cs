@@ -4,28 +4,17 @@ using UnityEngine;
 
 public class EnemyDetectionSystem
 {
-    private FieldOfView _fieldOfView;
+    private FieldOfView _fieldOfView = new FieldOfView();
     private HumanStats _lastSpottedPlayer { get; set; }
 
-    public EnemyDetectionSystem(FieldOfView fieldOfView)
+    public HumanStats GetLastSpottedEnemy(Transform me, HumanStats.Unit _teamUnit)
     {
-        _fieldOfView = fieldOfView;
-        //_fieldOfView.OnEnemyDetect
+        return _fieldOfView.CheckForEnemies(me, _teamUnit);
     }
 
-    //public void SetCurrentSpottedPlayer(HumanStats enemy)
-    //{
-    //    CurrentSpottedPlayer = enemy;
-    //}
-
-    public HumanStats GetLastSpottedEnemy()
+    public bool HasPlayer(Transform me, HumanStats.Unit _teamUnit)
     {
-        return _fieldOfView.CheckForEnemies();
-    }
-
-    public bool HasPlayer()
-    {
-        _lastSpottedPlayer = _fieldOfView.CheckForEnemies();
+        _lastSpottedPlayer = _fieldOfView.CheckForEnemies(me, _teamUnit);
         if (_lastSpottedPlayer == null)
         {
             return false;

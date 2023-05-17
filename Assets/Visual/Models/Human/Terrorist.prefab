@@ -477,7 +477,6 @@ GameObject:
   - component: {fileID: 530375666991959621}
   - component: {fileID: 7365865694139344446}
   - component: {fileID: 9121350683242307148}
-  - component: {fileID: 3605858881730465125}
   - component: {fileID: 656627729918373601}
   - component: {fileID: 1816325548727948368}
   m_Layer: 10
@@ -627,7 +626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentWeapon: {fileID: 8975323412171084069}
   _cameraTransform: {fileID: 530375665324548508}
-  _headOffset: {x: 0, y: 1, z: 0}
+  _headOffset: {x: 0, y: 0.8, z: 0}
   _shootButton: {fileID: 4353151983733379763}
   _throwGrenadeButton: {fileID: 8411920604545310817}
 --- !u!114 &530375666991959621
@@ -665,7 +664,6 @@ MonoBehaviour:
   _navMeshController: {fileID: 9121350683242307148}
   _navMeshAgent: {fileID: 5949754508406249496}
   _capsuleCollider: {fileID: 1816325548727948368}
-  _fieldOfView: {fileID: 3605858881730465125}
   _FSMController: {fileID: 656627729918373601}
 --- !u!114 &9121350683242307148
 MonoBehaviour:
@@ -687,23 +685,6 @@ MonoBehaviour:
   - {fileID: 53908817360333297, guid: ce81caacf99d789439258dcf7d3f3fdc, type: 3}
   - {fileID: 7343674941223426357, guid: 0e716a28aa80f3c4fb39ad982dee1ee1, type: 3}
   _animatorBot: {fileID: 2573467609248769260}
---- !u!114 &3605858881730465125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530375666991959688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da96d4b59a41ec84fa1b56c4edef50c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timeToUpdateFov: 1
-  _camera: {fileID: 530375665324548508}
-  _radius: 50
-  _angle: 60
-  _headOffset: {x: 0, y: 0.7, z: 0}
 --- !u!114 &656627729918373601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,7 +700,6 @@ MonoBehaviour:
   _navMeshController: {fileID: 9121350683242307148}
   _weaponController: {fileID: 530375666991959618}
   _weaponChange: {fileID: 4353151982924095314}
-  _fieldOfView: {fileID: 3605858881730465125}
 --- !u!136 &1816325548727948368
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4383,7 +4363,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 2147483647
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: f99c5970d214391439d6198698c98d3a, type: 2}
   m_TargetDisplay: 1

@@ -12,6 +12,7 @@ public class RespawnManager : MonoBehaviour
 
     [SerializeField] private PlayerListCreator _playerListCreator;
     [SerializeField] private UIModeController _uiModeController;
+    [SerializeField] private GameObject _previewCameraHolder;
 
     [SerializeField] private float _initialTimeLeftToRespawn;
 
@@ -33,6 +34,7 @@ public class RespawnManager : MonoBehaviour
     {
         if (isPlayer)
         {
+            _previewCameraHolder.SetActive(true);
             ShowRespawnPanel(true);
         }
 
@@ -63,6 +65,8 @@ public class RespawnManager : MonoBehaviour
             {
                 _playerListCreator.SpawnHuman(ChooseUnit.Unit.Terrorist, true);
             }
+
+            _previewCameraHolder.SetActive(false);
             ShowRespawnPanel(false);
         }
         else

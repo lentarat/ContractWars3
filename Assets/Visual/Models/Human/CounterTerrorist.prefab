@@ -634,7 +634,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 2147483647
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: f99c5970d214391439d6198698c98d3a, type: 2}
   m_TargetDisplay: 1
@@ -2741,7 +2741,6 @@ GameObject:
   - component: {fileID: 4433903588346034117}
   - component: {fileID: 930795523}
   - component: {fileID: 930795524}
-  - component: {fileID: 930795525}
   - component: {fileID: 930795526}
   m_Layer: 10
   m_Name: CounterTerrorist
@@ -2890,7 +2889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentWeapon: {fileID: 7813703934916397171}
   _cameraTransform: {fileID: 4403105943680813741}
-  _headOffset: {x: 0, y: 0.7, z: 0}
+  _headOffset: {x: 0, y: 0.8, z: 0}
   _shootButton: {fileID: 2356443787392082922}
   _throwGrenadeButton: {fileID: 7523088016738292024}
 --- !u!114 &4403105943244790652
@@ -2928,7 +2927,6 @@ MonoBehaviour:
   _navMeshController: {fileID: 930795526}
   _navMeshAgent: {fileID: 9062842792872794511}
   _capsuleCollider: {fileID: 930795523}
-  _fieldOfView: {fileID: 930795525}
   _FSMController: {fileID: 930795524}
 --- !u!136 &930795523
 CapsuleCollider:
@@ -2959,24 +2957,6 @@ MonoBehaviour:
   _navMeshController: {fileID: 930795526}
   _weaponController: {fileID: 4403105943244790655}
   _weaponChange: {fileID: 2356443786581847563}
-  _fieldOfView: {fileID: 930795525}
---- !u!114 &930795525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4403105943244790653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da96d4b59a41ec84fa1b56c4edef50c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timeToUpdateFov: 1
-  _camera: {fileID: 4403105943680813741}
-  _radius: 50
-  _angle: 60
-  _headOffset: {x: 0, y: 0.7, z: 0}
 --- !u!114 &930795526
 MonoBehaviour:
   m_ObjectHideFlags: 0

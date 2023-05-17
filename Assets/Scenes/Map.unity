@@ -1977,7 +1977,7 @@ MonoBehaviour:
   _previewMapCamera: {fileID: 1856260214}
   _uiModeController: {fileID: 246521864}
   _mapParent: {fileID: 588640548}
-  _roundTime: 70
+  _roundTime: 130
 --- !u!4 &1816133785
 Transform:
   m_ObjectHideFlags: 0
@@ -2007,7 +2007,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerListCreator: {fileID: 267954998}
   _uiModeController: {fileID: 246521864}
+  _previewCameraHolder: {fileID: 1851149103}
   _initialTimeLeftToRespawn: 5
+--- !u!1 &1851149103 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6224068259747382590, guid: 2b43c4a5dec6ee8458a554c858f6a5b3, type: 3}
+  m_PrefabInstance: {fileID: 2033643037391173297}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1853073390
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,21 +2289,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Source
       objectReference: {fileID: 0}
+    - target: {fileID: 3802375328176558206, guid: 2b43c4a5dec6ee8458a554c858f6a5b3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4579897606248598212, guid: 2b43c4a5dec6ee8458a554c858f6a5b3, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4579897606248598212, guid: 2b43c4a5dec6ee8458a554c858f6a5b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.051678
+      value: -13.09
       objectReference: {fileID: 0}
     - target: {fileID: 4579897606248598212, guid: 2b43c4a5dec6ee8458a554c858f6a5b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.751496
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 4579897606248598212, guid: 2b43c4a5dec6ee8458a554c858f6a5b3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.892632
+      value: -5.75
       objectReference: {fileID: 0}
     - target: {fileID: 4579897606248598212, guid: 2b43c4a5dec6ee8458a554c858f6a5b3, type: 3}
       propertyPath: m_LocalRotation.w

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class AttackSystem
 {
-    public WeaponController WeaponController { get; private set; }
-    public Transform Body { get; private set; }
-    public Transform Camera { get; private set; }
+    private WeaponController _weaponController;
+    private Transform _playerTransform;
 
-    public AttackSystem(WeaponController weaponController, Transform body, Transform camera)
+    private float _aimingAccuracyMultiplier = 3f; 
+
+    public AttackSystem(WeaponController weaponController, Transform playerTransform)
     {
-        WeaponController = weaponController;
-        Body = body;
-        Camera = camera;
+        _weaponController = weaponController;
+        _playerTransform = playerTransform;
     }
 
     public void Attack(HumanStats currentSpottedEnemy)
@@ -21,15 +21,16 @@ public class AttackSystem
         {
             return;
         }
-        Body.LookAt(currentSpottedEnemy.transform);
-        WeaponController.Shoot();
+
+        FaceTarget(currentSpottedEnemy.transform);
+        _weaponController.Shoot();
     }
 
-    //private void FaceTarget(Vector3 destination)
-    //{
-    //    Vector3 lookPos = destination - Body.position;
-    //    lookPos.y = 0;
-    //    Quaternion rotation = Quaternion.LookRotation(lookPos);
-    //    Body.rotation = Quaternion.Slerp(Body.rotation, rotation,);
-    //}
+    private void FaceTarget(Transform destination)
+    {
+        Vector3 lookPos = destination.position - _playerTransform.position;
+        lookPos.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(lookPos);
+        _playerTransform.rotation = Quaternion.Slerp(_playerTransform.rotation, rotation, Time.deltaTime * _aimingAccuracyMultiplier);
+    }
 }

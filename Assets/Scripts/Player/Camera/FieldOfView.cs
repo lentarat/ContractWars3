@@ -2,77 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldOfView : MonoBehaviour
+public class FieldOfView 
 {
-    [SerializeField] private float _timeToUpdateFov;
-    [SerializeField] private Transform _camera;
-    [SerializeField] private float _radius;
-    public float Radius { get => _radius; }
-    [Range(0, 360)]
-    [SerializeField] private float _angle;
-    [SerializeField] private Vector3 _headOffset;
+    private float _angle = 75f;
+    private Vector3 _headOffset = new Vector3(0f, 0.8f, 0f);
+    private int _humanLayerMask = LayerMask.NameToLayer("Human");
 
-    //public System.Action OnEnemyDetected;
-
-    private Vector3 _directionToEnemy;
-    private int _mapLayerMask;
-    private HumanStats.Unit _teamUnit;
-
-    private void Start()
-    {
-        if (gameObject.CompareTag("Player"))
-        {
-            return;
-        }
-
-        _teamUnit = gameObject.GetComponent<HumanStats>().TeamUnit;
-        //StartCoroutine(FovCoroutine());
-        //_humanLayerMask = LayerMask.NameToLayer("Human");
-        _mapLayerMask = LayerMask.NameToLayer("Map");
-    }
-
-    //private IEnumerator FovCoroutine()
-    //{
-    //    float lastTimeUpdated = Time.time;
-    //    while (true)
-    //    {
-    //        if (Time.time > lastTimeUpdated + _timeToUpdateFov)
-    //        {
-    //            lastTimeUpdated = Time.time;
-    //            CheckForEnemies();
-    //        }
-    //        yield return null;
-    //    }
-    //}
-
-    public HumanStats CheckForEnemies()
+    public HumanStats CheckForEnemies(Transform me, HumanStats.Unit _teamUnit)
     {
         foreach (var human in PlayerList.Instance.Players)
         {
-            if(human == null || human.gameObject == gameObject || _teamUnit == human.TeamUnit  )
+            if (_teamUnit == human.TeamUnit || me.gameObject == human.gameObject)
             {
                 continue;
             }
-            
-            _directionToEnemy = human.transform.position + _headOffset - transform.position;
-            //Debug.Log(Vector3.Angle(transform.forward, _directionToEnemy));
-            if (Vector3.Angle(transform.forward, _directionToEnemy) < _angle / 2f)
-            {
-                if (!Physics.Raycast(transform.position + _headOffset, _directionToEnemy, _mapLayerMask))
-                {
-                    //OnEnemyDetected?.Invoke();
-                    return human;
-                }
 
+            Vector3 _directionToEnemy = human.transform.position + _headOffset - me.position;
+
+            if (Vector3.Angle(me.forward, _directionToEnemy) < _angle / 2f)
+            {
+                RaycastHit raycastHit;
+                if (Physics.Raycast(me.position, _directionToEnemy, out raycastHit))
+                {
+                    if (raycastHit.collider.gameObject.layer == _humanLayerMask)
+                    {
+                        return human;
+                    }
+                }
             }
         }
         return null;
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    //Gizmos.DrawLine(transform.position, transform.position + _directionToEnemy * 50f);
-    //    Gizmos.DrawLine(_camera.position, _camera.transform.position + _directionToEnemy * 50f);
-    //}
 }
