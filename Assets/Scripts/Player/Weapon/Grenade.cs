@@ -44,7 +44,10 @@ public class Grenade : MonoBehaviour
         //Debug.Log(players.Length);
         foreach (var player in players)
         {
-            player.Hp += (int)(_weaponController.CurrentWeapon.Damage / Vector3.Distance(player.transform.position, projectile.transform.position)  < 1 ? 1 : Vector3.Distance(player.transform.position, projectile.transform.position));
+            PlayerList.Instance.ShowPlayerListContext();
+            float distanceFromPlayerToExplosion = Vector3.Distance(player.transform.position, projectile.transform.position);
+            player.Hp += (int)(_weaponController.CurrentWeapon.Damage /
+                distanceFromPlayerToExplosion < 1 ? 1 : distanceFromPlayerToExplosion);
             //Debug.Log(player.Hp);
         }
 

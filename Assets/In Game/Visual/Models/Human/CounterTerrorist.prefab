@@ -3818,7 +3818,6 @@ MonoBehaviour:
   _shootSFX: {fileID: 0}
   _reloadSFX: {fileID: 0}
   _shootVFX: {fileID: 0}
-  _positionToMuzzle: {fileID: 0}
 --- !u!114 &7473869537106231802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5857,6 +5856,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4603091663412450267, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 4403105943244790652}
     - target: {fileID: 6420005953225818637, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
       propertyPath: WeaponInSlot
       value: 

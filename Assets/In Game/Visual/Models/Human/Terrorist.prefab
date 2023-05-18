@@ -2917,7 +2917,6 @@ MonoBehaviour:
   _shootSFX: {fileID: 6047113593227347720}
   _reloadSFX: {fileID: 0}
   _shootVFX: {fileID: 436200190577325456}
-  _positionToMuzzle: {fileID: 4692058934283344059}
 --- !u!1 &4356431863804456514
 GameObject:
   m_ObjectHideFlags: 0
@@ -3870,7 +3869,6 @@ MonoBehaviour:
   _shootSFX: {fileID: 6456318589233937469}
   _reloadSFX: {fileID: 0}
   _shootVFX: {fileID: 436200190577325456}
-  _positionToMuzzle: {fileID: 4692058934283344059}
 --- !u!1 &5229923235977446841
 GameObject:
   m_ObjectHideFlags: 0
@@ -4122,7 +4120,6 @@ MonoBehaviour:
   _shootSFX: {fileID: 0}
   _reloadSFX: {fileID: 0}
   _shootVFX: {fileID: 0}
-  _positionToMuzzle: {fileID: 0}
 --- !u!135 &3884468858678917534
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6505,6 +6502,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThrowGrenedeButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4603091663412450267, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 530375666991959621}
     - target: {fileID: 6420005953225818637, guid: 3d522d50a97d4c74991802afeee2b657, type: 3}
       propertyPath: WeaponInSlot
       value: 

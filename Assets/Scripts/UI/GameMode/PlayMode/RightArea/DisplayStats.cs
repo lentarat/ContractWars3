@@ -10,13 +10,12 @@ public class DisplayStats : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _armorText;
     [SerializeField] private HumanStats _player;
 
-    private void Awake()
+    private void Start()
     {
         _player.OnHPChanged += ChangeHP;
         _player.OnArmorChanged += ChangeArmor;
     }
 
-    // OnHPChanged vs ChangeHP 
     private void ChangeHP()
     {
         _healthText.text = _player.Hp.ToString();

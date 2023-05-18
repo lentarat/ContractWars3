@@ -70,4 +70,21 @@ public sealed class PlayerList
     {
         Players.Clear();
     }
+    
+    public void ShowPlayerListContext()
+    {
+        string sum = "";
+        foreach (HumanStats human in _players)
+        {
+            if (sum == null)
+            {
+                sum += "null ";
+            }
+            else
+            {
+                sum += human.name + " ";
+            }
+        }
+        Debug.Log(sum);
+    }
 }

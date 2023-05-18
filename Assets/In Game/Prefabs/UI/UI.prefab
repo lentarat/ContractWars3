@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 60, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8192778268086057037
 CanvasRenderer:
@@ -2680,6 +2680,7 @@ MonoBehaviour:
   _bulletsLeft: 0
   _shootSFX: {fileID: 0}
   _reloadSFX: {fileID: 0}
+  _shootVFX: {fileID: 0}
 --- !u!1 &7234142406308444359
 GameObject:
   m_ObjectHideFlags: 0
@@ -4584,7 +4585,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 60, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5424147495670716284
 CanvasRenderer:
