@@ -18,6 +18,7 @@ public class DisplayStats : MonoBehaviour
 
     private void ChangeHP()
     {
+        Debug.Log(_player.Hp);
         _healthText.text = _player.Hp.ToString();
     }
 
